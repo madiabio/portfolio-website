@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model LeetCodeSolve {
+  id          Int      @id @default(autoincrement())
+  problemId   Int
+  problemName String
+  difficulty  String
+  durationMin Int
+  solvedAt    DateTime
+  createdAt   DateTime @default(now())
+}

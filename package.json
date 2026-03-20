@@ -4,5 +4,17 @@
 	"version": "1.0.0",
 	"dependencies": {
 		"@biomejs/biome": "2.2.0"
+	},
+	"devDependencies": {
+		"husky": "^8.0.0",
+		"lint-staged": "^16.4.0"
+	},
+	"scripts": {
+		"prepare": "husky install"
+	},
+	"lint-staged": {
+		"*.{js,ts,tsx,json}": [
+			"biome check --write"
+		]
 	}
 }

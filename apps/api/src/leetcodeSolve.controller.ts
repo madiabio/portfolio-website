@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { ApiNotFoundResponse } from '@nestjs/swagger';
 import { CreateLeetcodeSolveDto } from './dto/create-leetcodeSolve.dto';
-import { LeetcodeSolveModel } from './generated/prisma/models';
+import { LeetcodeSolve } from '@portfolio/db';
 import { LeetcodeSolveService } from './leetcodeSolve.service';
 
 @Controller('leetcode-solves')
@@ -23,7 +23,7 @@ export class LeetcodeSolveController {
   @ApiNotFoundResponse({ description: 'Leetcode solve not found' })
   async getLeetcodeSolveById(
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<LeetcodeSolveModel> {
+  ): Promise<LeetcodeSolve> {
     return this.leetcodeSolveService.leetcodeSolve({ id });
   }
 

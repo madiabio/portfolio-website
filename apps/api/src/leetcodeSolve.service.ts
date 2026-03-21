@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CreateLeetcodeSolveDto } from './dto/create-leetcodeSolve.dto';
-import { LeetcodeSolve, Prisma } from './generated/prisma/client';
+
+import { type LeetcodeSolve, Prisma } from '@portfolio/db';
+
 import { PrismaService } from './prisma.service';
 
 @Injectable()
@@ -10,7 +12,7 @@ export class LeetcodeSolveService {
   async leetcodeSolve(
     leetcodeSolveWhereUniqueInput: Prisma.LeetcodeSolveWhereUniqueInput,
   ): Promise<LeetcodeSolve> {
-    return this.prisma.leetcodeSolve.findUniqueOrThrow({
+    return this.prisma.client.leetcodeSolve.findUniqueOrThrow({
       where: leetcodeSolveWhereUniqueInput,
     });
   }
@@ -23,7 +25,7 @@ export class LeetcodeSolveService {
     orderBy?: Prisma.LeetcodeSolveOrderByWithRelationInput;
   }): Promise<LeetcodeSolve[]> {
     const { skip, take, cursor, where, orderBy } = params;
-    return this.prisma.leetcodeSolve.findMany({
+    return this.prisma.client.leetcodeSolve.findMany({
       skip,
       take,
       cursor,
@@ -35,7 +37,7 @@ export class LeetcodeSolveService {
   async createLeetcodeSolve(
     data: CreateLeetcodeSolveDto,
   ): Promise<LeetcodeSolve> {
-    return this.prisma.leetcodeSolve.create({
+    return this.prisma.client.leetcodeSolve.create({
       data: {
         problemNumber: data.problemNumber,
         problemName: data.problemName,
@@ -51,7 +53,7 @@ export class LeetcodeSolveService {
     data: Prisma.LeetcodeSolveUpdateInput;
   }): Promise<LeetcodeSolve> {
     const { where, data } = params;
-    return this.prisma.leetcodeSolve.update({
+    return this.prisma.client.leetcodeSolve.update({
       data,
       where,
     });
@@ -60,7 +62,7 @@ export class LeetcodeSolveService {
   async deleteLeetcodeSolve(
     where: Prisma.LeetcodeSolveWhereUniqueInput,
   ): Promise<LeetcodeSolve> {
-    return this.prisma.leetcodeSolve.delete({
+    return this.prisma.client.leetcodeSolve.delete({
       where,
     });
   }

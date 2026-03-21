@@ -1,0 +1,9 @@
+model LeetcodeSolve {
+  id          Int      @id @default(autoincrement())
+  problemNumber Int
+  problemName String
+  difficulty  String
+  durationMin Int
+  solvedAt    DateTime
+  createdAt   DateTime @default(now())
+}

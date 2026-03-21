@@ -1,3 +1,2 @@
-import "dotenv/config";
-import { PrismaClient } from "./generated/prisma/client";
-export declare const prisma: PrismaClient;
+import { PrismaClient } from "@prisma/client";
+export declare const prisma: PrismaClient<import("@prisma/client").Prisma.PrismaClientOptions, never, import("@prisma/client/runtime/client").DefaultArgs>;

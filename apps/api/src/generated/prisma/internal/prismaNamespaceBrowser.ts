@@ -54,7 +54,7 @@ export const JsonNull = runtime.JsonNull;
 export const AnyNull = runtime.AnyNull;
 
 export const ModelName = {
-	LeetCodeSolve: "LeetCodeSolve",
+	LeetcodeSolve: "LeetcodeSolve",
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -73,7 +73,7 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel =
 	(typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
 
-export const LeetCodeSolveScalarFieldEnum = {
+export const LeetcodeSolveScalarFieldEnum = {
 	id: "id",
 	problemId: "problemId",
 	problemName: "problemName",
@@ -83,8 +83,8 @@ export const LeetCodeSolveScalarFieldEnum = {
 	createdAt: "createdAt",
 } as const;
 
-export type LeetCodeSolveScalarFieldEnum =
-	(typeof LeetCodeSolveScalarFieldEnum)[keyof typeof LeetCodeSolveScalarFieldEnum];
+export type LeetcodeSolveScalarFieldEnum =
+	(typeof LeetcodeSolveScalarFieldEnum)[keyof typeof LeetcodeSolveScalarFieldEnum];
 
 export const SortOrder = {
 	asc: "asc",

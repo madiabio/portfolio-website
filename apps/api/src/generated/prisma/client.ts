@@ -28,8 +28,8 @@ export * from "./enums.js";
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more LeetCodeSolves
- * const leetCodeSolves = await prisma.leetCodeSolve.findMany()
+ * // Fetch zero or more LeetcodeSolves
+ * const leetcodeSolves = await prisma.leetcodeSolve.findMany()
  * ```
  *
  * Read more in our [docs](https://pris.ly/d/client).
@@ -45,7 +45,7 @@ export type PrismaClient<
 export { Prisma };
 
 /**
- * Model LeetCodeSolve
+ * Model LeetcodeSolve
  *
  */
-export type LeetCodeSolve = Prisma.LeetCodeSolveModel;
+export type LeetcodeSolve = Prisma.LeetcodeSolveModel;

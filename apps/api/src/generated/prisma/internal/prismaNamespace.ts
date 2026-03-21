@@ -415,7 +415,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never
 	: FieldRef<Model, FieldType>;
 
 export const ModelName = {
-	LeetCodeSolve: "LeetCodeSolve",
+	LeetcodeSolve: "LeetcodeSolve",
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -437,82 +437,82 @@ export type TypeMap<
 		omit: GlobalOmitOptions;
 	};
 	meta: {
-		modelProps: "leetCodeSolve";
+		modelProps: "leetcodeSolve";
 		txIsolationLevel: TransactionIsolationLevel;
 	};
 	model: {
-		LeetCodeSolve: {
-			payload: Prisma.$LeetCodeSolvePayload<ExtArgs>;
-			fields: Prisma.LeetCodeSolveFieldRefs;
+		LeetcodeSolve: {
+			payload: Prisma.$LeetcodeSolvePayload<ExtArgs>;
+			fields: Prisma.LeetcodeSolveFieldRefs;
 			operations: {
 				findUnique: {
-					args: Prisma.LeetCodeSolveFindUniqueArgs<ExtArgs>;
-					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetCodeSolvePayload> | null;
+					args: Prisma.LeetcodeSolveFindUniqueArgs<ExtArgs>;
+					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetcodeSolvePayload> | null;
 				};
 				findUniqueOrThrow: {
-					args: Prisma.LeetCodeSolveFindUniqueOrThrowArgs<ExtArgs>;
-					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetCodeSolvePayload>;
+					args: Prisma.LeetcodeSolveFindUniqueOrThrowArgs<ExtArgs>;
+					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetcodeSolvePayload>;
 				};
 				findFirst: {
-					args: Prisma.LeetCodeSolveFindFirstArgs<ExtArgs>;
-					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetCodeSolvePayload> | null;
+					args: Prisma.LeetcodeSolveFindFirstArgs<ExtArgs>;
+					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetcodeSolvePayload> | null;
 				};
 				findFirstOrThrow: {
-					args: Prisma.LeetCodeSolveFindFirstOrThrowArgs<ExtArgs>;
-					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetCodeSolvePayload>;
+					args: Prisma.LeetcodeSolveFindFirstOrThrowArgs<ExtArgs>;
+					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetcodeSolvePayload>;
 				};
 				findMany: {
-					args: Prisma.LeetCodeSolveFindManyArgs<ExtArgs>;
-					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetCodeSolvePayload>[];
+					args: Prisma.LeetcodeSolveFindManyArgs<ExtArgs>;
+					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetcodeSolvePayload>[];
 				};
 				create: {
-					args: Prisma.LeetCodeSolveCreateArgs<ExtArgs>;
-					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetCodeSolvePayload>;
+					args: Prisma.LeetcodeSolveCreateArgs<ExtArgs>;
+					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetcodeSolvePayload>;
 				};
 				createMany: {
-					args: Prisma.LeetCodeSolveCreateManyArgs<ExtArgs>;
+					args: Prisma.LeetcodeSolveCreateManyArgs<ExtArgs>;
 					result: BatchPayload;
 				};
 				createManyAndReturn: {
-					args: Prisma.LeetCodeSolveCreateManyAndReturnArgs<ExtArgs>;
-					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetCodeSolvePayload>[];
+					args: Prisma.LeetcodeSolveCreateManyAndReturnArgs<ExtArgs>;
+					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetcodeSolvePayload>[];
 				};
 				delete: {
-					args: Prisma.LeetCodeSolveDeleteArgs<ExtArgs>;
-					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetCodeSolvePayload>;
+					args: Prisma.LeetcodeSolveDeleteArgs<ExtArgs>;
+					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetcodeSolvePayload>;
 				};
 				update: {
-					args: Prisma.LeetCodeSolveUpdateArgs<ExtArgs>;
-					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetCodeSolvePayload>;
+					args: Prisma.LeetcodeSolveUpdateArgs<ExtArgs>;
+					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetcodeSolvePayload>;
 				};
 				deleteMany: {
-					args: Prisma.LeetCodeSolveDeleteManyArgs<ExtArgs>;
+					args: Prisma.LeetcodeSolveDeleteManyArgs<ExtArgs>;
 					result: BatchPayload;
 				};
 				updateMany: {
-					args: Prisma.LeetCodeSolveUpdateManyArgs<ExtArgs>;
+					args: Prisma.LeetcodeSolveUpdateManyArgs<ExtArgs>;
 					result: BatchPayload;
 				};
 				updateManyAndReturn: {
-					args: Prisma.LeetCodeSolveUpdateManyAndReturnArgs<ExtArgs>;
-					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetCodeSolvePayload>[];
+					args: Prisma.LeetcodeSolveUpdateManyAndReturnArgs<ExtArgs>;
+					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetcodeSolvePayload>[];
 				};
 				upsert: {
-					args: Prisma.LeetCodeSolveUpsertArgs<ExtArgs>;
-					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetCodeSolvePayload>;
+					args: Prisma.LeetcodeSolveUpsertArgs<ExtArgs>;
+					result: runtime.Types.Utils.PayloadToResult<Prisma.$LeetcodeSolvePayload>;
 				};
 				aggregate: {
-					args: Prisma.LeetCodeSolveAggregateArgs<ExtArgs>;
-					result: runtime.Types.Utils.Optional<Prisma.AggregateLeetCodeSolve>;
+					args: Prisma.LeetcodeSolveAggregateArgs<ExtArgs>;
+					result: runtime.Types.Utils.Optional<Prisma.AggregateLeetcodeSolve>;
 				};
 				groupBy: {
-					args: Prisma.LeetCodeSolveGroupByArgs<ExtArgs>;
-					result: runtime.Types.Utils.Optional<Prisma.LeetCodeSolveGroupByOutputType>[];
+					args: Prisma.LeetcodeSolveGroupByArgs<ExtArgs>;
+					result: runtime.Types.Utils.Optional<Prisma.LeetcodeSolveGroupByOutputType>[];
 				};
 				count: {
-					args: Prisma.LeetCodeSolveCountArgs<ExtArgs>;
+					args: Prisma.LeetcodeSolveCountArgs<ExtArgs>;
 					result:
-						| runtime.Types.Utils.Optional<Prisma.LeetCodeSolveCountAggregateOutputType>
+						| runtime.Types.Utils.Optional<Prisma.LeetcodeSolveCountAggregateOutputType>
 						| number;
 				};
 			};
@@ -556,7 +556,7 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel =
 	(typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
 
-export const LeetCodeSolveScalarFieldEnum = {
+export const LeetcodeSolveScalarFieldEnum = {
 	id: "id",
 	problemId: "problemId",
 	problemName: "problemName",
@@ -566,8 +566,8 @@ export const LeetCodeSolveScalarFieldEnum = {
 	createdAt: "createdAt",
 } as const;
 
-export type LeetCodeSolveScalarFieldEnum =
-	(typeof LeetCodeSolveScalarFieldEnum)[keyof typeof LeetCodeSolveScalarFieldEnum];
+export type LeetcodeSolveScalarFieldEnum =
+	(typeof LeetcodeSolveScalarFieldEnum)[keyof typeof LeetcodeSolveScalarFieldEnum];
 
 export const SortOrder = {
 	asc: "asc",
@@ -754,7 +754,7 @@ export type PrismaClientOptions = (
 	comments?: runtime.SqlCommenterPlugin[];
 };
 export type GlobalOmitConfig = {
-	leetCodeSolve?: Prisma.LeetCodeSolveOmit;
+	leetcodeSolve?: Prisma.LeetcodeSolveOmit;
 };
 
 /* Types for Logging */

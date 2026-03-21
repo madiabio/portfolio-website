@@ -8,4 +8,4 @@ export type * from "./commonInputTypes.js";
  *
  * 🟢 You can import this file directly.
  */
-export type * from "./models/LeetCodeSolve.js";
+export type * from "./models/LeetcodeSolve.js";

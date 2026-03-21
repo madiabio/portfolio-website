@@ -13,7 +13,7 @@ datasource db {
   provider = "postgresql"
 }
 
-model LeetCodeSolve {
+model LeetcodeSolve {
   id          Int      @id @default(autoincrement())
   problemId   Int
   problemName String

@@ -19,7 +19,7 @@ const config: runtime.GetPrismaClientConfig = {
 	engineVersion: "280c870be64f457428992c43c1f6d557fab6e29e",
 	activeProvider: "postgresql",
 	inlineSchema:
-		'// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider     = "prisma-client"\n  output       = "../src/generated/prisma"\n  moduleFormat = "cjs"\n}\n\ndatasource db {\n  provider = "postgresql"\n}\n\nmodel LeetCodeSolve {\n  id          Int      @id @default(autoincrement())\n  problemId   Int\n  problemName String\n  difficulty  String\n  durationMin Int\n  solvedAt    DateTime\n  createdAt   DateTime @default(now())\n}\n',
+		'// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider     = "prisma-client"\n  output       = "../src/generated/prisma"\n  moduleFormat = "cjs"\n}\n\ndatasource db {\n  provider = "postgresql"\n}\n\nmodel LeetcodeSolve {\n  id          Int      @id @default(autoincrement())\n  problemId   Int\n  problemName String\n  difficulty  String\n  durationMin Int\n  solvedAt    DateTime\n  createdAt   DateTime @default(now())\n}\n',
 	runtimeDataModel: {
 		models: {},
 		enums: {},
@@ -32,11 +32,11 @@ const config: runtime.GetPrismaClientConfig = {
 };
 
 config.runtimeDataModel = JSON.parse(
-	'{"models":{"LeetCodeSolve":{"fields":[{"name":"id","kind":"scalar","type":"Int"},{"name":"problemId","kind":"scalar","type":"Int"},{"name":"problemName","kind":"scalar","type":"String"},{"name":"difficulty","kind":"scalar","type":"String"},{"name":"durationMin","kind":"scalar","type":"Int"},{"name":"solvedAt","kind":"scalar","type":"DateTime"},{"name":"createdAt","kind":"scalar","type":"DateTime"}],"dbName":null}},"enums":{},"types":{}}',
+	'{"models":{"LeetcodeSolve":{"fields":[{"name":"id","kind":"scalar","type":"Int"},{"name":"problemId","kind":"scalar","type":"Int"},{"name":"problemName","kind":"scalar","type":"String"},{"name":"difficulty","kind":"scalar","type":"String"},{"name":"durationMin","kind":"scalar","type":"Int"},{"name":"solvedAt","kind":"scalar","type":"DateTime"},{"name":"createdAt","kind":"scalar","type":"DateTime"}],"dbName":null}},"enums":{},"types":{}}',
 );
 config.parameterizationSchema = {
 	strings: JSON.parse(
-		'["where","LeetCodeSolve.findUnique","LeetCodeSolve.findUniqueOrThrow","orderBy","cursor","LeetCodeSolve.findFirst","LeetCodeSolve.findFirstOrThrow","LeetCodeSolve.findMany","data","LeetCodeSolve.createOne","LeetCodeSolve.createMany","LeetCodeSolve.createManyAndReturn","LeetCodeSolve.updateOne","LeetCodeSolve.updateMany","LeetCodeSolve.updateManyAndReturn","create","update","LeetCodeSolve.upsertOne","LeetCodeSolve.deleteOne","LeetCodeSolve.deleteMany","having","_count","_avg","_sum","_min","_max","LeetCodeSolve.groupBy","LeetCodeSolve.aggregate","AND","OR","NOT","id","problemId","problemName","difficulty","durationMin","solvedAt","createdAt","equals","in","notIn","lt","lte","gt","gte","not","contains","startsWith","endsWith","set","increment","decrement","multiply","divide"]',
+		'["where","LeetcodeSolve.findUnique","LeetcodeSolve.findUniqueOrThrow","orderBy","cursor","LeetcodeSolve.findFirst","LeetcodeSolve.findFirstOrThrow","LeetcodeSolve.findMany","data","LeetcodeSolve.createOne","LeetcodeSolve.createMany","LeetcodeSolve.createManyAndReturn","LeetcodeSolve.updateOne","LeetcodeSolve.updateMany","LeetcodeSolve.updateManyAndReturn","create","update","LeetcodeSolve.upsertOne","LeetcodeSolve.deleteOne","LeetcodeSolve.deleteMany","having","_count","_avg","_sum","_min","_max","LeetcodeSolve.groupBy","LeetcodeSolve.aggregate","AND","OR","NOT","id","problemId","problemName","difficulty","durationMin","solvedAt","createdAt","equals","in","notIn","lt","lte","gt","gte","not","contains","startsWith","endsWith","set","increment","decrement","multiply","divide"]',
 	),
 	graph:
 		"MAsQChwAACUAMB0AAAQAEB4AACUAMB8CAAAAASACACYAISEBACcAISIBACcAISMCACYAISRAACgAISVAACgAIQEAAAABACABAAAAAQAgChwAACUAMB0AAAQAEB4AACUAMB8CACYAISACACYAISEBACcAISIBACcAISMCACYAISRAACgAISVAACgAIQADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAHHwIAAAABIAIAAAABIQEAAAABIgEAAAABIwIAAAABJEAAAAABJUAAAAABAQgAAAkAIAcfAgAAAAEgAgAAAAEhAQAAAAEiAQAAAAEjAgAAAAEkQAAAAAElQAAAAAEBCAAACwAwAQgAAAsAMAcfAgAuACEgAgAuACEhAQAvACEiAQAvACEjAgAuACEkQAAwACElQAAwACECAAAAAQAgCAAADgAgBx8CAC4AISACAC4AISEBAC8AISIBAC8AISMCAC4AISRAADAAISVAADAAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBRUAACkAIBYAACoAIBcAAC0AIBgAACwAIBkAACsAIAocAAAaADAdAAAXABAeAAAaADAfAgAbACEgAgAbACEhAQAcACEiAQAcACEjAgAbACEkQAAdACElQAAdACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAocAAAaADAdAAAXABAeAAAaADAfAgAbACEgAgAbACEhAQAcACEiAQAcACEjAgAbACEkQAAdACElQAAdACENFQAAHwAgFgAAJAAgFwAAHwAgGAAAHwAgGQAAHwAgJgIAAAABJwIAAAAEKAIAAAAEKQIAAAABKgIAAAABKwIAAAABLAIAAAABLQIAIwAhDhUAAB8AIBgAACIAIBkAACIAICYBAAAAAScBAAAABCgBAAAABCkBAAAAASoBAAAAASsBAAAAASwBAAAAAS0BACEAIS4BAAAAAS8BAAAAATABAAAAAQsVAAAfACAYAAAgACAZAAAgACAmQAAAAAEnQAAAAAQoQAAAAAQpQAAAAAEqQAAAAAErQAAAAAEsQAAAAAEtQAAeACELFQAAHwAgGAAAIAAgGQAAIAAgJkAAAAABJ0AAAAAEKEAAAAAEKUAAAAABKkAAAAABK0AAAAABLEAAAAABLUAAHgAhCCYCAAAAAScCAAAABCgCAAAABCkCAAAAASoCAAAAASsCAAAAASwCAAAAAS0CAB8AIQgmQAAAAAEnQAAAAAQoQAAAAAQpQAAAAAEqQAAAAAErQAAAAAEsQAAAAAEtQAAgACEOFQAAHwAgGAAAIgAgGQAAIgAgJgEAAAABJwEAAAAEKAEAAAAEKQEAAAABKgEAAAABKwEAAAABLAEAAAABLQEAIQAhLgEAAAABLwEAAAABMAEAAAABCyYBAAAAAScBAAAABCgBAAAABCkBAAAAASoBAAAAASsBAAAAASwBAAAAAS0BACIAIS4BAAAAAS8BAAAAATABAAAAAQ0VAAAfACAWAAAkACAXAAAfACAYAAAfACAZAAAfACAmAgAAAAEnAgAAAAQoAgAAAAQpAgAAAAEqAgAAAAErAgAAAAEsAgAAAAEtAgAjACEIJggAAAABJwgAAAAEKAgAAAAEKQgAAAABKggAAAABKwgAAAABLAgAAAABLQgAJAAhChwAACUAMB0AAAQAEB4AACUAMB8CACYAISACACYAISEBACcAISIBACcAISMCACYAISRAACgAISVAACgAIQgmAgAAAAEnAgAAAAQoAgAAAAQpAgAAAAEqAgAAAAErAgAAAAEsAgAAAAEtAgAfACELJgEAAAABJwEAAAAEKAEAAAAEKQEAAAABKgEAAAABKwEAAAABLAEAAAABLQEAIgAhLgEAAAABLwEAAAABMAEAAAABCCZAAAAAASdAAAAABChAAAAABClAAAAAASpAAAAAAStAAAAAASxAAAAAAS1AACAAIQAAAAAABTECAAAAATICAAAAATMCAAAAATQCAAAAATUCAAAAAQExAQAAAAEBMUAAAAABAAAAAAUVAAYWAAcXAAgYAAkZAAoAAAAAAAUVAAYWAAcXAAgYAAkZAAoBAgECAwEFBgEGBwEHCAEJCgEKDAILDQMMDwENEQIOEgQREwESFAETFQIaGAUbGQs",
@@ -81,8 +81,8 @@ export interface PrismaClientConstructor {
 	 * const prisma = new PrismaClient({
 	 *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
 	 * })
-	 * // Fetch zero or more LeetCodeSolves
-	 * const leetCodeSolves = await prisma.leetCodeSolve.findMany()
+	 * // Fetch zero or more LeetcodeSolves
+	 * const leetcodeSolves = await prisma.leetcodeSolve.findMany()
 	 * ```
 	 *
 	 * Read more in our [docs](https://pris.ly/d/client).
@@ -112,8 +112,8 @@ export interface PrismaClientConstructor {
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more LeetCodeSolves
- * const leetCodeSolves = await prisma.leetCodeSolve.findMany()
+ * // Fetch zero or more LeetcodeSolves
+ * const leetcodeSolves = await prisma.leetcodeSolve.findMany()
  * ```
  *
  * Read more in our [docs](https://pris.ly/d/client).
@@ -244,14 +244,14 @@ export interface PrismaClient<
 	>;
 
 	/**
-	 * `prisma.leetCodeSolve`: Exposes CRUD operations for the **LeetCodeSolve** model.
+	 * `prisma.leetcodeSolve`: Exposes CRUD operations for the **LeetcodeSolve** model.
 	 * Example usage:
 	 * ```ts
-	 * // Fetch zero or more LeetCodeSolves
-	 * const leetCodeSolves = await prisma.leetCodeSolve.findMany()
+	 * // Fetch zero or more LeetcodeSolves
+	 * const leetcodeSolves = await prisma.leetcodeSolve.findMany()
 	 * ```
 	 */
-	get leetCodeSolve(): Prisma.LeetCodeSolveDelegate<
+	get leetcodeSolve(): Prisma.LeetcodeSolveDelegate<
 		ExtArgs,
 		{ omit: OmitOpts }
 	>;

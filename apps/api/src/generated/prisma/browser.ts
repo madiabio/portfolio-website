@@ -17,7 +17,7 @@ export { Prisma };
 export * as $Enums from "./enums.js";
 export * from "./enums.js";
 /**
- * Model LeetCodeSolve
+ * Model LeetcodeSolve
  *
  */
-export type LeetCodeSolve = Prisma.LeetCodeSolveModel;
+export type LeetcodeSolve = Prisma.LeetcodeSolveModel;

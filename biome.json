@@ -27,11 +27,11 @@
 		"enabled": true,
 		"actions": {
 			"source": {
-				"organizeImports": "on"
+				"organizeImports": "off"
 			}
 		}
 	},
 	"files": {
-		"includes": ["**", "!apps/api/src/generated"]
+		"includes": ["**", "!apps/api/src/"]
 	}
 }

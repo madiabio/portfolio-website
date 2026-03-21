@@ -5,9 +5,6 @@
 		"clientKind": "git",
 		"useIgnoreFile": false
 	},
-	"files": {
-		"ignoreUnknown": false
-	},
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab"
@@ -21,6 +18,9 @@
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "double"
+		},
+		"parser": {
+			"unsafeParameterDecoratorsEnabled": true
 		}
 	},
 	"assist": {
@@ -30,5 +30,8 @@
 				"organizeImports": "on"
 			}
 		}
+	},
+	"files": {
+		"includes": ["**", "!apps/api/src/generated"]
 	}
 }

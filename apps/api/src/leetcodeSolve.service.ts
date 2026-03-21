@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import type { CreateLeetcodeSolveDto } from "./dto/create-leetcodeSolve.dto";
 import type { LeetcodeSolve, Prisma } from "./generated/prisma/client";
 import type { PrismaService } from "./prisma.service";
 
@@ -8,8 +9,8 @@ export class LeetcodeSolveService {
 
 	async leetcodeSolve(
 		leetcodeSolveWhereUniqueInput: Prisma.LeetcodeSolveWhereUniqueInput,
-	): Promise<LeetcodeSolve | null> {
-		return this.prisma.leetcodeSolve.findUnique({
+	): Promise<LeetcodeSolve> {
+		return this.prisma.leetcodeSolve.findUniqueOrThrow({
 			where: leetcodeSolveWhereUniqueInput,
 		});
 	}
@@ -32,10 +33,16 @@ export class LeetcodeSolveService {
 	}
 
 	async createLeetcodeSolve(
-		data: Prisma.LeetcodeSolveCreateInput,
+		data: CreateLeetcodeSolveDto,
 	): Promise<LeetcodeSolve> {
 		return this.prisma.leetcodeSolve.create({
-			data,
+			data: {
+				problemNumber: data.problemNumber,
+				problemName: data.problemName,
+				difficulty: data.difficulty,
+				durationMin: data.durationMin,
+				solvedAt: data.solvedAt,
+			},
 		});
 	}
 

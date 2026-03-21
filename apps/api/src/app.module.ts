@@ -1,9 +1,10 @@
 import { Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
+import { LeetcodeSolveModule } from "./leetcodeSolve.module";
 
 @Module({
-	imports: [],
+	imports: [LeetcodeSolveModule],
 	controllers: [AppController],
 	providers: [AppService],
 })

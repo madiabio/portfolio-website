@@ -13,8 +13,7 @@ export const prisma =
     adapter: new PrismaPg({ connectionString: databaseUrl }),
     log: ["warn", "error"],
   });
-
-console.log("DATABASE_URL =:", databaseUrl);
+console.log("DATABASE_URL exists:", !!databaseUrl);
 console.log(
   Object.keys(prisma)
     .filter((k) => !k.startsWith("$"))

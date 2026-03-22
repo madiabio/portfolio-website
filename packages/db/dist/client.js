@@ -11,7 +11,7 @@ exports.prisma = globalForPrisma.prisma ??
         adapter: new adapter_pg_1.PrismaPg({ connectionString: databaseUrl }),
         log: ["warn", "error"],
     });
-console.log("DATABASE_URL =:", databaseUrl);
+console.log("DATABASE_URL exists:", !!databaseUrl);
 console.log(Object.keys(exports.prisma)
     .filter((k) => !k.startsWith("$"))
     .sort());

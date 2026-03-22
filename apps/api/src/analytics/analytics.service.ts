@@ -4,6 +4,10 @@ import {
   LeetcodeSummaryDto,
 } from './dto/leetcode-summary.dto';
 import { PrismaService } from '@/prisma/prisma.service';
+import {
+  LeetcodeTimeByDifficultyResponseDto,
+  LeetcodeScatterPointDto,
+} from './dto/leetcode-time-point.dto';
 
 @Injectable()
 export class AnalyticsService {
@@ -31,6 +35,7 @@ export class AnalyticsService {
 
     for (const row of grouped) {
       const difficulty = row.difficulty.toLowerCase();
+
       if (difficulty === 'easy') {
         difficultyCounts.easy = row._count._all;
       } else if (difficulty === 'medium') {
@@ -41,9 +46,42 @@ export class AnalyticsService {
     }
 
     const result: LeetcodeSummaryDto = {
-      totalSolved: total._count['all'],
-      difficultyCounts: difficultyCounts,
+      totalSolved: total._count._all,
+      difficultyCounts,
     };
+
     return result;
+  }
+
+  async leetcodeTimeByDifficulty(): Promise<LeetcodeTimeByDifficultyResponseDto> {
+    const solves = await this.prisma.client.leetcodeSolve.findMany({
+      select: {
+        problemNumber: true,
+        problemName: true,
+        difficulty: true,
+        durationMin: true,
+        solvedAt: true,
+      },
+      orderBy: {
+        solvedAt: 'asc',
+      },
+    });
+
+    const points: LeetcodeScatterPointDto[] = solves.map((solve) => ({
+      x: solve.solvedAt,
+      y: solve.durationMin,
+      difficulty: solve.difficulty.toLowerCase() as 'easy' | 'medium' | 'hard',
+      problemNumber: solve.problemNumber,
+      problemName: solve.problemName,
+    }));
+
+    return {
+      points,
+      goals: {
+        easy: 15,
+        medium: 30,
+        hard: 60,
+      },
+    };
   }
 }

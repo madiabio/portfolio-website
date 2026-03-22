@@ -1,7 +1,6 @@
 "use client";
-
-import { authClient } from "@/lib/auth-client";
-
+import { authClient } from "@/lib/auth/auth-client";
+import { LeetcodeScatterChart } from "@/features/analytics/components/leetcode-scatter-chart";
 export default function DashboardPage() {
   const { data: session, isPending } = authClient.useSession();
 
@@ -9,10 +8,8 @@ export default function DashboardPage() {
   if (!session) return <div>Not signed in</div>;
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>{session.user.name}</p>
-      <p>{session.user.email}</p>
-    </div>
+    <main>
+      <LeetcodeScatterChart />
+    </main>
   );
 }

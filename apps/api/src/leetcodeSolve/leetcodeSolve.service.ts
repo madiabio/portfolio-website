@@ -3,7 +3,7 @@ import { CreateLeetcodeSolveDto } from './dto/create-leetcodeSolve.dto';
 
 import { type LeetcodeSolve, Prisma } from '@portfolio/db';
 
-import { PrismaService } from './prisma.service';
+import { PrismaService } from '@/prisma/prisma.service';
 
 @Injectable()
 export class LeetcodeSolveService {

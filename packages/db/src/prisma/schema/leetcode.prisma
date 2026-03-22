@@ -1,9 +1,12 @@
 model LeetcodeSolve {
-  id          Int      @id @default(autoincrement())
-  problemNumber Int
-  problemName String
-  difficulty  String
-  durationMin Int
-  solvedAt    DateTime
-  createdAt   DateTime @default(now())
+  id                 Int       @id @default(autoincrement())
+  problemNumber      Int
+  problemName        String
+  difficulty         String
+  durationMin        Int
+  solvedAt           DateTime
+  notes              String?
+  solvedWithoutHint  Boolean?
+  solvedOptimally    Boolean?
+  createdAt          DateTime  @default(now())
 }

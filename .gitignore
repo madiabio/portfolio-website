@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# rsp data
+.rsp_data/*
+
+# venv
+.venv/*

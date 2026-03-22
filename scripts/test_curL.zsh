@@ -3,7 +3,7 @@
   -d '{
     "problemNumber": 1,
     "problemName": "Two Sum",
-    "difficulty": "Easy",
+    "difficulty": "medium",
     "durationMin": 15,
     "solvedAt": "2026-03-21T02:30:00.000Z"
   }'

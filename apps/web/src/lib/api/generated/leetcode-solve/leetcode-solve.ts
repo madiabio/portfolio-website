@@ -28,7 +28,10 @@ import type {
   CreateLeetcodeSolveDto
 } from '../generated.schemas';
 
+import { customFetch } from '../../custom-fetch';
 
+
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 
@@ -54,20 +57,14 @@ export const getGetLeetcodeSolveByIdUrl = (id: number,) => {
 
 export const getLeetcodeSolveById = async (id: number, options?: RequestInit): Promise<getLeetcodeSolveByIdResponse> => {
   
-  const res = await fetch(getGetLeetcodeSolveByIdUrl(id),
+  return customFetch<getLeetcodeSolveByIdResponse>(getGetLeetcodeSolveByIdUrl(id),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getLeetcodeSolveByIdResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getLeetcodeSolveByIdResponse
-}
+);}
   
 
 
@@ -80,16 +77,16 @@ export const getGetLeetcodeSolveByIdQueryKey = (id: number,) => {
     }
 
     
-export const getGetLeetcodeSolveByIdQueryOptions = <TData = Awaited<ReturnType<typeof getLeetcodeSolveById>>, TError = void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeetcodeSolveById>>, TError, TData>>, fetch?: RequestInit}
+export const getGetLeetcodeSolveByIdQueryOptions = <TData = Awaited<ReturnType<typeof getLeetcodeSolveById>>, TError = void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeetcodeSolveById>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
-const {query: queryOptions, fetch: fetchOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetLeetcodeSolveByIdQueryKey(id);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeetcodeSolveById>>> = ({ signal }) => getLeetcodeSolveById(id, { signal, ...fetchOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeetcodeSolveById>>> = ({ signal }) => getLeetcodeSolveById(id, { signal, ...requestOptions });
 
       
 
@@ -109,7 +106,7 @@ export function useGetLeetcodeSolveById<TData = Awaited<ReturnType<typeof getLee
           TError,
           Awaited<ReturnType<typeof getLeetcodeSolveById>>
         > , 'initialData'
-      >, fetch?: RequestInit}
+      >, request?: SecondParameter<typeof customFetch>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetLeetcodeSolveById<TData = Awaited<ReturnType<typeof getLeetcodeSolveById>>, TError = void>(
@@ -119,16 +116,16 @@ export function useGetLeetcodeSolveById<TData = Awaited<ReturnType<typeof getLee
           TError,
           Awaited<ReturnType<typeof getLeetcodeSolveById>>
         > , 'initialData'
-      >, fetch?: RequestInit}
+      >, request?: SecondParameter<typeof customFetch>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetLeetcodeSolveById<TData = Awaited<ReturnType<typeof getLeetcodeSolveById>>, TError = void>(
- id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeetcodeSolveById>>, TError, TData>>, fetch?: RequestInit}
+ id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeetcodeSolveById>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 
 export function useGetLeetcodeSolveById<TData = Awaited<ReturnType<typeof getLeetcodeSolveById>>, TError = void>(
- id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeetcodeSolveById>>, TError, TData>>, fetch?: RequestInit}
+ id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeetcodeSolveById>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -164,7 +161,7 @@ export const getCreateUrl = () => {
 
 export const create = async (createLeetcodeSolveDto: CreateLeetcodeSolveDto, options?: RequestInit): Promise<createResponse> => {
   
-  const res = await fetch(getCreateUrl(),
+  return customFetch<createResponse>(getCreateUrl(),
   {      
     ...options,
     method: 'POST',
@@ -172,27 +169,21 @@ export const create = async (createLeetcodeSolveDto: CreateLeetcodeSolveDto, opt
     body: JSON.stringify(
       createLeetcodeSolveDto,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: createResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as createResponse
-}
+);}
   
 
 
 
 export const getCreateMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof create>>, TError,{data: CreateLeetcodeSolveDto}, TContext>, fetch?: RequestInit}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof create>>, TError,{data: CreateLeetcodeSolveDto}, TContext>, request?: SecondParameter<typeof customFetch>}
 ): UseMutationOptions<Awaited<ReturnType<typeof create>>, TError,{data: CreateLeetcodeSolveDto}, TContext> => {
 
 const mutationKey = ['create'];
-const {mutation: mutationOptions, fetch: fetchOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, fetch: undefined};
+      : {mutation: { mutationKey, }, request: undefined};
 
       
 
@@ -200,7 +191,7 @@ const {mutation: mutationOptions, fetch: fetchOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof create>>, {data: CreateLeetcodeSolveDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  create(data,fetchOptions)
+          return  create(data,requestOptions)
         }
 
 
@@ -215,7 +206,7 @@ const {mutation: mutationOptions, fetch: fetchOptions} = options ?
     export type CreateMutationError = unknown
 
     export const useCreate = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof create>>, TError,{data: CreateLeetcodeSolveDto}, TContext>, fetch?: RequestInit}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof create>>, TError,{data: CreateLeetcodeSolveDto}, TContext>, request?: SecondParameter<typeof customFetch>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof create>>,
         TError,

@@ -1,6 +1,7 @@
 "use client";
 import { authClient } from "@/lib/auth/auth-client";
 import { LeetcodeScatterChart } from "@/features/analytics/components/leetcode-scatter-chart";
+import { AddSolveButton } from "@/features/solves/components/AddSolveButton";
 export default function DashboardPage() {
   const { data: session, isPending } = authClient.useSession();
 
@@ -10,6 +11,7 @@ export default function DashboardPage() {
   return (
     <main>
       <LeetcodeScatterChart />
+      <AddSolveButton />
     </main>
   );
 }

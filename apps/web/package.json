@@ -19,6 +19,8 @@
     "@portfolio/auth": "workspace:*",
     "@portfolio/db": "workspace:*",
     "@prisma/client-runtime-utils": "^7.5.0",
+    "@prisma/client": "7.5.0",
+    "@prisma/adapter-pg": "7.5.0",
     "@tabler/icons-react": "^3.40.0",
     "better-auth": "^1.5.5",
     "next": "16.2.0",

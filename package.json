@@ -3,7 +3,8 @@
 	"private": true,
 	"version": "0.0.1",
 	"dependencies": {
-		"@biomejs/biome": "2.2.0"
+		"@biomejs/biome": "2.2.0",
+		"@prisma/client-runtime-utils": "7.5.0"
 	},
 	"devDependencies": {
 		"@types/node": "^25.5.0",
@@ -13,9 +14,9 @@
 	},
 	"scripts": {
 		"prepare": "husky install",
-    "clean": "rm -rf packages/db/dist apps/web/.next apps/api/dist node_modules/.cache .turbo",
-    "reset": "pnpm clean && pnpm install && pnpm -r build",
-    "import:old-solves": "tsx scripts/import-old-solves.ts"
+		"clean": "rm -rf packages/db/dist apps/web/.next apps/api/dist node_modules/.cache .turbo",
+		"reset": "pnpm clean && pnpm install && pnpm -r build",
+		"import:old-solves": "tsx scripts/import-old-solves.ts"
 	},
 	"lint-staged": {
 		"*.{js,ts,tsx,json}": [

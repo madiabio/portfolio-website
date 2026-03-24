@@ -7,14 +7,19 @@ export function ContactSection() {
       <Text c="dimmed">You can find me through the links below.</Text>
 
       <Group gap="lg">
-        <Anchor href="https://github.com" target="_blank" underline="never">
+        <Anchor
+          href="https://github.com/madiabio"
+          target="_blank"
+          underline="never"
+        >
           GitHub
         </Anchor>
-        <Anchor href="https://linkedin.com" target="_blank" underline="never">
+        <Anchor
+          href="https://linkedin.com/in/madiabio"
+          target="_blank"
+          underline="never"
+        >
           LinkedIn
-        </Anchor>
-        <Anchor href="mailto:you@example.com" underline="never">
-          Email
         </Anchor>
       </Group>
     </Stack>

@@ -1,9 +1,12 @@
 import { defineConfig } from "orval";
 
+const NEXT_PUBLIC_API_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
+
 export default defineConfig({
   api: {
     input: {
-      target: "http://localhost:3001/api-json",
+      target: `${NEXT_PUBLIC_API_URL}/api-json`,
     },
     output: {
       target: "./src/lib/api/generated/generated.ts",

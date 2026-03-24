@@ -3,7 +3,7 @@ import {
   DifficultyCountsDto,
   LeetcodeSummaryDto,
 } from './dto/leetcode-summary.dto';
-import { PrismaService } from '@/prisma/prisma.service';
+import { PrismaService } from './prisma/prisma.service';
 import {
   LeetcodeTimeByDifficultyResponseDto,
   LeetcodeScatterPointDto,

@@ -2,7 +2,7 @@ import { Controller, Get, Req } from '@nestjs/common';
 import { AnalyticsService } from './analytics.service';
 import { LeetcodeSummaryDto } from './dto/leetcode-summary.dto';
 import { LeetcodeTimeByDifficultyResponseDto } from './dto/leetcode-time-point.dto';
-import { Public } from '@/auth/public.decorator';
+import { Public } from '../auth/public.decorator';
 import type { Request } from 'express';
 
 type RequestWithAuth = Request & {

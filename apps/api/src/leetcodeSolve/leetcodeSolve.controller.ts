@@ -14,7 +14,7 @@ import { ApiNotFoundResponse } from '@nestjs/swagger';
 import { CreateLeetcodeSolveDto } from './dto/create-leetcodeSolve.dto';
 import { LeetcodeSolve } from '@portfolio/db';
 import { LeetcodeSolveService } from './leetcodeSolve.service';
-import { Public } from '@/auth/public.decorator';
+import { Public } from '../auth/public.decorator';
 
 @Controller('leetcode-solves')
 export class LeetcodeSolveController {

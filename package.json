@@ -13,6 +13,7 @@
 		"typescript": "^5.9.3"
 	},
 	"scripts": {
+    "build": "pnpm -r build",
 		"prepare": "husky install",
 		"clean": "rm -rf packages/db/dist apps/web/.next apps/api/dist node_modules/.cache .turbo",
 		"reset": "pnpm clean && pnpm install && pnpm -r build",

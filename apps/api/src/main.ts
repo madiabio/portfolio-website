@@ -2,9 +2,12 @@ import 'dotenv/config';
 import { AppModule } from './app.module';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
+import { Logger } from '@nestjs/common';
 async function bootstrap() {
+  const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule);
+
+  logger.log(`CORS origin: ${process.env.NEXT_PUBLIC_URL}`);
 
   app.enableCors({
     origin: process.env.NEXT_PUBLIC_URL,
@@ -16,7 +19,7 @@ async function bootstrap() {
     .setDescription(
       'My portfolio containing information and my leetcode statistics.',
     )
-    .setVersion('0.0.1')
+    .setVersion('0.0.2')
     .addTag('portfolio')
     .build();
 
@@ -29,5 +32,6 @@ async function bootstrap() {
   });
 
   await app.listen(process.env.PORT ?? 3001);
+  logger.log(`Listening on port ${process.env.PORT}`);
 }
 bootstrap();

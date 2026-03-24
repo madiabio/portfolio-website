@@ -27,7 +27,6 @@ import {
 import { useGetLeetcodeScatterpoints } from "@/lib/api/generated/analytics/analytics";
 import { ApiState } from "@/components/api-state";
 
-console.log("client env", process.env.NEXT_PUBLIC_API_URL);
 type Difficulty = "easy" | "medium" | "hard";
 
 type ScatterPoint = {

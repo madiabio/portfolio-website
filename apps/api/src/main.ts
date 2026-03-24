@@ -28,7 +28,6 @@ async function bootstrap() {
     jsonDocumentUrl: 'api-json',
   });
 
-  console.log('ADMIN_EMAIL', process.env.ADMIN_EMAIL);
   await app.listen(process.env.PORT ?? 3001);
 }
 bootstrap();

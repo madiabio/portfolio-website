@@ -4,8 +4,6 @@ export async function customFetch<T>(
 ): Promise<T> {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  console.log("customFetch called with:", { url, baseUrl, options });
-
   if (!baseUrl) {
     throw new Error("NEXT_PUBLIC_API_URL is not set");
   }
@@ -18,8 +16,6 @@ export async function customFetch<T>(
       ...(options?.headers ?? {}),
     },
   });
-
-  console.log("customFetch response status:", response.status);
 
   const body = [204, 205, 304].includes(response.status)
     ? null

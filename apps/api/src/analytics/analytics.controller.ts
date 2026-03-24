@@ -25,11 +25,6 @@ export class AnalyticsController {
   async getLeetcodeScatterpoints(
     @Req() req: RequestWithAuth,
   ): Promise<LeetcodeTimeByDifficultyResponseDto> {
-    console.log('ADMIN_EMAIL', process.env.ADMIN_EMAIL);
-    console.log('user', req.user);
-    console.log('session', req.session);
-    console.log('cookies', req.headers.cookie);
-
     return this.analyticsService.leetcodeTimeByDifficulty();
   }
 }

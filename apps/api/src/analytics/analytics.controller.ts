@@ -20,6 +20,7 @@ export class AnalyticsController {
     return this.analyticsService.leetcodeSummary();
   }
 
+  @Public()
   @Get('scatter')
   async getLeetcodeScatterpoints(
     @Req() req: RequestWithAuth,

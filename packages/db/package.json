@@ -1,12 +1,12 @@
 {
   "name": "@portfolio/db",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "type": "commonjs",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "pnpm run generate && tsc -p tsconfig.json",
     "generate": "prisma generate",
     "import:old-json-solves": "tsx scripts/import-old-solves.ts",
     "import:old-csv-solves": "tsx scripts/import-old-csv-solves.ts"

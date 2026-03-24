@@ -11,9 +11,9 @@ export function HomeAnalyticsSection() {
           I enjoy competitve programming and practise my skills on Leetcode. The
           primary motivation of developing this website was to create a tool I
           could use to host and view my Leetcode solve times any time, anywhere.
-          The following graph is updated by me via this site's admin dashboard.
-          The data is stored in a PostgreSQL database and accesed via Prisma and
-          a NestJS server.
+          The following graph can only be updated by me via the 'Add Solve'
+          button when I am signed in. The data is stored in a PostgreSQL
+          database and accesed via Prisma and a NestJS server.
         </Text>
       </div>
 

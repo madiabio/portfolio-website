@@ -9,9 +9,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body>
         <QueryProvider>
-          <MantineProvider>
-            <Shell>{children}</Shell>
-          </MantineProvider>
+          <MantineProvider>{children}</MantineProvider>
         </QueryProvider>
       </body>
     </html>

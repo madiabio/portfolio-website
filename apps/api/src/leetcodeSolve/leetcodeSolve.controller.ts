@@ -14,6 +14,7 @@ import { ApiNotFoundResponse } from '@nestjs/swagger';
 import { CreateLeetcodeSolveDto } from './dto/create-leetcodeSolve.dto';
 import { LeetcodeSolve } from '@portfolio/db';
 import { LeetcodeSolveService } from './leetcodeSolve.service';
+import { Public } from '@/auth/public.decorator';
 
 @Controller('leetcode-solves')
 export class LeetcodeSolveController {
@@ -21,6 +22,7 @@ export class LeetcodeSolveController {
 
   @Get(':id')
   @ApiNotFoundResponse({ description: 'Leetcode solve not found' })
+  @Public()
   async getLeetcodeSolveById(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<LeetcodeSolve> {

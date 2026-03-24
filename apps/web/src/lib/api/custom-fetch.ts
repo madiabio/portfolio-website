@@ -12,6 +12,7 @@ export async function customFetch<T>(
 
   const response = await fetch(`${baseUrl}${url}`, {
     ...options,
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
       ...(options?.headers ?? {}),

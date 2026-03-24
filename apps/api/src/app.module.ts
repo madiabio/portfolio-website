@@ -5,12 +5,15 @@ import { AppService } from './app.service';
 import { LeetcodeSolveModule } from './leetcodeSolve/leetcodeSolve.module';
 import { AnalyticsModule } from './analytics/analytics.module';
 import { AdminGuard } from './auth/admin.guard';
+import { AuthController } from './auth/auth.controller';
+import { AdminAuthService } from './auth/admin-auth.service';
 
 @Module({
   imports: [LeetcodeSolveModule, AnalyticsModule],
-  controllers: [AppController],
+  controllers: [AppController, AuthController],
   providers: [
     AppService,
+    AdminAuthService,
     {
       provide: APP_GUARD,
       useClass: AdminGuard,

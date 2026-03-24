@@ -1,24 +1,15 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  ForbiddenException,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { fromNodeHeaders } from 'better-auth/node';
-import { auth } from '@portfolio/auth';
+import type { Request } from 'express';
 import { IS_PUBLIC_KEY } from './public.decorator';
-
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-
-if (!ADMIN_EMAIL) {
-  throw new Error('ADMIN_EMAIL is not set.');
-}
+import { AdminAuthService } from './admin-auth.service';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
-  constructor(private readonly reflector: Reflector) {}
+  constructor(
+    private readonly reflector: Reflector,
+    private readonly adminAuthService: AdminAuthService,
+  ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
@@ -30,19 +21,8 @@ export class AdminGuard implements CanActivate {
       return true;
     }
 
-    const req = context.switchToHttp().getRequest();
-
-    const session = await auth.api.getSession({
-      headers: fromNodeHeaders(req.headers),
-    });
-
-    if (!session?.user) {
-      throw new UnauthorizedException('Not signed in');
-    }
-
-    if (session.user.email !== ADMIN_EMAIL) {
-      throw new ForbiddenException('Not allowed');
-    }
+    const req = context.switchToHttp().getRequest<Request>();
+    await this.adminAuthService.assertAdmin(req);
 
     return true;
   }

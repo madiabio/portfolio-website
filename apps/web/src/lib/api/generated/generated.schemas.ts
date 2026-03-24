@@ -5,5 +5,9 @@
  * My portfolio containing information and my leetcode statistics.
  * OpenAPI spec version: 0.0.1
  */
+export interface IsAdminResponseDto {
+  isAdmin: boolean;
+}
+
 export interface CreateLeetcodeSolveDto { [key: string]: unknown }
 

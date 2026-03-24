@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@mantine/core": "^8.3.18",
+    "@mantine/dates": "^8.3.18",
     "@mantine/form": "^8.3.18",
     "@mantine/hooks": "^8.3.18",
     "@mantine/next": "^6.0.22",

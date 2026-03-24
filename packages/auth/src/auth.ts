@@ -4,7 +4,10 @@ import { createPrisma } from "@portfolio/db";
 
 const prisma = createPrisma(process.env.DATABASE_URL as string);
 
+const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL ?? "http://localhost:3000";
+
 export const auth = betterAuth({
+  trustedOrigins: [process.env.NEXT_PUBLIC_URL],
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),

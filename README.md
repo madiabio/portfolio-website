@@ -1,3 +1,16 @@
+## Table of Contents
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Deployment](#deployment)
+- [Key Design Decisions](#key-design-decisions)
+- [Challenges](#challenges)
+- [Future Improvements](#future-improvements)
+- [Motivation](#motivation)
+
+
 # Portfolio Website
 
 A full-stack personal portfolio built to showcase projects, track LeetCode progress, and experiment with modern web architecture.

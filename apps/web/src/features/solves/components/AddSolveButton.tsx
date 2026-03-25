@@ -9,7 +9,15 @@ import { useIsAdmin } from "@/lib/api/generated/auth/auth";
 export function AddSolveButton() {
   const [opened, setOpened] = useState(false);
 
-  const { data, isLoading } = useIsAdmin();
+  const { data, isLoading } = useIsAdmin({
+    query: {
+      staleTime: 0,
+      gcTime: 0,
+      retry: false,
+      refetchOnMount: "always",
+      refetchOnWindowFocus: true,
+    },
+  });
 
   const canCreate = data?.data?.isAdmin ?? false;
 

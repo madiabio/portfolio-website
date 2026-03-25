@@ -22,6 +22,8 @@ export async function customFetch<T>(
     : await response.text();
 
   const data = body ? JSON.parse(body) : {};
+  console.log("customFetch baseUrl:", baseUrl);
+  console.log("customFetch fullUrl:", `${baseUrl}${url}`);
 
   return {
     data,

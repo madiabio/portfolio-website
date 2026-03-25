@@ -7,11 +7,11 @@ export function BassSynthDemoCard() {
         <div>
           <Title order={3}>Digital Bass Synthesiser</Title>
           <Text c="dimmed" mt={4}>
-            Outside of engineering, I am also a musician, and had always wanted
-            to try making an instrument. Once given the opportunity to
-            self-define a bare-metal C embedded systems project, I decided to
-            create a bass synthesiser. The following video is a demo and
-            walkthrough of what has to be one of my all-time favourite projects.
+            Outside of engineering, I’m also a musician, so I’d always wanted to
+            try building my own instrument. When I got the chance to define a
+            bare-metal C embedded systems project, I decided to make a digital
+            bass synthesiser from scratch. The video below is a demo and
+            walkthrough of one of my all-time favourite projects.
           </Text>
         </div>
 

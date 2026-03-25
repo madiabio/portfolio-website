@@ -5,8 +5,11 @@ import { HomeAnalyticsSection } from "@/features/analytics/components/home-analy
 import { ProjectsSection } from "@/components/projects-section";
 import { ContactSection } from "@/components/contact-section";
 import { ExperienceSection } from "@/components/experience-section";
+import { headers } from "next/headers";
 
-export default function Home() {
+export default async function Home() {
+  const h = await headers();
+  console.log("HOST:", h.get("host"));
   return (
     <Container size="xl" py="xl">
       <Stack gap={64}>

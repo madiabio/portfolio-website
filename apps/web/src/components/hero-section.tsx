@@ -8,7 +8,7 @@ export function HeroSection() {
       </Text>
 
       <Title order={1} size="3.2rem" lh={1.05}>
-        Madi Abio&apos;s Portfolio
+        Madi Abio
       </Title>
 
       <Text size="lg" c="dimmed">

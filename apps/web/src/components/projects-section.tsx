@@ -1,7 +1,19 @@
-import { Anchor, Paper, SimpleGrid, Stack, Text, Title } from "@mantine/core";
-import { homeProjects } from "@/lib/home-projects";
+import {
+  Badge,
+  Group,
+  Overlay,
+  Paper,
+  SimpleGrid,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
+import { IconExternalLink } from "@tabler/icons-react";
+import { getPortfolioProjects } from "@/lib/github";
 
-export function ProjectsSection() {
+export async function ProjectsSection() {
+  const projects = await getPortfolioProjects();
+
   return (
     <Stack id="projects" gap="md">
       <div>
@@ -12,23 +24,99 @@ export function ProjectsSection() {
       </div>
 
       <SimpleGrid cols={{ base: 1, md: 3 }} spacing="md">
-        {homeProjects.map((project) => (
-          <Paper key={project.title} withBorder radius="lg" p="lg">
-            <Stack gap="sm">
-              <Title order={4}>{project.title}</Title>
+        {projects.map((project) => (
+          <Paper
+            key={project.title}
+            component="a"
+            href={project.href}
+            target="_blank"
+            rel="noreferrer"
+            withBorder
+            radius="lg"
+            p="lg"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              height: "100%",
+              position: "relative",
+              transition:
+                "transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease",
+            }}
+          >
+            <Overlay
+              color="#fff"
+              backgroundOpacity={0}
+              zIndex={0}
+              style={{
+                borderRadius: "var(--mantine-radius-lg)",
+                pointerEvents: "none",
+                transition: "background-opacity 140ms ease",
+              }}
+            />
+
+            <Stack
+              gap="sm"
+              h="100%"
+              style={{
+                position: "relative",
+                zIndex: 1,
+              }}
+            >
+              <Group justify="space-between" align="center" wrap="nowrap">
+                <Group gap="xs" wrap="nowrap" style={{ flex: 1, minWidth: 0 }}>
+                  <Title order={4} style={{ margin: 0 }}>
+                    {project.title}
+                  </Title>
+                  <IconExternalLink
+                    size={16}
+                    stroke={1.8}
+                    style={{ flexShrink: 0, opacity: 0.55 }}
+                  />
+                </Group>
+
+                {project.language ? (
+                  <Badge
+                    variant="filled"
+                    radius="xl"
+                    size="sm"
+                    style={{ flexShrink: 0 }}
+                  >
+                    {project.language}
+                  </Badge>
+                ) : null}
+              </Group>
+
               <Text c="dimmed" size="sm">
                 {project.description}
               </Text>
 
-              {project.href ? (
-                <Anchor href={project.href} underline="never" fw={600}>
-                  Open
-                </Anchor>
-              ) : null}
+              <Stack gap="xs" mt="auto">
+                {project.topics && project.topics.length > 0 ? (
+                  <Group gap="xs">
+                    {project.topics.slice(0, 5).map((topic) => (
+                      <Badge
+                        key={topic}
+                        variant="outline"
+                        radius="xl"
+                        size="sm"
+                      >
+                        {formatTopic(topic)}
+                      </Badge>
+                    ))}
+                  </Group>
+                ) : null}
+              </Stack>
             </Stack>
           </Paper>
         ))}
       </SimpleGrid>
     </Stack>
   );
+}
+
+function formatTopic(topic: string) {
+  return topic
+    .toLowerCase()
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }

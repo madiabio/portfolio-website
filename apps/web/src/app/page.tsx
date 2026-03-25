@@ -6,6 +6,7 @@ import { ProjectsSection } from "@/components/projects-section";
 import { ContactSection } from "@/components/contact-section";
 import { ExperienceSection } from "@/components/experience-section";
 import { headers } from "next/headers";
+import { FeaturedDemosSection } from "@/components/featured-demos-section";
 
 export default async function Home() {
   const h = await headers();
@@ -15,8 +16,8 @@ export default async function Home() {
       <Stack gap={64}>
         <SiteHeader />
         <HeroSection />
-        <HomeAnalyticsSection />
         <ProjectsSection />
+        <FeaturedDemosSection />
         <ExperienceSection />
         <ContactSection />
       </Stack>

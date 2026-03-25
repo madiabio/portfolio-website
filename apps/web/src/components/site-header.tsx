@@ -48,7 +48,7 @@ export function SiteHeader() {
   return (
     <Group justify="space-between" align="center">
       <Text fw={700} size="lg">
-        Madeline Abio
+        Madi (Madeline) Abio
       </Text>
 
       <Group gap="sm">

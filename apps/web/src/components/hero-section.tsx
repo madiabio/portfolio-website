@@ -8,11 +8,13 @@ export function HeroSection() {
       </Text>
 
       <Title order={1} size="3.2rem" lh={1.05}>
-        WIP
+        My Portfolio
       </Title>
 
       <Text size="lg" c="dimmed">
-        {`WIP`}
+        {`Welcome! I am a Software Engineer and final year student of Electrical Engineering and Computer Science (yes, five years long). Luckily, I still enjoy coding, so after getting annoyed with Excel, I decided to make this website to host my Leetcode solve times. It has since evolved into a platform where I can showcase my projects and experience. 
+
+          I'm also currently the lead guitar player for the UQ Computing Society Band, and I love to surf, hike and rock climb.`}
       </Text>
     </Stack>
   );

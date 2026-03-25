@@ -1,50 +1,103 @@
-import { Stack, Text, Title, Box } from "@mantine/core";
-import { experiences } from "@/lib/experience";
+import { Box, Stack, Text, Title } from "@mantine/core";
+
+const items = [
+  {
+    company: "VPTech",
+    role: "Software Engineer",
+    period: "Aug 2025 – Present",
+    description:
+      "Building production-grade RAG systems with human-in-the-loop validation and vector database integration. Contributing to full-stack development, system design, and CI/CD pipelines.",
+  },
+  {
+    company: "Energy Queensland",
+    role: "Grid Technology Intern",
+    period: "Jan 2025 – Sept 2025",
+    description:
+      "Developed a machine learning anomaly detection system for neutral faults targeting large-scale deployment. Built data dashboards and automation tools that significantly reduced manual processing time.",
+  },
+  {
+    company: "Griffith University",
+    role: "Undergraduate Research Assistant",
+    period: "Mar 2024 – Jun 2024",
+    description:
+      "Processed and structured large datasets for machine learning research using Python, Bash, and HDF5. Focused on efficient data pipelines and preprocessing workflows.",
+  },
+  {
+    company: "Energy Queensland",
+    role: "Cyber Security Platforms Intern",
+    period: "Nov 2023 – Feb 2024",
+    description:
+      "Developed foundational knowledge in networking and enterprise security systems. Applied this to resolve ServiceNow tickets and gain exposure to cloud and firewall technologies.",
+  },
+];
+
 export function ExperienceSection() {
   return (
-    <Stack gap="xl">
-      <Title order={2}>Experience</Title>
+    <Box component="section" id="experience">
+      <Title order={2} mb="xl">
+        Experience
+      </Title>
 
-      <Box style={{ position: "relative", paddingLeft: 28 }}>
-        {/* Vertical line */}
-        <Box
-          style={{
-            position: "absolute",
-            left: 8,
-            top: 0,
-            bottom: 0,
-            width: 2,
-            background: "linear-gradient(to bottom, #888, #444)",
-          }}
-        />
-
-        <Stack gap="xl">
-          {experiences.map((exp, index) => (
-            <Box key={index} style={{ position: "relative" }}>
-              {/* Dot */}
+      <Stack gap={28}>
+        {items.map((item, index) => (
+          <Box
+            key={`${item.company}-${item.role}-${index}`}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "20px 1fr",
+              columnGap: "20px",
+              alignItems: "start",
+            }}
+          >
+            <Box
+              style={{
+                position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                minHeight: "100%",
+              }}
+            >
               <Box
                 style={{
                   position: "absolute",
-                  left: -20,
-                  top: 8,
+                  top: 10,
+                  bottom:
+                    index === items.length - 1 ? "calc(100% - 10px)" : -28,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: 2,
+                  background: "rgba(255,255,255,0.18)",
+                }}
+              />
+              <Box
+                style={{
                   width: 10,
                   height: 10,
                   borderRadius: "50%",
-                  backgroundColor: "var(--mantine-color-gray-5)",
+                  background: "rgba(255,255,255,0.85)",
+                  marginTop: 6,
+                  position: "relative",
+                  zIndex: 1,
                 }}
               />
-
-              <Text fw={600}>{exp.title}</Text>
-              <Text size="sm" c="dimmed">
-                {exp.subtitle} • {exp.date}
-              </Text>
-              <Text size="sm" mt={4}>
-                {exp.description}
-              </Text>
             </Box>
-          ))}
-        </Stack>
-      </Box>
-    </Stack>
+
+            <Stack gap={6}>
+              <Text fw={700} size="xl">
+                {item.company}
+              </Text>
+
+              <Text c="dimmed" size="lg">
+                {item.role} • {item.period}
+              </Text>
+
+              <Text size="md" lh={1.8} maw={950}>
+                {item.description}
+              </Text>
+            </Stack>
+          </Box>
+        ))}
+      </Stack>
+    </Box>
   );
 }

@@ -8,12 +8,12 @@ export function LeetCodeDemoCard() {
         <div>
           <Title order={3}>LeetCode Analytics (Portfolio Website)</Title>
           <Text c="dimmed" mt={4}>
-            I enjoy competitve programming and practise my skills on Leetcode.
+            I enjoy competitive programming and practice my skills on Leetcode.
             The primary motivation of developing this website was to create a
             tool I could use to host and view my Leetcode solve times no matter
             where I was. The following graph can only be updated by me via the
             'Add Solve' button when I am signed in. The data is stored in a
-            PostgreSQL databased and accessed via my NestJS backend. I used
+            PostgreSQL database and accessed via my NestJS backend. I used
             Prisma as my ORM. Everything is hosted on Railway. The choices I
             made for the tech stack were motivated by a desire to improve my
             technical skills in the stack I use at my current job.

@@ -62,19 +62,28 @@ export async function ProjectsSection() {
                 zIndex: 1,
               }}
             >
-              <Group justify="space-between" align="center" wrap="nowrap">
-                <Group gap="xs" wrap="nowrap" style={{ flex: 1, minWidth: 0 }}>
-                  <Title order={4} style={{ margin: 0 }}>
-                    {project.title}
-                  </Title>
-                  <IconExternalLink
-                    size={16}
-                    stroke={1.8}
-                    style={{ flexShrink: 0, opacity: 0.55 }}
-                  />
-                </Group>
+              <Group justify="space-between" align="flex-start" wrap="nowrap">
+                <Stack gap={2} style={{ flex: 1, minWidth: 0 }}>
+                  <Group gap="xs" wrap="nowrap">
+                    <Title order={4} style={{ margin: 0 }}>
+                      {project.title}
+                    </Title>
 
-                {project.language ? (
+                    <IconExternalLink
+                      size={16}
+                      stroke={1.8}
+                      style={{ flexShrink: 0, opacity: 0.55 }}
+                    />
+                  </Group>
+
+                  {project.date && (
+                    <Text c="dimmed" size="xs">
+                      {project.date}
+                    </Text>
+                  )}
+                </Stack>
+
+                {project.language && (
                   <Badge
                     variant="filled"
                     radius="xl"
@@ -83,7 +92,7 @@ export async function ProjectsSection() {
                   >
                     {project.language}
                   </Badge>
-                ) : null}
+                )}
               </Group>
 
               <Text c="dimmed" size="sm">

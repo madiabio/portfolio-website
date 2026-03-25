@@ -48,7 +48,7 @@ export function SiteHeader() {
   return (
     <Group justify="space-between" align="center">
       <Text fw={700} size="lg">
-        Madi (Madeline) Abio
+        madiab.io
       </Text>
 
       <Group gap="sm">

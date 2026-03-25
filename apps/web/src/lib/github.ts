@@ -13,21 +13,27 @@ type HomeProject = {
   href?: string;
   language?: string | null;
   topics?: string[];
+  date?: string;
 };
 
 const PROJECT_OVERRIDES: Record<
   string,
-  { title?: string; description?: string; language?: string }
+  { title?: string; description?: string; language?: string; date?: string }
 > = {
   "portfolio-website": {
     title: "Portfolio Website",
     description:
-      "The website you're currently on: a full-stack web app built with Next.js, NestJS, PostgreSQL, and Mantine. Hosted on Railway. Includes authentication, a Leetcode analytics graph, and a dynamic link to my GitHub repositories that are tagged 'portfolio'.",
-    language: "Typescript",
+      "The website you're currently on: a full-stack web app built with Next.js, NestJS, PostgreSQL, and Mantine. Hosted on Railway. Includes authentication, a LeetCode analytics graph, and a dynamic link to my GitHub repositories that are tagged 'portfolio'.",
+    language: "TypeScript",
+    date: "March 2026",
   },
   "bass-synth": {
     title: "Digital Bass Synthesiser",
     language: "C",
+    date: "Sept 2025 - Oct 2025",
+  },
+  "encryption-decryption": {
+    date: "May 2025",
   },
 };
 
@@ -39,7 +45,7 @@ export async function getPortfolioProjects(): Promise<HomeProject[]> {
   }
 
   const res = await fetch(
-    `https://api.github.com/search/repositories?q=user:${GITHUB_USERNAME}+topic:portfolio`,
+    `https://api.github.com/search/repositories?q=user:${GITHUB_USERNAME}+topic:portfolio&sort=created&order=desc`,
     {
       headers: {
         Accept: "application/vnd.github.mercy-preview+json", // enables topics
@@ -59,7 +65,15 @@ export async function getPortfolioProjects(): Promise<HomeProject[]> {
   }
 
   const data: { items: GitHubRepo[] } = await res.json();
+  const PROJECT_ORDER = [
+    "portfolio-website",
+    "bass-synth",
+    "encryption-decryption",
+  ];
 
+  data.items.sort(
+    (a, b) => PROJECT_ORDER.indexOf(a.name) - PROJECT_ORDER.indexOf(b.name),
+  );
   return data.items.map((repo) => {
     const override = PROJECT_OVERRIDES[repo.name];
 
@@ -76,6 +90,7 @@ export async function getPortfolioProjects(): Promise<HomeProject[]> {
           t !== "portfolio" &&
           t.toLowerCase() !== (repo.language ?? "").toLowerCase(),
       ),
+      date: override?.date,
     };
   });
 }

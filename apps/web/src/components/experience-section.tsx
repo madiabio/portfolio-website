@@ -13,14 +13,14 @@ const items = [
     role: "Grid Technology Intern",
     period: "Jan 2025 – Sept 2025",
     description:
-      "Developed a machine learning anomaly detection system for neutral faults targeting large-scale deployment. Built data dashboards and automation tools that significantly reduced manual processing time.",
+      "Developed a machine learning anomaly detection system for neutral faults from smart meter data. Built data dashboards and automation tools that significantly reduced manual processing time.",
   },
   {
     company: "Griffith University",
     role: "Undergraduate Research Assistant",
     period: "Mar 2024 – Jun 2024",
     description:
-      "Processed and structured large datasets for machine learning research using Python, Bash, and HDF5. Focused on efficient data pipelines and preprocessing workflows.",
+      "Processed and structured datasets for machine learning research using Python, Bash, and HDF5. Focused on reusable data pipelines and preprocessing workflows.",
   },
   {
     company: "Energy Queensland",

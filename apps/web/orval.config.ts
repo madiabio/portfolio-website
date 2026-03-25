@@ -4,12 +4,12 @@ import path from "node:path";
 
 config({ path: path.resolve(__dirname, ".env.local") });
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.API_REWRITE_TARGET;
 
-console.log("NEXT_PUBLIC_API_URL =", apiUrl);
+console.log("API_REWRITE_TARGET =", apiUrl);
 
 if (!apiUrl) {
-  throw new Error("NEXT_PUBLIC_API_URL is not defined");
+  throw new Error("API_REWRITE_TARGET is not defined");
 }
 
 export default defineConfig({

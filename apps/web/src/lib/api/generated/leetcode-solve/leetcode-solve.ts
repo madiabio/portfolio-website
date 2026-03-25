@@ -3,7 +3,7 @@
  * Do not edit manually.
  * Madi Abio Portfolio
  * My portfolio containing information and my leetcode statistics.
- * OpenAPI spec version: 0.0.1
+ * OpenAPI spec version: 0.0.2
  */
 import {
   useMutation,

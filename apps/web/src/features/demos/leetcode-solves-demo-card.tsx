@@ -8,9 +8,9 @@ export function LeetCodeDemoCard() {
         <div>
           <Title order={3}>LeetCode Analytics (Portfolio Website)</Title>
           <Text c="dimmed" mt={4}>
-            I enjoy competitive programming and practice my skills on Leetcode.
+            I enjoy competitive programming and practice my skills on LeetCode.
             The primary motivation of developing this website was to create a
-            tool I could use to host and view my Leetcode solve times no matter
+            tool I could use to host and view my LeetCode solve times no matter
             where I was. The following graph can only be updated by me via the
             'Add Solve' button when I am signed in. The data is stored in a
             PostgreSQL database and accessed via my NestJS backend. I used

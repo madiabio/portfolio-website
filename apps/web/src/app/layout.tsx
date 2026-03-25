@@ -1,21 +1,42 @@
-import "@mantine/core/styles.css";
-import "@mantine/notifications/styles.css";
+import "@mantine/core/styles.layer.css";
+import "@mantine/notifications/styles.layer.css";
 import "./globals.css";
 
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import {
+  ColorSchemeScript,
+  MantineProvider,
+  createTheme,
+  mantineHtmlProps,
+} from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { ReactNode } from "react";
 import { QueryProvider } from "@/components/providers/query-provider";
 
+const theme = createTheme({
+  components: {
+    Paper: {
+      defaultProps: {
+        withBorder: true,
+        radius: "lg",
+        bg: "dark.6",
+      },
+    },
+  },
+});
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" data-mantine-color-scheme="dark">
+    <html lang="en" {...mantineHtmlProps}>
       <head>
-        <ColorSchemeScript forceColorScheme="dark" />
+        <ColorSchemeScript defaultColorScheme="dark" />
       </head>
       <body>
         <QueryProvider>
-          <MantineProvider>
+          <MantineProvider
+            theme={theme}
+            defaultColorScheme="dark"
+            forceColorScheme="dark"
+          >
             <Notifications />
             {children}
           </MantineProvider>

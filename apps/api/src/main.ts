@@ -9,8 +9,15 @@ async function bootstrap() {
 
   logger.log(`CORS origin: ${process.env.NEXT_PUBLIC_URL}`);
 
+  const allowedOrigins = ['http://localhost:3000', process.env.NEXT_PUBLIC_URL];
   app.enableCors({
-    origin: process.env.NEXT_PUBLIC_URL,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
+    },
     credentials: true,
   });
 

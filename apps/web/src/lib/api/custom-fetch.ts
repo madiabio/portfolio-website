@@ -2,10 +2,10 @@ export async function customFetch<T>(
   url: string,
   options?: RequestInit,
 ): Promise<T> {
-  const baseUrl = process.env.NEXT_PRIVATE_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
   if (!baseUrl) {
-    throw new Error("NEXT_PRIVATE_API_URL is not set");
+    throw new Error("NEXT_PUBLIC_API_URL is not set");
   }
 
   const response = await fetch(`${baseUrl}${url}`, {

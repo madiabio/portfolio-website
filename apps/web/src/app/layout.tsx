@@ -1,6 +1,5 @@
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
-
 import { Notifications } from "@mantine/notifications";
 import { MantineProvider } from "@mantine/core";
 import { ReactNode } from "react";

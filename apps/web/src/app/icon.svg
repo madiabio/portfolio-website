@@ -1,0 +1,17 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bg { fill: #ffffff; }
+    .text {
+      font-family: "Arial Black", Impact, sans-serif;
+      font-weight: 900;
+      font-size: 200px;
+      fill: #000;
+      letter-spacing: -10px;
+      dominant-baseline: middle;
+      text-anchor: middle;
+    }
+  </style>
+
+  <rect width="512" height="512" rx="100" class="bg"/>
+  <text x="50%" y="54%" class="text">MA</text>
+</svg>

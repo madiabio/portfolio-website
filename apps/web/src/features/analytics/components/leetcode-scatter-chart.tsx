@@ -154,7 +154,7 @@ export function LeetcodeScatterChart() {
                       dataKey="duration"
                       name="Duration"
                       unit=" min"
-                      domain={[0, Math.ceil(maxY * 1.15)]}
+                      domain={[0, 120]}
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <Legend />

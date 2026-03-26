@@ -13,7 +13,7 @@ const items = [
     role: "Grid Technology Intern",
     period: "Jan 2025 – Sept 2025",
     description:
-      "Developed a machine learning anomaly detection system for neutral faults from smart meter data. Built data dashboards and automation tools that significantly reduced manual processing time.",
+      "Developed a machine learning anomaly detection system to detect neutral faults from smart meter data. Built data dashboards and automation tools that significantly reduced manual processing time.",
   },
   {
     company: "Griffith University",

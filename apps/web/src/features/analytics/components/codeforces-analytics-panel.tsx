@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, Modal, Stack, Text } from "@mantine/core";
+import { Button, Modal, Stack } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 import { useIsAdmin } from "@/lib/api/generated/auth/auth";
 import { CodeforcesQueueReviewPanel } from "@/features/codeforces/components/codeforces-queue-review-panel";
@@ -12,7 +13,7 @@ type Props = {
 
 export function CodeforcesAnalyticsPanel({ handle = "madelineabio" }: Props) {
   const [opened, setOpened] = useState(false);
-  const { data } = useIsAdmin({
+  const { data, isLoading } = useIsAdmin({
     query: {
       staleTime: 0,
       gcTime: 0,
@@ -24,28 +25,35 @@ export function CodeforcesAnalyticsPanel({ handle = "madelineabio" }: Props) {
 
   const canManageQueue = data?.data?.isAdmin ?? false;
 
+  const handleClick = () => {
+    if (!canManageQueue) {
+      notifications.show({
+        title: "Not allowed",
+        message: "You are not authorised to review queue.",
+        color: "red",
+      });
+      return;
+    }
+
+    setOpened(true);
+  };
+
   return (
     <Stack gap="md">
       <CodeforcesScatterChart />
 
-      {canManageQueue ? (
-        <>
-          <Button onClick={() => setOpened(true)}>Review Queue</Button>
+      <Button onClick={handleClick} loading={isLoading}>
+        Review Queue
+      </Button>
 
-          <Modal
-            opened={opened}
-            onClose={() => setOpened(false)}
-            title="Codeforces Review Queue"
-            size="lg"
-          >
-            <CodeforcesQueueReviewPanel handle={handle} isInModal />
-          </Modal>
-        </>
-      ) : (
-        <Text size="sm" c="dimmed">
-          Sign in as admin to review queued Codeforces submissions.
-        </Text>
-      )}
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        title="Codeforces Review Queue"
+        size="lg"
+      >
+        <CodeforcesQueueReviewPanel handle={handle} isInModal />
+      </Modal>
     </Stack>
   );
 }

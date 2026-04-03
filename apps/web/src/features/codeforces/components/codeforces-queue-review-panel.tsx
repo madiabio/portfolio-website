@@ -28,6 +28,7 @@ import {
 
 type Props = {
   handle?: string;
+  isInModal?: boolean;
 };
 
 function formatSolvedAt(value: string) {
@@ -37,7 +38,7 @@ function formatSolvedAt(value: string) {
   }).format(new Date(value));
 }
 
-export function CodeforcesQueueReviewPanel({ handle = "madelineabio" }: Props) {
+export function CodeforcesQueueReviewPanel({ handle = "madelineabio", isInModal = false }: Props) {
   const queryClient = useQueryClient();
   const [durations, setDurations] = useState<Record<number, number | undefined>>(
     {},
@@ -89,9 +90,11 @@ export function CodeforcesQueueReviewPanel({ handle = "madelineabio" }: Props) {
 
   const queueItems: CodeforcesQueueItemDto[] = queueQuery.data?.data ?? [];
 
-  return (
-    <Card withBorder radius="lg" p="lg">
-      <Stack gap="md">
+  const content = (
+    <Stack gap="md">
+      {isInModal ? (
+        <CodeforcesSyncButton handle={handle} />
+      ) : (
         <Group justify="space-between" align="center">
           <Stack gap={2}>
             <Title order={3}>Codeforces Review Queue</Title>
@@ -102,62 +105,72 @@ export function CodeforcesQueueReviewPanel({ handle = "madelineabio" }: Props) {
 
           <CodeforcesSyncButton handle={handle} />
         </Group>
+      )}
 
-        <ApiState
-          data={queueItems}
-          isLoading={queueQuery.isLoading}
-          error={queueQuery.error}
-          isEmpty={(items) => items.length === 0}
-        >
-          {(items: CodeforcesQueueItemDto[]) => (
-            <Stack gap="sm">
-              {items.map((item: CodeforcesQueueItemDto) => (
-                <Card key={item.id} withBorder radius="md" p="md">
-                  <Stack gap="sm">
-                    <Group justify="space-between" align="start">
-                      <Stack gap={4}>
-                        <Group gap="xs">
-                          <Text fw={700}>
-                            {item.problemIndex}. {item.problemName}
-                          </Text>
-                          <Badge variant="light">{item.status}</Badge>
-                        </Group>
-                        <Text size="sm" c="dimmed">
-                          Contest {item.contestId} · Rating{" "}
-                          {item.rating ?? "unrated"} · Solved {formatSolvedAt(item.solvedAt)}
+      <ApiState
+        data={queueItems}
+        isLoading={queueQuery.isLoading}
+        error={queueQuery.error}
+        isEmpty={(items) => items.length === 0}
+      >
+        {(items: CodeforcesQueueItemDto[]) => (
+          <Stack gap="sm">
+            {items.map((item: CodeforcesQueueItemDto) => (
+              <Card key={item.id} withBorder radius="md" p="md">
+                <Stack gap="sm">
+                  <Group justify="space-between" align="start">
+                    <Stack gap={4}>
+                      <Group gap="xs">
+                        <Text fw={700}>
+                          {item.problemIndex}. {item.problemName}
                         </Text>
-                      </Stack>
-                    </Group>
+                        <Badge variant="light">{item.status}</Badge>
+                      </Group>
+                      <Text size="sm" c="dimmed">
+                        Contest {item.contestId} · Rating{" "}
+                        {item.rating ?? "unrated"} · Solved {formatSolvedAt(item.solvedAt)}
+                      </Text>
+                    </Stack>
+                  </Group>
 
-                    <Divider />
+                  <Divider />
 
-                    <Group align="end" grow>
-                      <NumberInput
-                        label="Duration (minutes)"
-                        min={1}
-                        value={durations[item.id] ?? item.durationMin ?? undefined}
-                        onChange={(value: number | string | undefined) => {
-                          setDurations((current: Record<number, number | undefined>) => ({
-                            ...current,
-                            [item.id]: typeof value === "number" ? value : undefined,
-                          }));
-                        }}
-                      />
+                  <Group align="end" grow>
+                    <NumberInput
+                      label="Duration (minutes)"
+                      min={1}
+                      value={durations[item.id] ?? item.durationMin ?? undefined}
+                      onChange={(value: number | string | undefined) => {
+                        setDurations((current: Record<number, number | undefined>) => ({
+                          ...current,
+                          [item.id]: typeof value === "number" ? value : undefined,
+                        }));
+                      }}
+                    />
 
-                      <Button
-                        onClick={() => handleReview(item)}
-                        loading={reviewMutation.isPending}
-                      >
-                        Save time
-                      </Button>
-                    </Group>
-                  </Stack>
-                </Card>
-              ))}
-            </Stack>
-          )}
-        </ApiState>
-      </Stack>
+                    <Button
+                      onClick={() => handleReview(item)}
+                      loading={reviewMutation.isPending}
+                    >
+                      Save time
+                    </Button>
+                  </Group>
+                </Stack>
+              </Card>
+            ))}
+          </Stack>
+        )}
+      </ApiState>
+    </Stack>
+  );
+
+  if (isInModal) {
+    return content;
+  }
+
+  return (
+    <Card withBorder radius="lg" p="lg">
+      {content}
     </Card>
   );
 }

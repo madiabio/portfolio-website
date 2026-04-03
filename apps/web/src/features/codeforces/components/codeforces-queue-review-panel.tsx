@@ -25,6 +25,7 @@ import {
   reviewQueueItem,
   useQueue,
 } from "@/lib/api/generated/codeforces/codeforces";
+import { getGetCodeforcesScatterpointsQueryKey } from "@/lib/api/generated/codeforces-analytics/codeforces-analytics";
 
 type Props = {
   handle?: string;
@@ -57,6 +58,9 @@ export function CodeforcesQueueReviewPanel({ handle = "madelineabio", isInModal 
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: getQueueQueryKey({ handle }),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: getGetCodeforcesScatterpointsQueryKey(),
       });
       notifications.show({
         title: "Saved",

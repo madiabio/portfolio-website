@@ -30,7 +30,9 @@ import type {
 
 const Y_MAX_MINUTES = 120;
 
-const TIER_COLORS: Record<CodeforcesScatterPointDtoRatingTier | "800-1200", string> = {
+type ChartTier = "0-800" | "800-1200" | CodeforcesScatterPointDtoRatingTier;
+
+const TIER_COLORS: Record<ChartTier, string> = {
   "0-800": "#5c7cfa",
   "800-1200": "#228be6",
   "1200-1600": "#2f9e44",
@@ -132,20 +134,13 @@ export function CodeforcesScatterChart() {
         goals["0-1200"] = FALLBACK_GOALS["0-1200"];
         goals["800-1200"] = FALLBACK_GOALS["800-1200"];
 
-        const tierData: Record<CodeforcesScatterPointDtoRatingTier | "800-1200", ChartPoint[]> = {
-          "0-1200": chartPoints.filter((p) => p.ratingTier === "0-1200"),
-          "800-1200": [],
-          "1200-1600": chartPoints.filter((p) => p.ratingTier === "1200-1600"),
-          "1600-2000": chartPoints.filter((p) => p.ratingTier === "1600-2000"),
-          "2000+": chartPoints.filter((p) => p.ratingTier === "2000+"),
+        const tierData: Record<ChartTier, ChartPoint[]> = {
+          "0-1200": chartPoints.filter((p) => !p.rating || p.rating <= 800),
+          "800-1200": chartPoints.filter((p) => p.rating && p.rating > 800 && p.rating <= 1200),
+          "1200-1600": chartPoints.filter((p) => p.rating && p.rating > 1200 && p.rating <= 1600),
+          "1600-2000": chartPoints.filter((p) => p.rating && p.rating > 1600 && p.rating <= 2000),
+          "2000+": chartPoints.filter((p) => p.rating && p.rating > 2000),
         };
-
-        // Split 0-1200 into 0-800 and 800-1200
-        const baseTier0to1200 = tierData["0-1200"];
-        const tier0to800 = baseTier0to1200.filter((p) => !p.rating || p.rating < 800);
-        const tier800to1200 = baseTier0to1200.filter((p) => p.rating && p.rating >= 800);
-        tierData["0-1200"] = tier0to800;
-        tierData["800-1200"] = tier800to1200;
 
         const timestamps = chartPoints.map((p) => p.timestamp);
         const minX = timestamps.length ? Math.min(...timestamps) : Date.now();

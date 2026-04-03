@@ -30,18 +30,20 @@ import type {
 
 const Y_MAX_MINUTES = 120;
 
-const TIER_COLORS: Record<CodeforcesScatterPointDtoRatingTier, string> = {
-  "0-1200": "#228be6",
+const TIER_COLORS: Record<CodeforcesScatterPointDtoRatingTier | "800-1200", string> = {
+  "0-800": "#5c7cfa",
+  "800-1200": "#228be6",
   "1200-1600": "#2f9e44",
   "1600-2000": "#f08c00",
   "2000+": "#e03131",
 };
 
-const FALLBACK_GOALS: Required<CodeforcesTimeByRatingResponseDtoGoals> = {
-  "0-1200": 20,
+const FALLBACK_GOALS: Required<CodeforcesTimeByRatingResponseDtoGoals & Record<"800-1200", number>> = {
+  "0-1200": 10,
   "1200-1600": 35,
   "1600-2000": 50,
   "2000+": 70,
+  "800-1200": 25,
 };
 
 type ChartPoint = {
@@ -126,12 +128,24 @@ export function CodeforcesScatterChart() {
           ...loadedScatter.goals,
         };
 
-        const tierData: Record<CodeforcesScatterPointDtoRatingTier, ChartPoint[]> = {
+        // Override 0-1200 with our split tier goals
+        goals["0-1200"] = FALLBACK_GOALS["0-1200"];
+        goals["800-1200"] = FALLBACK_GOALS["800-1200"];
+
+        const tierData: Record<CodeforcesScatterPointDtoRatingTier | "800-1200", ChartPoint[]> = {
           "0-1200": chartPoints.filter((p) => p.ratingTier === "0-1200"),
+          "800-1200": [],
           "1200-1600": chartPoints.filter((p) => p.ratingTier === "1200-1600"),
           "1600-2000": chartPoints.filter((p) => p.ratingTier === "1600-2000"),
           "2000+": chartPoints.filter((p) => p.ratingTier === "2000+"),
         };
+
+        // Split 0-1200 into 0-800 and 800-1200
+        const baseTier0to1200 = tierData["0-1200"];
+        const tier0to800 = baseTier0to1200.filter((p) => !p.rating || p.rating < 800);
+        const tier800to1200 = baseTier0to1200.filter((p) => p.rating && p.rating >= 800);
+        tierData["0-1200"] = tier0to800;
+        tierData["800-1200"] = tier800to1200;
 
         const timestamps = chartPoints.map((p) => p.timestamp);
         const minX = timestamps.length ? Math.min(...timestamps) : Date.now();
@@ -170,9 +184,18 @@ export function CodeforcesScatterChart() {
 
                     <ReferenceLine
                       y={goals["0-1200"]}
-                      stroke={TIER_COLORS["0-1200"]}
+                      stroke={TIER_COLORS["0-800"]}
                       strokeDasharray="4 4"
-                      label={{ value: `0-1200 goal (${goals["0-1200"]}m)`, position: "insideTopLeft" }}
+                      label={{ value: `0-800 goal (${goals["0-1200"]}m)`, position: "insideTopLeft" }}
+                    />
+                    <ReferenceLine
+                      y={goals["800-1200"]}
+                      stroke={TIER_COLORS["800-1200"]}
+                      strokeDasharray="4 4"
+                      label={{
+                        value: `800-1200 goal (${goals["800-1200"]}m)`,
+                        position: "insideTopLeft",
+                      }}
                     />
                     <ReferenceLine
                       y={goals["1200-1600"]}
@@ -200,9 +223,14 @@ export function CodeforcesScatterChart() {
                     />
 
                     <Scatter
-                      name="0-1200"
+                      name="0-800"
                       data={tierData["0-1200"]}
-                      fill={theme.colors.blue[6]}
+                      fill={TIER_COLORS["0-800"]}
+                    />
+                    <Scatter
+                      name="800-1200"
+                      data={tierData["800-1200"]}
+                      fill={TIER_COLORS["800-1200"]}
                     />
                     <Scatter
                       name="1200-1600"

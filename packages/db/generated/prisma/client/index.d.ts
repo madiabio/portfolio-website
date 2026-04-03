@@ -34,10 +34,51 @@ export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
  */
 export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
 /**
+ * Model CodeforcesSubmissionQueue
+ * 
+ */
+export type CodeforcesSubmissionQueue = $Result.DefaultSelection<Prisma.$CodeforcesSubmissionQueuePayload>
+/**
+ * Model CodeforcesSolve
+ * 
+ */
+export type CodeforcesSolve = $Result.DefaultSelection<Prisma.$CodeforcesSolvePayload>
+/**
  * Model LeetcodeSolve
  * 
  */
 export type LeetcodeSolve = $Result.DefaultSelection<Prisma.$LeetcodeSolvePayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const SolvePlatform: {
+  LEETCODE: 'LEETCODE',
+  CODEFORCES: 'CODEFORCES',
+  HACKERRANK: 'HACKERRANK'
+};
+
+export type SolvePlatform = (typeof SolvePlatform)[keyof typeof SolvePlatform]
+
+
+export const SubmissionStatus: {
+  PENDING_TIME: 'PENDING_TIME',
+  TIMED: 'TIMED',
+  SKIPPED: 'SKIPPED'
+};
+
+export type SubmissionStatus = (typeof SubmissionStatus)[keyof typeof SubmissionStatus]
+
+}
+
+export type SolvePlatform = $Enums.SolvePlatform
+
+export const SolvePlatform: typeof $Enums.SolvePlatform
+
+export type SubmissionStatus = $Enums.SubmissionStatus
+
+export const SubmissionStatus: typeof $Enums.SubmissionStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -199,6 +240,26 @@ export class PrismaClient<
     * ```
     */
   get verification(): Prisma.VerificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.codeforcesSubmissionQueue`: Exposes CRUD operations for the **CodeforcesSubmissionQueue** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CodeforcesSubmissionQueues
+    * const codeforcesSubmissionQueues = await prisma.codeforcesSubmissionQueue.findMany()
+    * ```
+    */
+  get codeforcesSubmissionQueue(): Prisma.CodeforcesSubmissionQueueDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.codeforcesSolve`: Exposes CRUD operations for the **CodeforcesSolve** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CodeforcesSolves
+    * const codeforcesSolves = await prisma.codeforcesSolve.findMany()
+    * ```
+    */
+  get codeforcesSolve(): Prisma.CodeforcesSolveDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.leetcodeSolve`: Exposes CRUD operations for the **LeetcodeSolve** model.
@@ -647,6 +708,8 @@ export namespace Prisma {
     Session: 'Session',
     Account: 'Account',
     Verification: 'Verification',
+    CodeforcesSubmissionQueue: 'CodeforcesSubmissionQueue',
+    CodeforcesSolve: 'CodeforcesSolve',
     LeetcodeSolve: 'LeetcodeSolve'
   };
 
@@ -663,7 +726,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "leetcodeSolve"
+      modelProps: "user" | "session" | "account" | "verification" | "codeforcesSubmissionQueue" | "codeforcesSolve" | "leetcodeSolve"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -963,6 +1026,154 @@ export namespace Prisma {
           }
         }
       }
+      CodeforcesSubmissionQueue: {
+        payload: Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>
+        fields: Prisma.CodeforcesSubmissionQueueFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CodeforcesSubmissionQueueFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSubmissionQueuePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CodeforcesSubmissionQueueFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSubmissionQueuePayload>
+          }
+          findFirst: {
+            args: Prisma.CodeforcesSubmissionQueueFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSubmissionQueuePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CodeforcesSubmissionQueueFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSubmissionQueuePayload>
+          }
+          findMany: {
+            args: Prisma.CodeforcesSubmissionQueueFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSubmissionQueuePayload>[]
+          }
+          create: {
+            args: Prisma.CodeforcesSubmissionQueueCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSubmissionQueuePayload>
+          }
+          createMany: {
+            args: Prisma.CodeforcesSubmissionQueueCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CodeforcesSubmissionQueueCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSubmissionQueuePayload>[]
+          }
+          delete: {
+            args: Prisma.CodeforcesSubmissionQueueDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSubmissionQueuePayload>
+          }
+          update: {
+            args: Prisma.CodeforcesSubmissionQueueUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSubmissionQueuePayload>
+          }
+          deleteMany: {
+            args: Prisma.CodeforcesSubmissionQueueDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CodeforcesSubmissionQueueUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CodeforcesSubmissionQueueUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSubmissionQueuePayload>[]
+          }
+          upsert: {
+            args: Prisma.CodeforcesSubmissionQueueUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSubmissionQueuePayload>
+          }
+          aggregate: {
+            args: Prisma.CodeforcesSubmissionQueueAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCodeforcesSubmissionQueue>
+          }
+          groupBy: {
+            args: Prisma.CodeforcesSubmissionQueueGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CodeforcesSubmissionQueueGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CodeforcesSubmissionQueueCountArgs<ExtArgs>
+            result: $Utils.Optional<CodeforcesSubmissionQueueCountAggregateOutputType> | number
+          }
+        }
+      }
+      CodeforcesSolve: {
+        payload: Prisma.$CodeforcesSolvePayload<ExtArgs>
+        fields: Prisma.CodeforcesSolveFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CodeforcesSolveFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSolvePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CodeforcesSolveFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSolvePayload>
+          }
+          findFirst: {
+            args: Prisma.CodeforcesSolveFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSolvePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CodeforcesSolveFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSolvePayload>
+          }
+          findMany: {
+            args: Prisma.CodeforcesSolveFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSolvePayload>[]
+          }
+          create: {
+            args: Prisma.CodeforcesSolveCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSolvePayload>
+          }
+          createMany: {
+            args: Prisma.CodeforcesSolveCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CodeforcesSolveCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSolvePayload>[]
+          }
+          delete: {
+            args: Prisma.CodeforcesSolveDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSolvePayload>
+          }
+          update: {
+            args: Prisma.CodeforcesSolveUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSolvePayload>
+          }
+          deleteMany: {
+            args: Prisma.CodeforcesSolveDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CodeforcesSolveUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CodeforcesSolveUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSolvePayload>[]
+          }
+          upsert: {
+            args: Prisma.CodeforcesSolveUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodeforcesSolvePayload>
+          }
+          aggregate: {
+            args: Prisma.CodeforcesSolveAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCodeforcesSolve>
+          }
+          groupBy: {
+            args: Prisma.CodeforcesSolveGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CodeforcesSolveGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CodeforcesSolveCountArgs<ExtArgs>
+            result: $Utils.Optional<CodeforcesSolveCountAggregateOutputType> | number
+          }
+        }
+      }
       LeetcodeSolve: {
         payload: Prisma.$LeetcodeSolvePayload<ExtArgs>
         fields: Prisma.LeetcodeSolveFieldRefs
@@ -1149,6 +1360,8 @@ export namespace Prisma {
     session?: SessionOmit
     account?: AccountOmit
     verification?: VerificationOmit
+    codeforcesSubmissionQueue?: CodeforcesSubmissionQueueOmit
+    codeforcesSolve?: CodeforcesSolveOmit
     leetcodeSolve?: LeetcodeSolveOmit
   }
 
@@ -5681,6 +5894,2288 @@ export namespace Prisma {
 
 
   /**
+   * Model CodeforcesSubmissionQueue
+   */
+
+  export type AggregateCodeforcesSubmissionQueue = {
+    _count: CodeforcesSubmissionQueueCountAggregateOutputType | null
+    _avg: CodeforcesSubmissionQueueAvgAggregateOutputType | null
+    _sum: CodeforcesSubmissionQueueSumAggregateOutputType | null
+    _min: CodeforcesSubmissionQueueMinAggregateOutputType | null
+    _max: CodeforcesSubmissionQueueMaxAggregateOutputType | null
+  }
+
+  export type CodeforcesSubmissionQueueAvgAggregateOutputType = {
+    id: number | null
+    submissionId: number | null
+    contestId: number | null
+    rating: number | null
+    durationMin: number | null
+  }
+
+  export type CodeforcesSubmissionQueueSumAggregateOutputType = {
+    id: number | null
+    submissionId: number | null
+    contestId: number | null
+    rating: number | null
+    durationMin: number | null
+  }
+
+  export type CodeforcesSubmissionQueueMinAggregateOutputType = {
+    id: number | null
+    platform: $Enums.SolvePlatform | null
+    status: $Enums.SubmissionStatus | null
+    username: string | null
+    submissionId: number | null
+    contestId: number | null
+    problemIndex: string | null
+    problemName: string | null
+    rating: number | null
+    solvedAt: Date | null
+    durationMin: number | null
+    reviewedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type CodeforcesSubmissionQueueMaxAggregateOutputType = {
+    id: number | null
+    platform: $Enums.SolvePlatform | null
+    status: $Enums.SubmissionStatus | null
+    username: string | null
+    submissionId: number | null
+    contestId: number | null
+    problemIndex: string | null
+    problemName: string | null
+    rating: number | null
+    solvedAt: Date | null
+    durationMin: number | null
+    reviewedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type CodeforcesSubmissionQueueCountAggregateOutputType = {
+    id: number
+    platform: number
+    status: number
+    username: number
+    submissionId: number
+    contestId: number
+    problemIndex: number
+    problemName: number
+    rating: number
+    solvedAt: number
+    durationMin: number
+    reviewedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CodeforcesSubmissionQueueAvgAggregateInputType = {
+    id?: true
+    submissionId?: true
+    contestId?: true
+    rating?: true
+    durationMin?: true
+  }
+
+  export type CodeforcesSubmissionQueueSumAggregateInputType = {
+    id?: true
+    submissionId?: true
+    contestId?: true
+    rating?: true
+    durationMin?: true
+  }
+
+  export type CodeforcesSubmissionQueueMinAggregateInputType = {
+    id?: true
+    platform?: true
+    status?: true
+    username?: true
+    submissionId?: true
+    contestId?: true
+    problemIndex?: true
+    problemName?: true
+    rating?: true
+    solvedAt?: true
+    durationMin?: true
+    reviewedAt?: true
+    createdAt?: true
+  }
+
+  export type CodeforcesSubmissionQueueMaxAggregateInputType = {
+    id?: true
+    platform?: true
+    status?: true
+    username?: true
+    submissionId?: true
+    contestId?: true
+    problemIndex?: true
+    problemName?: true
+    rating?: true
+    solvedAt?: true
+    durationMin?: true
+    reviewedAt?: true
+    createdAt?: true
+  }
+
+  export type CodeforcesSubmissionQueueCountAggregateInputType = {
+    id?: true
+    platform?: true
+    status?: true
+    username?: true
+    submissionId?: true
+    contestId?: true
+    problemIndex?: true
+    problemName?: true
+    rating?: true
+    solvedAt?: true
+    durationMin?: true
+    reviewedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CodeforcesSubmissionQueueAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CodeforcesSubmissionQueue to aggregate.
+     */
+    where?: CodeforcesSubmissionQueueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodeforcesSubmissionQueues to fetch.
+     */
+    orderBy?: CodeforcesSubmissionQueueOrderByWithRelationInput | CodeforcesSubmissionQueueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CodeforcesSubmissionQueueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodeforcesSubmissionQueues from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodeforcesSubmissionQueues.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CodeforcesSubmissionQueues
+    **/
+    _count?: true | CodeforcesSubmissionQueueCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CodeforcesSubmissionQueueAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CodeforcesSubmissionQueueSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CodeforcesSubmissionQueueMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CodeforcesSubmissionQueueMaxAggregateInputType
+  }
+
+  export type GetCodeforcesSubmissionQueueAggregateType<T extends CodeforcesSubmissionQueueAggregateArgs> = {
+        [P in keyof T & keyof AggregateCodeforcesSubmissionQueue]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCodeforcesSubmissionQueue[P]>
+      : GetScalarType<T[P], AggregateCodeforcesSubmissionQueue[P]>
+  }
+
+
+
+
+  export type CodeforcesSubmissionQueueGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CodeforcesSubmissionQueueWhereInput
+    orderBy?: CodeforcesSubmissionQueueOrderByWithAggregationInput | CodeforcesSubmissionQueueOrderByWithAggregationInput[]
+    by: CodeforcesSubmissionQueueScalarFieldEnum[] | CodeforcesSubmissionQueueScalarFieldEnum
+    having?: CodeforcesSubmissionQueueScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CodeforcesSubmissionQueueCountAggregateInputType | true
+    _avg?: CodeforcesSubmissionQueueAvgAggregateInputType
+    _sum?: CodeforcesSubmissionQueueSumAggregateInputType
+    _min?: CodeforcesSubmissionQueueMinAggregateInputType
+    _max?: CodeforcesSubmissionQueueMaxAggregateInputType
+  }
+
+  export type CodeforcesSubmissionQueueGroupByOutputType = {
+    id: number
+    platform: $Enums.SolvePlatform
+    status: $Enums.SubmissionStatus
+    username: string
+    submissionId: number
+    contestId: number
+    problemIndex: string
+    problemName: string
+    rating: number | null
+    solvedAt: Date
+    durationMin: number | null
+    reviewedAt: Date | null
+    createdAt: Date
+    _count: CodeforcesSubmissionQueueCountAggregateOutputType | null
+    _avg: CodeforcesSubmissionQueueAvgAggregateOutputType | null
+    _sum: CodeforcesSubmissionQueueSumAggregateOutputType | null
+    _min: CodeforcesSubmissionQueueMinAggregateOutputType | null
+    _max: CodeforcesSubmissionQueueMaxAggregateOutputType | null
+  }
+
+  type GetCodeforcesSubmissionQueueGroupByPayload<T extends CodeforcesSubmissionQueueGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CodeforcesSubmissionQueueGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CodeforcesSubmissionQueueGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CodeforcesSubmissionQueueGroupByOutputType[P]>
+            : GetScalarType<T[P], CodeforcesSubmissionQueueGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CodeforcesSubmissionQueueSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    platform?: boolean
+    status?: boolean
+    username?: boolean
+    submissionId?: boolean
+    contestId?: boolean
+    problemIndex?: boolean
+    problemName?: boolean
+    rating?: boolean
+    solvedAt?: boolean
+    durationMin?: boolean
+    reviewedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["codeforcesSubmissionQueue"]>
+
+  export type CodeforcesSubmissionQueueSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    platform?: boolean
+    status?: boolean
+    username?: boolean
+    submissionId?: boolean
+    contestId?: boolean
+    problemIndex?: boolean
+    problemName?: boolean
+    rating?: boolean
+    solvedAt?: boolean
+    durationMin?: boolean
+    reviewedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["codeforcesSubmissionQueue"]>
+
+  export type CodeforcesSubmissionQueueSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    platform?: boolean
+    status?: boolean
+    username?: boolean
+    submissionId?: boolean
+    contestId?: boolean
+    problemIndex?: boolean
+    problemName?: boolean
+    rating?: boolean
+    solvedAt?: boolean
+    durationMin?: boolean
+    reviewedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["codeforcesSubmissionQueue"]>
+
+  export type CodeforcesSubmissionQueueSelectScalar = {
+    id?: boolean
+    platform?: boolean
+    status?: boolean
+    username?: boolean
+    submissionId?: boolean
+    contestId?: boolean
+    problemIndex?: boolean
+    problemName?: boolean
+    rating?: boolean
+    solvedAt?: boolean
+    durationMin?: boolean
+    reviewedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type CodeforcesSubmissionQueueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "platform" | "status" | "username" | "submissionId" | "contestId" | "problemIndex" | "problemName" | "rating" | "solvedAt" | "durationMin" | "reviewedAt" | "createdAt", ExtArgs["result"]["codeforcesSubmissionQueue"]>
+
+  export type $CodeforcesSubmissionQueuePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CodeforcesSubmissionQueue"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      platform: $Enums.SolvePlatform
+      status: $Enums.SubmissionStatus
+      username: string
+      submissionId: number
+      contestId: number
+      problemIndex: string
+      problemName: string
+      rating: number | null
+      solvedAt: Date
+      durationMin: number | null
+      reviewedAt: Date | null
+      createdAt: Date
+    }, ExtArgs["result"]["codeforcesSubmissionQueue"]>
+    composites: {}
+  }
+
+  type CodeforcesSubmissionQueueGetPayload<S extends boolean | null | undefined | CodeforcesSubmissionQueueDefaultArgs> = $Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload, S>
+
+  type CodeforcesSubmissionQueueCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CodeforcesSubmissionQueueFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CodeforcesSubmissionQueueCountAggregateInputType | true
+    }
+
+  export interface CodeforcesSubmissionQueueDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CodeforcesSubmissionQueue'], meta: { name: 'CodeforcesSubmissionQueue' } }
+    /**
+     * Find zero or one CodeforcesSubmissionQueue that matches the filter.
+     * @param {CodeforcesSubmissionQueueFindUniqueArgs} args - Arguments to find a CodeforcesSubmissionQueue
+     * @example
+     * // Get one CodeforcesSubmissionQueue
+     * const codeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CodeforcesSubmissionQueueFindUniqueArgs>(args: SelectSubset<T, CodeforcesSubmissionQueueFindUniqueArgs<ExtArgs>>): Prisma__CodeforcesSubmissionQueueClient<$Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CodeforcesSubmissionQueue that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CodeforcesSubmissionQueueFindUniqueOrThrowArgs} args - Arguments to find a CodeforcesSubmissionQueue
+     * @example
+     * // Get one CodeforcesSubmissionQueue
+     * const codeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CodeforcesSubmissionQueueFindUniqueOrThrowArgs>(args: SelectSubset<T, CodeforcesSubmissionQueueFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CodeforcesSubmissionQueueClient<$Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CodeforcesSubmissionQueue that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSubmissionQueueFindFirstArgs} args - Arguments to find a CodeforcesSubmissionQueue
+     * @example
+     * // Get one CodeforcesSubmissionQueue
+     * const codeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CodeforcesSubmissionQueueFindFirstArgs>(args?: SelectSubset<T, CodeforcesSubmissionQueueFindFirstArgs<ExtArgs>>): Prisma__CodeforcesSubmissionQueueClient<$Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CodeforcesSubmissionQueue that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSubmissionQueueFindFirstOrThrowArgs} args - Arguments to find a CodeforcesSubmissionQueue
+     * @example
+     * // Get one CodeforcesSubmissionQueue
+     * const codeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CodeforcesSubmissionQueueFindFirstOrThrowArgs>(args?: SelectSubset<T, CodeforcesSubmissionQueueFindFirstOrThrowArgs<ExtArgs>>): Prisma__CodeforcesSubmissionQueueClient<$Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CodeforcesSubmissionQueues that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSubmissionQueueFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CodeforcesSubmissionQueues
+     * const codeforcesSubmissionQueues = await prisma.codeforcesSubmissionQueue.findMany()
+     * 
+     * // Get first 10 CodeforcesSubmissionQueues
+     * const codeforcesSubmissionQueues = await prisma.codeforcesSubmissionQueue.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const codeforcesSubmissionQueueWithIdOnly = await prisma.codeforcesSubmissionQueue.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CodeforcesSubmissionQueueFindManyArgs>(args?: SelectSubset<T, CodeforcesSubmissionQueueFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CodeforcesSubmissionQueue.
+     * @param {CodeforcesSubmissionQueueCreateArgs} args - Arguments to create a CodeforcesSubmissionQueue.
+     * @example
+     * // Create one CodeforcesSubmissionQueue
+     * const CodeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.create({
+     *   data: {
+     *     // ... data to create a CodeforcesSubmissionQueue
+     *   }
+     * })
+     * 
+     */
+    create<T extends CodeforcesSubmissionQueueCreateArgs>(args: SelectSubset<T, CodeforcesSubmissionQueueCreateArgs<ExtArgs>>): Prisma__CodeforcesSubmissionQueueClient<$Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CodeforcesSubmissionQueues.
+     * @param {CodeforcesSubmissionQueueCreateManyArgs} args - Arguments to create many CodeforcesSubmissionQueues.
+     * @example
+     * // Create many CodeforcesSubmissionQueues
+     * const codeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CodeforcesSubmissionQueueCreateManyArgs>(args?: SelectSubset<T, CodeforcesSubmissionQueueCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CodeforcesSubmissionQueues and returns the data saved in the database.
+     * @param {CodeforcesSubmissionQueueCreateManyAndReturnArgs} args - Arguments to create many CodeforcesSubmissionQueues.
+     * @example
+     * // Create many CodeforcesSubmissionQueues
+     * const codeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CodeforcesSubmissionQueues and only return the `id`
+     * const codeforcesSubmissionQueueWithIdOnly = await prisma.codeforcesSubmissionQueue.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CodeforcesSubmissionQueueCreateManyAndReturnArgs>(args?: SelectSubset<T, CodeforcesSubmissionQueueCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CodeforcesSubmissionQueue.
+     * @param {CodeforcesSubmissionQueueDeleteArgs} args - Arguments to delete one CodeforcesSubmissionQueue.
+     * @example
+     * // Delete one CodeforcesSubmissionQueue
+     * const CodeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.delete({
+     *   where: {
+     *     // ... filter to delete one CodeforcesSubmissionQueue
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CodeforcesSubmissionQueueDeleteArgs>(args: SelectSubset<T, CodeforcesSubmissionQueueDeleteArgs<ExtArgs>>): Prisma__CodeforcesSubmissionQueueClient<$Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CodeforcesSubmissionQueue.
+     * @param {CodeforcesSubmissionQueueUpdateArgs} args - Arguments to update one CodeforcesSubmissionQueue.
+     * @example
+     * // Update one CodeforcesSubmissionQueue
+     * const codeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CodeforcesSubmissionQueueUpdateArgs>(args: SelectSubset<T, CodeforcesSubmissionQueueUpdateArgs<ExtArgs>>): Prisma__CodeforcesSubmissionQueueClient<$Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CodeforcesSubmissionQueues.
+     * @param {CodeforcesSubmissionQueueDeleteManyArgs} args - Arguments to filter CodeforcesSubmissionQueues to delete.
+     * @example
+     * // Delete a few CodeforcesSubmissionQueues
+     * const { count } = await prisma.codeforcesSubmissionQueue.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CodeforcesSubmissionQueueDeleteManyArgs>(args?: SelectSubset<T, CodeforcesSubmissionQueueDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CodeforcesSubmissionQueues.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSubmissionQueueUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CodeforcesSubmissionQueues
+     * const codeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CodeforcesSubmissionQueueUpdateManyArgs>(args: SelectSubset<T, CodeforcesSubmissionQueueUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CodeforcesSubmissionQueues and returns the data updated in the database.
+     * @param {CodeforcesSubmissionQueueUpdateManyAndReturnArgs} args - Arguments to update many CodeforcesSubmissionQueues.
+     * @example
+     * // Update many CodeforcesSubmissionQueues
+     * const codeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CodeforcesSubmissionQueues and only return the `id`
+     * const codeforcesSubmissionQueueWithIdOnly = await prisma.codeforcesSubmissionQueue.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CodeforcesSubmissionQueueUpdateManyAndReturnArgs>(args: SelectSubset<T, CodeforcesSubmissionQueueUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CodeforcesSubmissionQueue.
+     * @param {CodeforcesSubmissionQueueUpsertArgs} args - Arguments to update or create a CodeforcesSubmissionQueue.
+     * @example
+     * // Update or create a CodeforcesSubmissionQueue
+     * const codeforcesSubmissionQueue = await prisma.codeforcesSubmissionQueue.upsert({
+     *   create: {
+     *     // ... data to create a CodeforcesSubmissionQueue
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CodeforcesSubmissionQueue we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CodeforcesSubmissionQueueUpsertArgs>(args: SelectSubset<T, CodeforcesSubmissionQueueUpsertArgs<ExtArgs>>): Prisma__CodeforcesSubmissionQueueClient<$Result.GetResult<Prisma.$CodeforcesSubmissionQueuePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CodeforcesSubmissionQueues.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSubmissionQueueCountArgs} args - Arguments to filter CodeforcesSubmissionQueues to count.
+     * @example
+     * // Count the number of CodeforcesSubmissionQueues
+     * const count = await prisma.codeforcesSubmissionQueue.count({
+     *   where: {
+     *     // ... the filter for the CodeforcesSubmissionQueues we want to count
+     *   }
+     * })
+    **/
+    count<T extends CodeforcesSubmissionQueueCountArgs>(
+      args?: Subset<T, CodeforcesSubmissionQueueCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CodeforcesSubmissionQueueCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CodeforcesSubmissionQueue.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSubmissionQueueAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CodeforcesSubmissionQueueAggregateArgs>(args: Subset<T, CodeforcesSubmissionQueueAggregateArgs>): Prisma.PrismaPromise<GetCodeforcesSubmissionQueueAggregateType<T>>
+
+    /**
+     * Group by CodeforcesSubmissionQueue.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSubmissionQueueGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CodeforcesSubmissionQueueGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CodeforcesSubmissionQueueGroupByArgs['orderBy'] }
+        : { orderBy?: CodeforcesSubmissionQueueGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CodeforcesSubmissionQueueGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCodeforcesSubmissionQueueGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CodeforcesSubmissionQueue model
+   */
+  readonly fields: CodeforcesSubmissionQueueFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CodeforcesSubmissionQueue.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CodeforcesSubmissionQueueClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CodeforcesSubmissionQueue model
+   */
+  interface CodeforcesSubmissionQueueFieldRefs {
+    readonly id: FieldRef<"CodeforcesSubmissionQueue", 'Int'>
+    readonly platform: FieldRef<"CodeforcesSubmissionQueue", 'SolvePlatform'>
+    readonly status: FieldRef<"CodeforcesSubmissionQueue", 'SubmissionStatus'>
+    readonly username: FieldRef<"CodeforcesSubmissionQueue", 'String'>
+    readonly submissionId: FieldRef<"CodeforcesSubmissionQueue", 'Int'>
+    readonly contestId: FieldRef<"CodeforcesSubmissionQueue", 'Int'>
+    readonly problemIndex: FieldRef<"CodeforcesSubmissionQueue", 'String'>
+    readonly problemName: FieldRef<"CodeforcesSubmissionQueue", 'String'>
+    readonly rating: FieldRef<"CodeforcesSubmissionQueue", 'Int'>
+    readonly solvedAt: FieldRef<"CodeforcesSubmissionQueue", 'DateTime'>
+    readonly durationMin: FieldRef<"CodeforcesSubmissionQueue", 'Int'>
+    readonly reviewedAt: FieldRef<"CodeforcesSubmissionQueue", 'DateTime'>
+    readonly createdAt: FieldRef<"CodeforcesSubmissionQueue", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CodeforcesSubmissionQueue findUnique
+   */
+  export type CodeforcesSubmissionQueueFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+    /**
+     * Filter, which CodeforcesSubmissionQueue to fetch.
+     */
+    where: CodeforcesSubmissionQueueWhereUniqueInput
+  }
+
+  /**
+   * CodeforcesSubmissionQueue findUniqueOrThrow
+   */
+  export type CodeforcesSubmissionQueueFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+    /**
+     * Filter, which CodeforcesSubmissionQueue to fetch.
+     */
+    where: CodeforcesSubmissionQueueWhereUniqueInput
+  }
+
+  /**
+   * CodeforcesSubmissionQueue findFirst
+   */
+  export type CodeforcesSubmissionQueueFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+    /**
+     * Filter, which CodeforcesSubmissionQueue to fetch.
+     */
+    where?: CodeforcesSubmissionQueueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodeforcesSubmissionQueues to fetch.
+     */
+    orderBy?: CodeforcesSubmissionQueueOrderByWithRelationInput | CodeforcesSubmissionQueueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CodeforcesSubmissionQueues.
+     */
+    cursor?: CodeforcesSubmissionQueueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodeforcesSubmissionQueues from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodeforcesSubmissionQueues.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CodeforcesSubmissionQueues.
+     */
+    distinct?: CodeforcesSubmissionQueueScalarFieldEnum | CodeforcesSubmissionQueueScalarFieldEnum[]
+  }
+
+  /**
+   * CodeforcesSubmissionQueue findFirstOrThrow
+   */
+  export type CodeforcesSubmissionQueueFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+    /**
+     * Filter, which CodeforcesSubmissionQueue to fetch.
+     */
+    where?: CodeforcesSubmissionQueueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodeforcesSubmissionQueues to fetch.
+     */
+    orderBy?: CodeforcesSubmissionQueueOrderByWithRelationInput | CodeforcesSubmissionQueueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CodeforcesSubmissionQueues.
+     */
+    cursor?: CodeforcesSubmissionQueueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodeforcesSubmissionQueues from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodeforcesSubmissionQueues.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CodeforcesSubmissionQueues.
+     */
+    distinct?: CodeforcesSubmissionQueueScalarFieldEnum | CodeforcesSubmissionQueueScalarFieldEnum[]
+  }
+
+  /**
+   * CodeforcesSubmissionQueue findMany
+   */
+  export type CodeforcesSubmissionQueueFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+    /**
+     * Filter, which CodeforcesSubmissionQueues to fetch.
+     */
+    where?: CodeforcesSubmissionQueueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodeforcesSubmissionQueues to fetch.
+     */
+    orderBy?: CodeforcesSubmissionQueueOrderByWithRelationInput | CodeforcesSubmissionQueueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CodeforcesSubmissionQueues.
+     */
+    cursor?: CodeforcesSubmissionQueueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodeforcesSubmissionQueues from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodeforcesSubmissionQueues.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CodeforcesSubmissionQueues.
+     */
+    distinct?: CodeforcesSubmissionQueueScalarFieldEnum | CodeforcesSubmissionQueueScalarFieldEnum[]
+  }
+
+  /**
+   * CodeforcesSubmissionQueue create
+   */
+  export type CodeforcesSubmissionQueueCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+    /**
+     * The data needed to create a CodeforcesSubmissionQueue.
+     */
+    data: XOR<CodeforcesSubmissionQueueCreateInput, CodeforcesSubmissionQueueUncheckedCreateInput>
+  }
+
+  /**
+   * CodeforcesSubmissionQueue createMany
+   */
+  export type CodeforcesSubmissionQueueCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CodeforcesSubmissionQueues.
+     */
+    data: CodeforcesSubmissionQueueCreateManyInput | CodeforcesSubmissionQueueCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CodeforcesSubmissionQueue createManyAndReturn
+   */
+  export type CodeforcesSubmissionQueueCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+    /**
+     * The data used to create many CodeforcesSubmissionQueues.
+     */
+    data: CodeforcesSubmissionQueueCreateManyInput | CodeforcesSubmissionQueueCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CodeforcesSubmissionQueue update
+   */
+  export type CodeforcesSubmissionQueueUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+    /**
+     * The data needed to update a CodeforcesSubmissionQueue.
+     */
+    data: XOR<CodeforcesSubmissionQueueUpdateInput, CodeforcesSubmissionQueueUncheckedUpdateInput>
+    /**
+     * Choose, which CodeforcesSubmissionQueue to update.
+     */
+    where: CodeforcesSubmissionQueueWhereUniqueInput
+  }
+
+  /**
+   * CodeforcesSubmissionQueue updateMany
+   */
+  export type CodeforcesSubmissionQueueUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CodeforcesSubmissionQueues.
+     */
+    data: XOR<CodeforcesSubmissionQueueUpdateManyMutationInput, CodeforcesSubmissionQueueUncheckedUpdateManyInput>
+    /**
+     * Filter which CodeforcesSubmissionQueues to update
+     */
+    where?: CodeforcesSubmissionQueueWhereInput
+    /**
+     * Limit how many CodeforcesSubmissionQueues to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CodeforcesSubmissionQueue updateManyAndReturn
+   */
+  export type CodeforcesSubmissionQueueUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+    /**
+     * The data used to update CodeforcesSubmissionQueues.
+     */
+    data: XOR<CodeforcesSubmissionQueueUpdateManyMutationInput, CodeforcesSubmissionQueueUncheckedUpdateManyInput>
+    /**
+     * Filter which CodeforcesSubmissionQueues to update
+     */
+    where?: CodeforcesSubmissionQueueWhereInput
+    /**
+     * Limit how many CodeforcesSubmissionQueues to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CodeforcesSubmissionQueue upsert
+   */
+  export type CodeforcesSubmissionQueueUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+    /**
+     * The filter to search for the CodeforcesSubmissionQueue to update in case it exists.
+     */
+    where: CodeforcesSubmissionQueueWhereUniqueInput
+    /**
+     * In case the CodeforcesSubmissionQueue found by the `where` argument doesn't exist, create a new CodeforcesSubmissionQueue with this data.
+     */
+    create: XOR<CodeforcesSubmissionQueueCreateInput, CodeforcesSubmissionQueueUncheckedCreateInput>
+    /**
+     * In case the CodeforcesSubmissionQueue was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CodeforcesSubmissionQueueUpdateInput, CodeforcesSubmissionQueueUncheckedUpdateInput>
+  }
+
+  /**
+   * CodeforcesSubmissionQueue delete
+   */
+  export type CodeforcesSubmissionQueueDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+    /**
+     * Filter which CodeforcesSubmissionQueue to delete.
+     */
+    where: CodeforcesSubmissionQueueWhereUniqueInput
+  }
+
+  /**
+   * CodeforcesSubmissionQueue deleteMany
+   */
+  export type CodeforcesSubmissionQueueDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CodeforcesSubmissionQueues to delete
+     */
+    where?: CodeforcesSubmissionQueueWhereInput
+    /**
+     * Limit how many CodeforcesSubmissionQueues to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CodeforcesSubmissionQueue without action
+   */
+  export type CodeforcesSubmissionQueueDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSubmissionQueue
+     */
+    select?: CodeforcesSubmissionQueueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSubmissionQueue
+     */
+    omit?: CodeforcesSubmissionQueueOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CodeforcesSolve
+   */
+
+  export type AggregateCodeforcesSolve = {
+    _count: CodeforcesSolveCountAggregateOutputType | null
+    _avg: CodeforcesSolveAvgAggregateOutputType | null
+    _sum: CodeforcesSolveSumAggregateOutputType | null
+    _min: CodeforcesSolveMinAggregateOutputType | null
+    _max: CodeforcesSolveMaxAggregateOutputType | null
+  }
+
+  export type CodeforcesSolveAvgAggregateOutputType = {
+    id: number | null
+    submissionId: number | null
+    contestId: number | null
+    rating: number | null
+    durationMin: number | null
+  }
+
+  export type CodeforcesSolveSumAggregateOutputType = {
+    id: number | null
+    submissionId: number | null
+    contestId: number | null
+    rating: number | null
+    durationMin: number | null
+  }
+
+  export type CodeforcesSolveMinAggregateOutputType = {
+    id: number | null
+    platform: $Enums.SolvePlatform | null
+    username: string | null
+    submissionId: number | null
+    contestId: number | null
+    problemIndex: string | null
+    problemName: string | null
+    rating: number | null
+    durationMin: number | null
+    solvedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type CodeforcesSolveMaxAggregateOutputType = {
+    id: number | null
+    platform: $Enums.SolvePlatform | null
+    username: string | null
+    submissionId: number | null
+    contestId: number | null
+    problemIndex: string | null
+    problemName: string | null
+    rating: number | null
+    durationMin: number | null
+    solvedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type CodeforcesSolveCountAggregateOutputType = {
+    id: number
+    platform: number
+    username: number
+    submissionId: number
+    contestId: number
+    problemIndex: number
+    problemName: number
+    rating: number
+    durationMin: number
+    solvedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CodeforcesSolveAvgAggregateInputType = {
+    id?: true
+    submissionId?: true
+    contestId?: true
+    rating?: true
+    durationMin?: true
+  }
+
+  export type CodeforcesSolveSumAggregateInputType = {
+    id?: true
+    submissionId?: true
+    contestId?: true
+    rating?: true
+    durationMin?: true
+  }
+
+  export type CodeforcesSolveMinAggregateInputType = {
+    id?: true
+    platform?: true
+    username?: true
+    submissionId?: true
+    contestId?: true
+    problemIndex?: true
+    problemName?: true
+    rating?: true
+    durationMin?: true
+    solvedAt?: true
+    createdAt?: true
+  }
+
+  export type CodeforcesSolveMaxAggregateInputType = {
+    id?: true
+    platform?: true
+    username?: true
+    submissionId?: true
+    contestId?: true
+    problemIndex?: true
+    problemName?: true
+    rating?: true
+    durationMin?: true
+    solvedAt?: true
+    createdAt?: true
+  }
+
+  export type CodeforcesSolveCountAggregateInputType = {
+    id?: true
+    platform?: true
+    username?: true
+    submissionId?: true
+    contestId?: true
+    problemIndex?: true
+    problemName?: true
+    rating?: true
+    durationMin?: true
+    solvedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CodeforcesSolveAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CodeforcesSolve to aggregate.
+     */
+    where?: CodeforcesSolveWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodeforcesSolves to fetch.
+     */
+    orderBy?: CodeforcesSolveOrderByWithRelationInput | CodeforcesSolveOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CodeforcesSolveWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodeforcesSolves from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodeforcesSolves.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CodeforcesSolves
+    **/
+    _count?: true | CodeforcesSolveCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CodeforcesSolveAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CodeforcesSolveSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CodeforcesSolveMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CodeforcesSolveMaxAggregateInputType
+  }
+
+  export type GetCodeforcesSolveAggregateType<T extends CodeforcesSolveAggregateArgs> = {
+        [P in keyof T & keyof AggregateCodeforcesSolve]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCodeforcesSolve[P]>
+      : GetScalarType<T[P], AggregateCodeforcesSolve[P]>
+  }
+
+
+
+
+  export type CodeforcesSolveGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CodeforcesSolveWhereInput
+    orderBy?: CodeforcesSolveOrderByWithAggregationInput | CodeforcesSolveOrderByWithAggregationInput[]
+    by: CodeforcesSolveScalarFieldEnum[] | CodeforcesSolveScalarFieldEnum
+    having?: CodeforcesSolveScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CodeforcesSolveCountAggregateInputType | true
+    _avg?: CodeforcesSolveAvgAggregateInputType
+    _sum?: CodeforcesSolveSumAggregateInputType
+    _min?: CodeforcesSolveMinAggregateInputType
+    _max?: CodeforcesSolveMaxAggregateInputType
+  }
+
+  export type CodeforcesSolveGroupByOutputType = {
+    id: number
+    platform: $Enums.SolvePlatform
+    username: string
+    submissionId: number
+    contestId: number
+    problemIndex: string
+    problemName: string
+    rating: number | null
+    durationMin: number
+    solvedAt: Date
+    createdAt: Date
+    _count: CodeforcesSolveCountAggregateOutputType | null
+    _avg: CodeforcesSolveAvgAggregateOutputType | null
+    _sum: CodeforcesSolveSumAggregateOutputType | null
+    _min: CodeforcesSolveMinAggregateOutputType | null
+    _max: CodeforcesSolveMaxAggregateOutputType | null
+  }
+
+  type GetCodeforcesSolveGroupByPayload<T extends CodeforcesSolveGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CodeforcesSolveGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CodeforcesSolveGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CodeforcesSolveGroupByOutputType[P]>
+            : GetScalarType<T[P], CodeforcesSolveGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CodeforcesSolveSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    platform?: boolean
+    username?: boolean
+    submissionId?: boolean
+    contestId?: boolean
+    problemIndex?: boolean
+    problemName?: boolean
+    rating?: boolean
+    durationMin?: boolean
+    solvedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["codeforcesSolve"]>
+
+  export type CodeforcesSolveSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    platform?: boolean
+    username?: boolean
+    submissionId?: boolean
+    contestId?: boolean
+    problemIndex?: boolean
+    problemName?: boolean
+    rating?: boolean
+    durationMin?: boolean
+    solvedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["codeforcesSolve"]>
+
+  export type CodeforcesSolveSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    platform?: boolean
+    username?: boolean
+    submissionId?: boolean
+    contestId?: boolean
+    problemIndex?: boolean
+    problemName?: boolean
+    rating?: boolean
+    durationMin?: boolean
+    solvedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["codeforcesSolve"]>
+
+  export type CodeforcesSolveSelectScalar = {
+    id?: boolean
+    platform?: boolean
+    username?: boolean
+    submissionId?: boolean
+    contestId?: boolean
+    problemIndex?: boolean
+    problemName?: boolean
+    rating?: boolean
+    durationMin?: boolean
+    solvedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type CodeforcesSolveOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "platform" | "username" | "submissionId" | "contestId" | "problemIndex" | "problemName" | "rating" | "durationMin" | "solvedAt" | "createdAt", ExtArgs["result"]["codeforcesSolve"]>
+
+  export type $CodeforcesSolvePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CodeforcesSolve"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      platform: $Enums.SolvePlatform
+      username: string
+      submissionId: number
+      contestId: number
+      problemIndex: string
+      problemName: string
+      rating: number | null
+      durationMin: number
+      solvedAt: Date
+      createdAt: Date
+    }, ExtArgs["result"]["codeforcesSolve"]>
+    composites: {}
+  }
+
+  type CodeforcesSolveGetPayload<S extends boolean | null | undefined | CodeforcesSolveDefaultArgs> = $Result.GetResult<Prisma.$CodeforcesSolvePayload, S>
+
+  type CodeforcesSolveCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CodeforcesSolveFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CodeforcesSolveCountAggregateInputType | true
+    }
+
+  export interface CodeforcesSolveDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CodeforcesSolve'], meta: { name: 'CodeforcesSolve' } }
+    /**
+     * Find zero or one CodeforcesSolve that matches the filter.
+     * @param {CodeforcesSolveFindUniqueArgs} args - Arguments to find a CodeforcesSolve
+     * @example
+     * // Get one CodeforcesSolve
+     * const codeforcesSolve = await prisma.codeforcesSolve.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CodeforcesSolveFindUniqueArgs>(args: SelectSubset<T, CodeforcesSolveFindUniqueArgs<ExtArgs>>): Prisma__CodeforcesSolveClient<$Result.GetResult<Prisma.$CodeforcesSolvePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CodeforcesSolve that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CodeforcesSolveFindUniqueOrThrowArgs} args - Arguments to find a CodeforcesSolve
+     * @example
+     * // Get one CodeforcesSolve
+     * const codeforcesSolve = await prisma.codeforcesSolve.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CodeforcesSolveFindUniqueOrThrowArgs>(args: SelectSubset<T, CodeforcesSolveFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CodeforcesSolveClient<$Result.GetResult<Prisma.$CodeforcesSolvePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CodeforcesSolve that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSolveFindFirstArgs} args - Arguments to find a CodeforcesSolve
+     * @example
+     * // Get one CodeforcesSolve
+     * const codeforcesSolve = await prisma.codeforcesSolve.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CodeforcesSolveFindFirstArgs>(args?: SelectSubset<T, CodeforcesSolveFindFirstArgs<ExtArgs>>): Prisma__CodeforcesSolveClient<$Result.GetResult<Prisma.$CodeforcesSolvePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CodeforcesSolve that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSolveFindFirstOrThrowArgs} args - Arguments to find a CodeforcesSolve
+     * @example
+     * // Get one CodeforcesSolve
+     * const codeforcesSolve = await prisma.codeforcesSolve.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CodeforcesSolveFindFirstOrThrowArgs>(args?: SelectSubset<T, CodeforcesSolveFindFirstOrThrowArgs<ExtArgs>>): Prisma__CodeforcesSolveClient<$Result.GetResult<Prisma.$CodeforcesSolvePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CodeforcesSolves that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSolveFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CodeforcesSolves
+     * const codeforcesSolves = await prisma.codeforcesSolve.findMany()
+     * 
+     * // Get first 10 CodeforcesSolves
+     * const codeforcesSolves = await prisma.codeforcesSolve.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const codeforcesSolveWithIdOnly = await prisma.codeforcesSolve.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CodeforcesSolveFindManyArgs>(args?: SelectSubset<T, CodeforcesSolveFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CodeforcesSolvePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CodeforcesSolve.
+     * @param {CodeforcesSolveCreateArgs} args - Arguments to create a CodeforcesSolve.
+     * @example
+     * // Create one CodeforcesSolve
+     * const CodeforcesSolve = await prisma.codeforcesSolve.create({
+     *   data: {
+     *     // ... data to create a CodeforcesSolve
+     *   }
+     * })
+     * 
+     */
+    create<T extends CodeforcesSolveCreateArgs>(args: SelectSubset<T, CodeforcesSolveCreateArgs<ExtArgs>>): Prisma__CodeforcesSolveClient<$Result.GetResult<Prisma.$CodeforcesSolvePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CodeforcesSolves.
+     * @param {CodeforcesSolveCreateManyArgs} args - Arguments to create many CodeforcesSolves.
+     * @example
+     * // Create many CodeforcesSolves
+     * const codeforcesSolve = await prisma.codeforcesSolve.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CodeforcesSolveCreateManyArgs>(args?: SelectSubset<T, CodeforcesSolveCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CodeforcesSolves and returns the data saved in the database.
+     * @param {CodeforcesSolveCreateManyAndReturnArgs} args - Arguments to create many CodeforcesSolves.
+     * @example
+     * // Create many CodeforcesSolves
+     * const codeforcesSolve = await prisma.codeforcesSolve.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CodeforcesSolves and only return the `id`
+     * const codeforcesSolveWithIdOnly = await prisma.codeforcesSolve.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CodeforcesSolveCreateManyAndReturnArgs>(args?: SelectSubset<T, CodeforcesSolveCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CodeforcesSolvePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CodeforcesSolve.
+     * @param {CodeforcesSolveDeleteArgs} args - Arguments to delete one CodeforcesSolve.
+     * @example
+     * // Delete one CodeforcesSolve
+     * const CodeforcesSolve = await prisma.codeforcesSolve.delete({
+     *   where: {
+     *     // ... filter to delete one CodeforcesSolve
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CodeforcesSolveDeleteArgs>(args: SelectSubset<T, CodeforcesSolveDeleteArgs<ExtArgs>>): Prisma__CodeforcesSolveClient<$Result.GetResult<Prisma.$CodeforcesSolvePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CodeforcesSolve.
+     * @param {CodeforcesSolveUpdateArgs} args - Arguments to update one CodeforcesSolve.
+     * @example
+     * // Update one CodeforcesSolve
+     * const codeforcesSolve = await prisma.codeforcesSolve.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CodeforcesSolveUpdateArgs>(args: SelectSubset<T, CodeforcesSolveUpdateArgs<ExtArgs>>): Prisma__CodeforcesSolveClient<$Result.GetResult<Prisma.$CodeforcesSolvePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CodeforcesSolves.
+     * @param {CodeforcesSolveDeleteManyArgs} args - Arguments to filter CodeforcesSolves to delete.
+     * @example
+     * // Delete a few CodeforcesSolves
+     * const { count } = await prisma.codeforcesSolve.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CodeforcesSolveDeleteManyArgs>(args?: SelectSubset<T, CodeforcesSolveDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CodeforcesSolves.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSolveUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CodeforcesSolves
+     * const codeforcesSolve = await prisma.codeforcesSolve.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CodeforcesSolveUpdateManyArgs>(args: SelectSubset<T, CodeforcesSolveUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CodeforcesSolves and returns the data updated in the database.
+     * @param {CodeforcesSolveUpdateManyAndReturnArgs} args - Arguments to update many CodeforcesSolves.
+     * @example
+     * // Update many CodeforcesSolves
+     * const codeforcesSolve = await prisma.codeforcesSolve.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CodeforcesSolves and only return the `id`
+     * const codeforcesSolveWithIdOnly = await prisma.codeforcesSolve.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CodeforcesSolveUpdateManyAndReturnArgs>(args: SelectSubset<T, CodeforcesSolveUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CodeforcesSolvePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CodeforcesSolve.
+     * @param {CodeforcesSolveUpsertArgs} args - Arguments to update or create a CodeforcesSolve.
+     * @example
+     * // Update or create a CodeforcesSolve
+     * const codeforcesSolve = await prisma.codeforcesSolve.upsert({
+     *   create: {
+     *     // ... data to create a CodeforcesSolve
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CodeforcesSolve we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CodeforcesSolveUpsertArgs>(args: SelectSubset<T, CodeforcesSolveUpsertArgs<ExtArgs>>): Prisma__CodeforcesSolveClient<$Result.GetResult<Prisma.$CodeforcesSolvePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CodeforcesSolves.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSolveCountArgs} args - Arguments to filter CodeforcesSolves to count.
+     * @example
+     * // Count the number of CodeforcesSolves
+     * const count = await prisma.codeforcesSolve.count({
+     *   where: {
+     *     // ... the filter for the CodeforcesSolves we want to count
+     *   }
+     * })
+    **/
+    count<T extends CodeforcesSolveCountArgs>(
+      args?: Subset<T, CodeforcesSolveCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CodeforcesSolveCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CodeforcesSolve.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSolveAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CodeforcesSolveAggregateArgs>(args: Subset<T, CodeforcesSolveAggregateArgs>): Prisma.PrismaPromise<GetCodeforcesSolveAggregateType<T>>
+
+    /**
+     * Group by CodeforcesSolve.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodeforcesSolveGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CodeforcesSolveGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CodeforcesSolveGroupByArgs['orderBy'] }
+        : { orderBy?: CodeforcesSolveGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CodeforcesSolveGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCodeforcesSolveGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CodeforcesSolve model
+   */
+  readonly fields: CodeforcesSolveFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CodeforcesSolve.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CodeforcesSolveClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CodeforcesSolve model
+   */
+  interface CodeforcesSolveFieldRefs {
+    readonly id: FieldRef<"CodeforcesSolve", 'Int'>
+    readonly platform: FieldRef<"CodeforcesSolve", 'SolvePlatform'>
+    readonly username: FieldRef<"CodeforcesSolve", 'String'>
+    readonly submissionId: FieldRef<"CodeforcesSolve", 'Int'>
+    readonly contestId: FieldRef<"CodeforcesSolve", 'Int'>
+    readonly problemIndex: FieldRef<"CodeforcesSolve", 'String'>
+    readonly problemName: FieldRef<"CodeforcesSolve", 'String'>
+    readonly rating: FieldRef<"CodeforcesSolve", 'Int'>
+    readonly durationMin: FieldRef<"CodeforcesSolve", 'Int'>
+    readonly solvedAt: FieldRef<"CodeforcesSolve", 'DateTime'>
+    readonly createdAt: FieldRef<"CodeforcesSolve", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CodeforcesSolve findUnique
+   */
+  export type CodeforcesSolveFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+    /**
+     * Filter, which CodeforcesSolve to fetch.
+     */
+    where: CodeforcesSolveWhereUniqueInput
+  }
+
+  /**
+   * CodeforcesSolve findUniqueOrThrow
+   */
+  export type CodeforcesSolveFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+    /**
+     * Filter, which CodeforcesSolve to fetch.
+     */
+    where: CodeforcesSolveWhereUniqueInput
+  }
+
+  /**
+   * CodeforcesSolve findFirst
+   */
+  export type CodeforcesSolveFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+    /**
+     * Filter, which CodeforcesSolve to fetch.
+     */
+    where?: CodeforcesSolveWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodeforcesSolves to fetch.
+     */
+    orderBy?: CodeforcesSolveOrderByWithRelationInput | CodeforcesSolveOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CodeforcesSolves.
+     */
+    cursor?: CodeforcesSolveWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodeforcesSolves from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodeforcesSolves.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CodeforcesSolves.
+     */
+    distinct?: CodeforcesSolveScalarFieldEnum | CodeforcesSolveScalarFieldEnum[]
+  }
+
+  /**
+   * CodeforcesSolve findFirstOrThrow
+   */
+  export type CodeforcesSolveFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+    /**
+     * Filter, which CodeforcesSolve to fetch.
+     */
+    where?: CodeforcesSolveWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodeforcesSolves to fetch.
+     */
+    orderBy?: CodeforcesSolveOrderByWithRelationInput | CodeforcesSolveOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CodeforcesSolves.
+     */
+    cursor?: CodeforcesSolveWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodeforcesSolves from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodeforcesSolves.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CodeforcesSolves.
+     */
+    distinct?: CodeforcesSolveScalarFieldEnum | CodeforcesSolveScalarFieldEnum[]
+  }
+
+  /**
+   * CodeforcesSolve findMany
+   */
+  export type CodeforcesSolveFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+    /**
+     * Filter, which CodeforcesSolves to fetch.
+     */
+    where?: CodeforcesSolveWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodeforcesSolves to fetch.
+     */
+    orderBy?: CodeforcesSolveOrderByWithRelationInput | CodeforcesSolveOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CodeforcesSolves.
+     */
+    cursor?: CodeforcesSolveWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodeforcesSolves from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodeforcesSolves.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CodeforcesSolves.
+     */
+    distinct?: CodeforcesSolveScalarFieldEnum | CodeforcesSolveScalarFieldEnum[]
+  }
+
+  /**
+   * CodeforcesSolve create
+   */
+  export type CodeforcesSolveCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+    /**
+     * The data needed to create a CodeforcesSolve.
+     */
+    data: XOR<CodeforcesSolveCreateInput, CodeforcesSolveUncheckedCreateInput>
+  }
+
+  /**
+   * CodeforcesSolve createMany
+   */
+  export type CodeforcesSolveCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CodeforcesSolves.
+     */
+    data: CodeforcesSolveCreateManyInput | CodeforcesSolveCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CodeforcesSolve createManyAndReturn
+   */
+  export type CodeforcesSolveCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+    /**
+     * The data used to create many CodeforcesSolves.
+     */
+    data: CodeforcesSolveCreateManyInput | CodeforcesSolveCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CodeforcesSolve update
+   */
+  export type CodeforcesSolveUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+    /**
+     * The data needed to update a CodeforcesSolve.
+     */
+    data: XOR<CodeforcesSolveUpdateInput, CodeforcesSolveUncheckedUpdateInput>
+    /**
+     * Choose, which CodeforcesSolve to update.
+     */
+    where: CodeforcesSolveWhereUniqueInput
+  }
+
+  /**
+   * CodeforcesSolve updateMany
+   */
+  export type CodeforcesSolveUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CodeforcesSolves.
+     */
+    data: XOR<CodeforcesSolveUpdateManyMutationInput, CodeforcesSolveUncheckedUpdateManyInput>
+    /**
+     * Filter which CodeforcesSolves to update
+     */
+    where?: CodeforcesSolveWhereInput
+    /**
+     * Limit how many CodeforcesSolves to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CodeforcesSolve updateManyAndReturn
+   */
+  export type CodeforcesSolveUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+    /**
+     * The data used to update CodeforcesSolves.
+     */
+    data: XOR<CodeforcesSolveUpdateManyMutationInput, CodeforcesSolveUncheckedUpdateManyInput>
+    /**
+     * Filter which CodeforcesSolves to update
+     */
+    where?: CodeforcesSolveWhereInput
+    /**
+     * Limit how many CodeforcesSolves to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CodeforcesSolve upsert
+   */
+  export type CodeforcesSolveUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+    /**
+     * The filter to search for the CodeforcesSolve to update in case it exists.
+     */
+    where: CodeforcesSolveWhereUniqueInput
+    /**
+     * In case the CodeforcesSolve found by the `where` argument doesn't exist, create a new CodeforcesSolve with this data.
+     */
+    create: XOR<CodeforcesSolveCreateInput, CodeforcesSolveUncheckedCreateInput>
+    /**
+     * In case the CodeforcesSolve was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CodeforcesSolveUpdateInput, CodeforcesSolveUncheckedUpdateInput>
+  }
+
+  /**
+   * CodeforcesSolve delete
+   */
+  export type CodeforcesSolveDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+    /**
+     * Filter which CodeforcesSolve to delete.
+     */
+    where: CodeforcesSolveWhereUniqueInput
+  }
+
+  /**
+   * CodeforcesSolve deleteMany
+   */
+  export type CodeforcesSolveDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CodeforcesSolves to delete
+     */
+    where?: CodeforcesSolveWhereInput
+    /**
+     * Limit how many CodeforcesSolves to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CodeforcesSolve without action
+   */
+  export type CodeforcesSolveDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodeforcesSolve
+     */
+    select?: CodeforcesSolveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodeforcesSolve
+     */
+    omit?: CodeforcesSolveOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model LeetcodeSolve
    */
 
@@ -5706,6 +8201,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveMinAggregateOutputType = {
     id: number | null
+    platform: $Enums.SolvePlatform | null
     problemNumber: number | null
     problemName: string | null
     difficulty: string | null
@@ -5719,6 +8215,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveMaxAggregateOutputType = {
     id: number | null
+    platform: $Enums.SolvePlatform | null
     problemNumber: number | null
     problemName: string | null
     difficulty: string | null
@@ -5732,6 +8229,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveCountAggregateOutputType = {
     id: number
+    platform: number
     problemNumber: number
     problemName: number
     difficulty: number
@@ -5759,6 +8257,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveMinAggregateInputType = {
     id?: true
+    platform?: true
     problemNumber?: true
     problemName?: true
     difficulty?: true
@@ -5772,6 +8271,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveMaxAggregateInputType = {
     id?: true
+    platform?: true
     problemNumber?: true
     problemName?: true
     difficulty?: true
@@ -5785,6 +8285,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveCountAggregateInputType = {
     id?: true
+    platform?: true
     problemNumber?: true
     problemName?: true
     difficulty?: true
@@ -5885,6 +8386,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveGroupByOutputType = {
     id: number
+    platform: $Enums.SolvePlatform
     problemNumber: number
     problemName: string
     difficulty: string
@@ -5917,6 +8419,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    platform?: boolean
     problemNumber?: boolean
     problemName?: boolean
     difficulty?: boolean
@@ -5930,6 +8433,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    platform?: boolean
     problemNumber?: boolean
     problemName?: boolean
     difficulty?: boolean
@@ -5943,6 +8447,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    platform?: boolean
     problemNumber?: boolean
     problemName?: boolean
     difficulty?: boolean
@@ -5956,6 +8461,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveSelectScalar = {
     id?: boolean
+    platform?: boolean
     problemNumber?: boolean
     problemName?: boolean
     difficulty?: boolean
@@ -5967,13 +8473,14 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type LeetcodeSolveOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "problemNumber" | "problemName" | "difficulty" | "durationMin" | "solvedAt" | "notes" | "solvedWithoutHint" | "solvedOptimally" | "createdAt", ExtArgs["result"]["leetcodeSolve"]>
+  export type LeetcodeSolveOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "platform" | "problemNumber" | "problemName" | "difficulty" | "durationMin" | "solvedAt" | "notes" | "solvedWithoutHint" | "solvedOptimally" | "createdAt", ExtArgs["result"]["leetcodeSolve"]>
 
   export type $LeetcodeSolvePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "LeetcodeSolve"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      platform: $Enums.SolvePlatform
       problemNumber: number
       problemName: string
       difficulty: string
@@ -6407,6 +8914,7 @@ export namespace Prisma {
    */
   interface LeetcodeSolveFieldRefs {
     readonly id: FieldRef<"LeetcodeSolve", 'Int'>
+    readonly platform: FieldRef<"LeetcodeSolve", 'SolvePlatform'>
     readonly problemNumber: FieldRef<"LeetcodeSolve", 'Int'>
     readonly problemName: FieldRef<"LeetcodeSolve", 'String'>
     readonly difficulty: FieldRef<"LeetcodeSolve", 'String'>
@@ -6859,8 +9367,45 @@ export namespace Prisma {
   export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
+  export const CodeforcesSubmissionQueueScalarFieldEnum: {
+    id: 'id',
+    platform: 'platform',
+    status: 'status',
+    username: 'username',
+    submissionId: 'submissionId',
+    contestId: 'contestId',
+    problemIndex: 'problemIndex',
+    problemName: 'problemName',
+    rating: 'rating',
+    solvedAt: 'solvedAt',
+    durationMin: 'durationMin',
+    reviewedAt: 'reviewedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type CodeforcesSubmissionQueueScalarFieldEnum = (typeof CodeforcesSubmissionQueueScalarFieldEnum)[keyof typeof CodeforcesSubmissionQueueScalarFieldEnum]
+
+
+  export const CodeforcesSolveScalarFieldEnum: {
+    id: 'id',
+    platform: 'platform',
+    username: 'username',
+    submissionId: 'submissionId',
+    contestId: 'contestId',
+    problemIndex: 'problemIndex',
+    problemName: 'problemName',
+    rating: 'rating',
+    durationMin: 'durationMin',
+    solvedAt: 'solvedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type CodeforcesSolveScalarFieldEnum = (typeof CodeforcesSolveScalarFieldEnum)[keyof typeof CodeforcesSolveScalarFieldEnum]
+
+
   export const LeetcodeSolveScalarFieldEnum: {
     id: 'id',
+    platform: 'platform',
     problemNumber: 'problemNumber',
     problemName: 'problemName',
     difficulty: 'difficulty',
@@ -6950,6 +9495,34 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'SolvePlatform'
+   */
+  export type EnumSolvePlatformFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SolvePlatform'>
+    
+
+
+  /**
+   * Reference to a field of type 'SolvePlatform[]'
+   */
+  export type ListEnumSolvePlatformFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SolvePlatform[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'SubmissionStatus'
+   */
+  export type EnumSubmissionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubmissionStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'SubmissionStatus[]'
+   */
+  export type ListEnumSubmissionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubmissionStatus[]'>
     
 
 
@@ -7260,11 +9833,191 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
   }
 
+  export type CodeforcesSubmissionQueueWhereInput = {
+    AND?: CodeforcesSubmissionQueueWhereInput | CodeforcesSubmissionQueueWhereInput[]
+    OR?: CodeforcesSubmissionQueueWhereInput[]
+    NOT?: CodeforcesSubmissionQueueWhereInput | CodeforcesSubmissionQueueWhereInput[]
+    id?: IntFilter<"CodeforcesSubmissionQueue"> | number
+    platform?: EnumSolvePlatformFilter<"CodeforcesSubmissionQueue"> | $Enums.SolvePlatform
+    status?: EnumSubmissionStatusFilter<"CodeforcesSubmissionQueue"> | $Enums.SubmissionStatus
+    username?: StringFilter<"CodeforcesSubmissionQueue"> | string
+    submissionId?: IntFilter<"CodeforcesSubmissionQueue"> | number
+    contestId?: IntFilter<"CodeforcesSubmissionQueue"> | number
+    problemIndex?: StringFilter<"CodeforcesSubmissionQueue"> | string
+    problemName?: StringFilter<"CodeforcesSubmissionQueue"> | string
+    rating?: IntNullableFilter<"CodeforcesSubmissionQueue"> | number | null
+    solvedAt?: DateTimeFilter<"CodeforcesSubmissionQueue"> | Date | string
+    durationMin?: IntNullableFilter<"CodeforcesSubmissionQueue"> | number | null
+    reviewedAt?: DateTimeNullableFilter<"CodeforcesSubmissionQueue"> | Date | string | null
+    createdAt?: DateTimeFilter<"CodeforcesSubmissionQueue"> | Date | string
+  }
+
+  export type CodeforcesSubmissionQueueOrderByWithRelationInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    status?: SortOrder
+    username?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    problemIndex?: SortOrder
+    problemName?: SortOrder
+    rating?: SortOrderInput | SortOrder
+    solvedAt?: SortOrder
+    durationMin?: SortOrderInput | SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CodeforcesSubmissionQueueWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    submissionId?: number
+    AND?: CodeforcesSubmissionQueueWhereInput | CodeforcesSubmissionQueueWhereInput[]
+    OR?: CodeforcesSubmissionQueueWhereInput[]
+    NOT?: CodeforcesSubmissionQueueWhereInput | CodeforcesSubmissionQueueWhereInput[]
+    platform?: EnumSolvePlatformFilter<"CodeforcesSubmissionQueue"> | $Enums.SolvePlatform
+    status?: EnumSubmissionStatusFilter<"CodeforcesSubmissionQueue"> | $Enums.SubmissionStatus
+    username?: StringFilter<"CodeforcesSubmissionQueue"> | string
+    contestId?: IntFilter<"CodeforcesSubmissionQueue"> | number
+    problemIndex?: StringFilter<"CodeforcesSubmissionQueue"> | string
+    problemName?: StringFilter<"CodeforcesSubmissionQueue"> | string
+    rating?: IntNullableFilter<"CodeforcesSubmissionQueue"> | number | null
+    solvedAt?: DateTimeFilter<"CodeforcesSubmissionQueue"> | Date | string
+    durationMin?: IntNullableFilter<"CodeforcesSubmissionQueue"> | number | null
+    reviewedAt?: DateTimeNullableFilter<"CodeforcesSubmissionQueue"> | Date | string | null
+    createdAt?: DateTimeFilter<"CodeforcesSubmissionQueue"> | Date | string
+  }, "id" | "submissionId">
+
+  export type CodeforcesSubmissionQueueOrderByWithAggregationInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    status?: SortOrder
+    username?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    problemIndex?: SortOrder
+    problemName?: SortOrder
+    rating?: SortOrderInput | SortOrder
+    solvedAt?: SortOrder
+    durationMin?: SortOrderInput | SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: CodeforcesSubmissionQueueCountOrderByAggregateInput
+    _avg?: CodeforcesSubmissionQueueAvgOrderByAggregateInput
+    _max?: CodeforcesSubmissionQueueMaxOrderByAggregateInput
+    _min?: CodeforcesSubmissionQueueMinOrderByAggregateInput
+    _sum?: CodeforcesSubmissionQueueSumOrderByAggregateInput
+  }
+
+  export type CodeforcesSubmissionQueueScalarWhereWithAggregatesInput = {
+    AND?: CodeforcesSubmissionQueueScalarWhereWithAggregatesInput | CodeforcesSubmissionQueueScalarWhereWithAggregatesInput[]
+    OR?: CodeforcesSubmissionQueueScalarWhereWithAggregatesInput[]
+    NOT?: CodeforcesSubmissionQueueScalarWhereWithAggregatesInput | CodeforcesSubmissionQueueScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"CodeforcesSubmissionQueue"> | number
+    platform?: EnumSolvePlatformWithAggregatesFilter<"CodeforcesSubmissionQueue"> | $Enums.SolvePlatform
+    status?: EnumSubmissionStatusWithAggregatesFilter<"CodeforcesSubmissionQueue"> | $Enums.SubmissionStatus
+    username?: StringWithAggregatesFilter<"CodeforcesSubmissionQueue"> | string
+    submissionId?: IntWithAggregatesFilter<"CodeforcesSubmissionQueue"> | number
+    contestId?: IntWithAggregatesFilter<"CodeforcesSubmissionQueue"> | number
+    problemIndex?: StringWithAggregatesFilter<"CodeforcesSubmissionQueue"> | string
+    problemName?: StringWithAggregatesFilter<"CodeforcesSubmissionQueue"> | string
+    rating?: IntNullableWithAggregatesFilter<"CodeforcesSubmissionQueue"> | number | null
+    solvedAt?: DateTimeWithAggregatesFilter<"CodeforcesSubmissionQueue"> | Date | string
+    durationMin?: IntNullableWithAggregatesFilter<"CodeforcesSubmissionQueue"> | number | null
+    reviewedAt?: DateTimeNullableWithAggregatesFilter<"CodeforcesSubmissionQueue"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CodeforcesSubmissionQueue"> | Date | string
+  }
+
+  export type CodeforcesSolveWhereInput = {
+    AND?: CodeforcesSolveWhereInput | CodeforcesSolveWhereInput[]
+    OR?: CodeforcesSolveWhereInput[]
+    NOT?: CodeforcesSolveWhereInput | CodeforcesSolveWhereInput[]
+    id?: IntFilter<"CodeforcesSolve"> | number
+    platform?: EnumSolvePlatformFilter<"CodeforcesSolve"> | $Enums.SolvePlatform
+    username?: StringFilter<"CodeforcesSolve"> | string
+    submissionId?: IntFilter<"CodeforcesSolve"> | number
+    contestId?: IntFilter<"CodeforcesSolve"> | number
+    problemIndex?: StringFilter<"CodeforcesSolve"> | string
+    problemName?: StringFilter<"CodeforcesSolve"> | string
+    rating?: IntNullableFilter<"CodeforcesSolve"> | number | null
+    durationMin?: IntFilter<"CodeforcesSolve"> | number
+    solvedAt?: DateTimeFilter<"CodeforcesSolve"> | Date | string
+    createdAt?: DateTimeFilter<"CodeforcesSolve"> | Date | string
+  }
+
+  export type CodeforcesSolveOrderByWithRelationInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    username?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    problemIndex?: SortOrder
+    problemName?: SortOrder
+    rating?: SortOrderInput | SortOrder
+    durationMin?: SortOrder
+    solvedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CodeforcesSolveWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    submissionId?: number
+    username_contestId_problemIndex?: CodeforcesSolveUsernameContestIdProblemIndexCompoundUniqueInput
+    AND?: CodeforcesSolveWhereInput | CodeforcesSolveWhereInput[]
+    OR?: CodeforcesSolveWhereInput[]
+    NOT?: CodeforcesSolveWhereInput | CodeforcesSolveWhereInput[]
+    platform?: EnumSolvePlatformFilter<"CodeforcesSolve"> | $Enums.SolvePlatform
+    username?: StringFilter<"CodeforcesSolve"> | string
+    contestId?: IntFilter<"CodeforcesSolve"> | number
+    problemIndex?: StringFilter<"CodeforcesSolve"> | string
+    problemName?: StringFilter<"CodeforcesSolve"> | string
+    rating?: IntNullableFilter<"CodeforcesSolve"> | number | null
+    durationMin?: IntFilter<"CodeforcesSolve"> | number
+    solvedAt?: DateTimeFilter<"CodeforcesSolve"> | Date | string
+    createdAt?: DateTimeFilter<"CodeforcesSolve"> | Date | string
+  }, "id" | "username_contestId_problemIndex" | "submissionId">
+
+  export type CodeforcesSolveOrderByWithAggregationInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    username?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    problemIndex?: SortOrder
+    problemName?: SortOrder
+    rating?: SortOrderInput | SortOrder
+    durationMin?: SortOrder
+    solvedAt?: SortOrder
+    createdAt?: SortOrder
+    _count?: CodeforcesSolveCountOrderByAggregateInput
+    _avg?: CodeforcesSolveAvgOrderByAggregateInput
+    _max?: CodeforcesSolveMaxOrderByAggregateInput
+    _min?: CodeforcesSolveMinOrderByAggregateInput
+    _sum?: CodeforcesSolveSumOrderByAggregateInput
+  }
+
+  export type CodeforcesSolveScalarWhereWithAggregatesInput = {
+    AND?: CodeforcesSolveScalarWhereWithAggregatesInput | CodeforcesSolveScalarWhereWithAggregatesInput[]
+    OR?: CodeforcesSolveScalarWhereWithAggregatesInput[]
+    NOT?: CodeforcesSolveScalarWhereWithAggregatesInput | CodeforcesSolveScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"CodeforcesSolve"> | number
+    platform?: EnumSolvePlatformWithAggregatesFilter<"CodeforcesSolve"> | $Enums.SolvePlatform
+    username?: StringWithAggregatesFilter<"CodeforcesSolve"> | string
+    submissionId?: IntWithAggregatesFilter<"CodeforcesSolve"> | number
+    contestId?: IntWithAggregatesFilter<"CodeforcesSolve"> | number
+    problemIndex?: StringWithAggregatesFilter<"CodeforcesSolve"> | string
+    problemName?: StringWithAggregatesFilter<"CodeforcesSolve"> | string
+    rating?: IntNullableWithAggregatesFilter<"CodeforcesSolve"> | number | null
+    durationMin?: IntWithAggregatesFilter<"CodeforcesSolve"> | number
+    solvedAt?: DateTimeWithAggregatesFilter<"CodeforcesSolve"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"CodeforcesSolve"> | Date | string
+  }
+
   export type LeetcodeSolveWhereInput = {
     AND?: LeetcodeSolveWhereInput | LeetcodeSolveWhereInput[]
     OR?: LeetcodeSolveWhereInput[]
     NOT?: LeetcodeSolveWhereInput | LeetcodeSolveWhereInput[]
     id?: IntFilter<"LeetcodeSolve"> | number
+    platform?: EnumSolvePlatformFilter<"LeetcodeSolve"> | $Enums.SolvePlatform
     problemNumber?: IntFilter<"LeetcodeSolve"> | number
     problemName?: StringFilter<"LeetcodeSolve"> | string
     difficulty?: StringFilter<"LeetcodeSolve"> | string
@@ -7278,6 +10031,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveOrderByWithRelationInput = {
     id?: SortOrder
+    platform?: SortOrder
     problemNumber?: SortOrder
     problemName?: SortOrder
     difficulty?: SortOrder
@@ -7294,6 +10048,7 @@ export namespace Prisma {
     AND?: LeetcodeSolveWhereInput | LeetcodeSolveWhereInput[]
     OR?: LeetcodeSolveWhereInput[]
     NOT?: LeetcodeSolveWhereInput | LeetcodeSolveWhereInput[]
+    platform?: EnumSolvePlatformFilter<"LeetcodeSolve"> | $Enums.SolvePlatform
     problemNumber?: IntFilter<"LeetcodeSolve"> | number
     problemName?: StringFilter<"LeetcodeSolve"> | string
     difficulty?: StringFilter<"LeetcodeSolve"> | string
@@ -7307,6 +10062,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveOrderByWithAggregationInput = {
     id?: SortOrder
+    platform?: SortOrder
     problemNumber?: SortOrder
     problemName?: SortOrder
     difficulty?: SortOrder
@@ -7328,6 +10084,7 @@ export namespace Prisma {
     OR?: LeetcodeSolveScalarWhereWithAggregatesInput[]
     NOT?: LeetcodeSolveScalarWhereWithAggregatesInput | LeetcodeSolveScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"LeetcodeSolve"> | number
+    platform?: EnumSolvePlatformWithAggregatesFilter<"LeetcodeSolve"> | $Enums.SolvePlatform
     problemNumber?: IntWithAggregatesFilter<"LeetcodeSolve"> | number
     problemName?: StringWithAggregatesFilter<"LeetcodeSolve"> | string
     difficulty?: StringWithAggregatesFilter<"LeetcodeSolve"> | string
@@ -7667,7 +10424,212 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CodeforcesSubmissionQueueCreateInput = {
+    platform?: $Enums.SolvePlatform
+    status?: $Enums.SubmissionStatus
+    username: string
+    submissionId: number
+    contestId: number
+    problemIndex: string
+    problemName: string
+    rating?: number | null
+    solvedAt: Date | string
+    durationMin?: number | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type CodeforcesSubmissionQueueUncheckedCreateInput = {
+    id?: number
+    platform?: $Enums.SolvePlatform
+    status?: $Enums.SubmissionStatus
+    username: string
+    submissionId: number
+    contestId: number
+    problemIndex: string
+    problemName: string
+    rating?: number | null
+    solvedAt: Date | string
+    durationMin?: number | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type CodeforcesSubmissionQueueUpdateInput = {
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    username?: StringFieldUpdateOperationsInput | string
+    submissionId?: IntFieldUpdateOperationsInput | number
+    contestId?: IntFieldUpdateOperationsInput | number
+    problemIndex?: StringFieldUpdateOperationsInput | string
+    problemName?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CodeforcesSubmissionQueueUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    username?: StringFieldUpdateOperationsInput | string
+    submissionId?: IntFieldUpdateOperationsInput | number
+    contestId?: IntFieldUpdateOperationsInput | number
+    problemIndex?: StringFieldUpdateOperationsInput | string
+    problemName?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CodeforcesSubmissionQueueCreateManyInput = {
+    id?: number
+    platform?: $Enums.SolvePlatform
+    status?: $Enums.SubmissionStatus
+    username: string
+    submissionId: number
+    contestId: number
+    problemIndex: string
+    problemName: string
+    rating?: number | null
+    solvedAt: Date | string
+    durationMin?: number | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type CodeforcesSubmissionQueueUpdateManyMutationInput = {
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    username?: StringFieldUpdateOperationsInput | string
+    submissionId?: IntFieldUpdateOperationsInput | number
+    contestId?: IntFieldUpdateOperationsInput | number
+    problemIndex?: StringFieldUpdateOperationsInput | string
+    problemName?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CodeforcesSubmissionQueueUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    username?: StringFieldUpdateOperationsInput | string
+    submissionId?: IntFieldUpdateOperationsInput | number
+    contestId?: IntFieldUpdateOperationsInput | number
+    problemIndex?: StringFieldUpdateOperationsInput | string
+    problemName?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CodeforcesSolveCreateInput = {
+    platform?: $Enums.SolvePlatform
+    username: string
+    submissionId: number
+    contestId: number
+    problemIndex: string
+    problemName: string
+    rating?: number | null
+    durationMin: number
+    solvedAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type CodeforcesSolveUncheckedCreateInput = {
+    id?: number
+    platform?: $Enums.SolvePlatform
+    username: string
+    submissionId: number
+    contestId: number
+    problemIndex: string
+    problemName: string
+    rating?: number | null
+    durationMin: number
+    solvedAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type CodeforcesSolveUpdateInput = {
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
+    username?: StringFieldUpdateOperationsInput | string
+    submissionId?: IntFieldUpdateOperationsInput | number
+    contestId?: IntFieldUpdateOperationsInput | number
+    problemIndex?: StringFieldUpdateOperationsInput | string
+    problemName?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    durationMin?: IntFieldUpdateOperationsInput | number
+    solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CodeforcesSolveUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
+    username?: StringFieldUpdateOperationsInput | string
+    submissionId?: IntFieldUpdateOperationsInput | number
+    contestId?: IntFieldUpdateOperationsInput | number
+    problemIndex?: StringFieldUpdateOperationsInput | string
+    problemName?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    durationMin?: IntFieldUpdateOperationsInput | number
+    solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CodeforcesSolveCreateManyInput = {
+    id?: number
+    platform?: $Enums.SolvePlatform
+    username: string
+    submissionId: number
+    contestId: number
+    problemIndex: string
+    problemName: string
+    rating?: number | null
+    durationMin: number
+    solvedAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type CodeforcesSolveUpdateManyMutationInput = {
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
+    username?: StringFieldUpdateOperationsInput | string
+    submissionId?: IntFieldUpdateOperationsInput | number
+    contestId?: IntFieldUpdateOperationsInput | number
+    problemIndex?: StringFieldUpdateOperationsInput | string
+    problemName?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    durationMin?: IntFieldUpdateOperationsInput | number
+    solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CodeforcesSolveUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
+    username?: StringFieldUpdateOperationsInput | string
+    submissionId?: IntFieldUpdateOperationsInput | number
+    contestId?: IntFieldUpdateOperationsInput | number
+    problemIndex?: StringFieldUpdateOperationsInput | string
+    problemName?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    durationMin?: IntFieldUpdateOperationsInput | number
+    solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LeetcodeSolveCreateInput = {
+    platform?: $Enums.SolvePlatform
     problemNumber: number
     problemName: string
     difficulty: string
@@ -7681,6 +10643,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveUncheckedCreateInput = {
     id?: number
+    platform?: $Enums.SolvePlatform
     problemNumber: number
     problemName: string
     difficulty: string
@@ -7693,6 +10656,7 @@ export namespace Prisma {
   }
 
   export type LeetcodeSolveUpdateInput = {
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
     problemNumber?: IntFieldUpdateOperationsInput | number
     problemName?: StringFieldUpdateOperationsInput | string
     difficulty?: StringFieldUpdateOperationsInput | string
@@ -7706,6 +10670,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
     problemNumber?: IntFieldUpdateOperationsInput | number
     problemName?: StringFieldUpdateOperationsInput | string
     difficulty?: StringFieldUpdateOperationsInput | string
@@ -7719,6 +10684,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveCreateManyInput = {
     id?: number
+    platform?: $Enums.SolvePlatform
     problemNumber: number
     problemName: string
     difficulty: string
@@ -7731,6 +10697,7 @@ export namespace Prisma {
   }
 
   export type LeetcodeSolveUpdateManyMutationInput = {
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
     problemNumber?: IntFieldUpdateOperationsInput | number
     problemName?: StringFieldUpdateOperationsInput | string
     difficulty?: StringFieldUpdateOperationsInput | string
@@ -7744,6 +10711,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    platform?: EnumSolvePlatformFieldUpdateOperationsInput | $Enums.SolvePlatform
     problemNumber?: IntFieldUpdateOperationsInput | number
     problemName?: StringFieldUpdateOperationsInput | string
     difficulty?: StringFieldUpdateOperationsInput | string
@@ -8063,6 +11031,211 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type EnumSolvePlatformFilter<$PrismaModel = never> = {
+    equals?: $Enums.SolvePlatform | EnumSolvePlatformFieldRefInput<$PrismaModel>
+    in?: $Enums.SolvePlatform[] | ListEnumSolvePlatformFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SolvePlatform[] | ListEnumSolvePlatformFieldRefInput<$PrismaModel>
+    not?: NestedEnumSolvePlatformFilter<$PrismaModel> | $Enums.SolvePlatform
+  }
+
+  export type EnumSubmissionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubmissionStatus | EnumSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubmissionStatusFilter<$PrismaModel> | $Enums.SubmissionStatus
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type CodeforcesSubmissionQueueCountOrderByAggregateInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    status?: SortOrder
+    username?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    problemIndex?: SortOrder
+    problemName?: SortOrder
+    rating?: SortOrder
+    solvedAt?: SortOrder
+    durationMin?: SortOrder
+    reviewedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CodeforcesSubmissionQueueAvgOrderByAggregateInput = {
+    id?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    rating?: SortOrder
+    durationMin?: SortOrder
+  }
+
+  export type CodeforcesSubmissionQueueMaxOrderByAggregateInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    status?: SortOrder
+    username?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    problemIndex?: SortOrder
+    problemName?: SortOrder
+    rating?: SortOrder
+    solvedAt?: SortOrder
+    durationMin?: SortOrder
+    reviewedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CodeforcesSubmissionQueueMinOrderByAggregateInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    status?: SortOrder
+    username?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    problemIndex?: SortOrder
+    problemName?: SortOrder
+    rating?: SortOrder
+    solvedAt?: SortOrder
+    durationMin?: SortOrder
+    reviewedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CodeforcesSubmissionQueueSumOrderByAggregateInput = {
+    id?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    rating?: SortOrder
+    durationMin?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumSolvePlatformWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SolvePlatform | EnumSolvePlatformFieldRefInput<$PrismaModel>
+    in?: $Enums.SolvePlatform[] | ListEnumSolvePlatformFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SolvePlatform[] | ListEnumSolvePlatformFieldRefInput<$PrismaModel>
+    not?: NestedEnumSolvePlatformWithAggregatesFilter<$PrismaModel> | $Enums.SolvePlatform
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSolvePlatformFilter<$PrismaModel>
+    _max?: NestedEnumSolvePlatformFilter<$PrismaModel>
+  }
+
+  export type EnumSubmissionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubmissionStatus | EnumSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubmissionStatusWithAggregatesFilter<$PrismaModel> | $Enums.SubmissionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSubmissionStatusFilter<$PrismaModel>
+    _max?: NestedEnumSubmissionStatusFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type CodeforcesSolveUsernameContestIdProblemIndexCompoundUniqueInput = {
+    username: string
+    contestId: number
+    problemIndex: string
+  }
+
+  export type CodeforcesSolveCountOrderByAggregateInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    username?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    problemIndex?: SortOrder
+    problemName?: SortOrder
+    rating?: SortOrder
+    durationMin?: SortOrder
+    solvedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CodeforcesSolveAvgOrderByAggregateInput = {
+    id?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    rating?: SortOrder
+    durationMin?: SortOrder
+  }
+
+  export type CodeforcesSolveMaxOrderByAggregateInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    username?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    problemIndex?: SortOrder
+    problemName?: SortOrder
+    rating?: SortOrder
+    durationMin?: SortOrder
+    solvedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CodeforcesSolveMinOrderByAggregateInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    username?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    problemIndex?: SortOrder
+    problemName?: SortOrder
+    rating?: SortOrder
+    durationMin?: SortOrder
+    solvedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CodeforcesSolveSumOrderByAggregateInput = {
+    id?: SortOrder
+    submissionId?: SortOrder
+    contestId?: SortOrder
+    rating?: SortOrder
+    durationMin?: SortOrder
+  }
+
   export type BoolNullableFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
@@ -8070,6 +11243,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveCountOrderByAggregateInput = {
     id?: SortOrder
+    platform?: SortOrder
     problemNumber?: SortOrder
     problemName?: SortOrder
     difficulty?: SortOrder
@@ -8089,6 +11263,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveMaxOrderByAggregateInput = {
     id?: SortOrder
+    platform?: SortOrder
     problemNumber?: SortOrder
     problemName?: SortOrder
     difficulty?: SortOrder
@@ -8102,6 +11277,7 @@ export namespace Prisma {
 
   export type LeetcodeSolveMinOrderByAggregateInput = {
     id?: SortOrder
+    platform?: SortOrder
     problemNumber?: SortOrder
     problemName?: SortOrder
     difficulty?: SortOrder
@@ -8117,22 +11293,6 @@ export namespace Prisma {
     id?: SortOrder
     problemNumber?: SortOrder
     durationMin?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8275,8 +11435,24 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
   }
 
+  export type EnumSolvePlatformFieldUpdateOperationsInput = {
+    set?: $Enums.SolvePlatform
+  }
+
+  export type EnumSubmissionStatusFieldUpdateOperationsInput = {
+    set?: $Enums.SubmissionStatus
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
@@ -8434,9 +11610,18 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  export type NestedEnumSolvePlatformFilter<$PrismaModel = never> = {
+    equals?: $Enums.SolvePlatform | EnumSolvePlatformFieldRefInput<$PrismaModel>
+    in?: $Enums.SolvePlatform[] | ListEnumSolvePlatformFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SolvePlatform[] | ListEnumSolvePlatformFieldRefInput<$PrismaModel>
+    not?: NestedEnumSolvePlatformFilter<$PrismaModel> | $Enums.SolvePlatform
+  }
+
+  export type NestedEnumSubmissionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubmissionStatus | EnumSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubmissionStatusFilter<$PrismaModel> | $Enums.SubmissionStatus
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -8464,6 +11649,58 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumSolvePlatformWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SolvePlatform | EnumSolvePlatformFieldRefInput<$PrismaModel>
+    in?: $Enums.SolvePlatform[] | ListEnumSolvePlatformFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SolvePlatform[] | ListEnumSolvePlatformFieldRefInput<$PrismaModel>
+    not?: NestedEnumSolvePlatformWithAggregatesFilter<$PrismaModel> | $Enums.SolvePlatform
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSolvePlatformFilter<$PrismaModel>
+    _max?: NestedEnumSolvePlatformFilter<$PrismaModel>
+  }
+
+  export type NestedEnumSubmissionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubmissionStatus | EnumSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubmissionStatusWithAggregatesFilter<$PrismaModel> | $Enums.SubmissionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSubmissionStatusFilter<$PrismaModel>
+    _max?: NestedEnumSubmissionStatusFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
   export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {

@@ -60,9 +60,14 @@ export function SiteHeader() {
         </ActionIcon>
 
         {isPending ? null : session ? (
-          <Button variant="subtle" color="gray" onClick={handleSignOut}>
-            sign out
-          </Button>
+          <Group gap="xs">
+            <Anchor href="/admin" underline="never" c="dimmed" fw={500}>
+              admin
+            </Anchor>
+            <Button variant="subtle" color="gray" onClick={handleSignOut}>
+              sign out
+            </Button>
+          </Group>
         ) : (
           <Button variant="subtle" color="gray" onClick={handleGithubSignIn}>
             admin sign-in

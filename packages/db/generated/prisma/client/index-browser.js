@@ -166,8 +166,39 @@ exports.Prisma.VerificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CodeforcesSubmissionQueueScalarFieldEnum = {
+  id: 'id',
+  platform: 'platform',
+  status: 'status',
+  username: 'username',
+  submissionId: 'submissionId',
+  contestId: 'contestId',
+  problemIndex: 'problemIndex',
+  problemName: 'problemName',
+  rating: 'rating',
+  solvedAt: 'solvedAt',
+  durationMin: 'durationMin',
+  reviewedAt: 'reviewedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.CodeforcesSolveScalarFieldEnum = {
+  id: 'id',
+  platform: 'platform',
+  username: 'username',
+  submissionId: 'submissionId',
+  contestId: 'contestId',
+  problemIndex: 'problemIndex',
+  problemName: 'problemName',
+  rating: 'rating',
+  durationMin: 'durationMin',
+  solvedAt: 'solvedAt',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.LeetcodeSolveScalarFieldEnum = {
   id: 'id',
+  platform: 'platform',
   problemNumber: 'problemNumber',
   problemName: 'problemName',
   difficulty: 'difficulty',
@@ -193,13 +224,25 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.SolvePlatform = exports.$Enums.SolvePlatform = {
+  LEETCODE: 'LEETCODE',
+  CODEFORCES: 'CODEFORCES',
+  HACKERRANK: 'HACKERRANK'
+};
 
+exports.SubmissionStatus = exports.$Enums.SubmissionStatus = {
+  PENDING_TIME: 'PENDING_TIME',
+  TIMED: 'TIMED',
+  SKIPPED: 'SKIPPED'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
+  CodeforcesSubmissionQueue: 'CodeforcesSubmissionQueue',
+  CodeforcesSolve: 'CodeforcesSolve',
   LeetcodeSolve: 'LeetcodeSolve'
 };
 

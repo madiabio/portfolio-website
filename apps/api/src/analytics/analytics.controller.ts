@@ -1,7 +1,11 @@
 import { Controller, Get, Req } from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
 import { AnalyticsService } from './analytics.service';
 import { LeetcodeSummaryDto } from './dto/leetcode-summary.dto';
-import { LeetcodeTimeByDifficultyResponseDto } from './dto/leetcode-time-point.dto';
+import {
+  CodeforcesTimeByRatingResponseDto,
+  LeetcodeTimeByDifficultyResponseDto,
+} from './dto/leetcode-time-point.dto';
 import { Public } from '../auth/public.decorator';
 import type { Request } from 'express';
 
@@ -16,6 +20,7 @@ export class AnalyticsController {
 
   @Public()
   @Get('summary')
+  @ApiOkResponse({ type: LeetcodeSummaryDto })
   async getLeetcodeSummary(): Promise<LeetcodeSummaryDto> {
     return this.analyticsService.leetcodeSummary();
   }
@@ -24,7 +29,17 @@ export class AnalyticsController {
   @Get('scatter')
   async getLeetcodeScatterpoints(
     @Req() req: RequestWithAuth,
-  ): Promise<LeetcodeTimeByDifficultyResponseDto> {
+  ): Promise<
+    | LeetcodeTimeByDifficultyResponseDto
+    | CodeforcesTimeByRatingResponseDto
+  > {
+    const platform =
+      typeof req.query.platform === 'string' ? req.query.platform : 'leetcode';
+
+    if (platform === 'codeforces') {
+      return this.analyticsService.codeforcesTimeByRating();
+    }
+
     return this.analyticsService.leetcodeTimeByDifficulty();
   }
 }

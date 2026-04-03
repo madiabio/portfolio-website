@@ -15,7 +15,10 @@ export function ApiState<T>({
 }: ApiStateProps<T>) {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Something went wrong.</div>;
-  if (!data || (isEmpty && isEmpty(data))) {
+  if (data === null || data === undefined) {
+    return <div>No data available.</div>;
+  }
+  if (isEmpty && isEmpty(data)) {
     return <div>No data available.</div>;
   }
 

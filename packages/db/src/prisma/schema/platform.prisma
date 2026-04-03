@@ -1,0 +1,11 @@
+enum SolvePlatform {
+  LEETCODE
+  CODEFORCES
+  HACKERRANK
+}
+
+enum SubmissionStatus {
+  PENDING_TIME
+  TIMED
+  SKIPPED
+}

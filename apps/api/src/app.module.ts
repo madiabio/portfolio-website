@@ -7,9 +7,10 @@ import { AnalyticsModule } from './analytics/analytics.module';
 import { AdminGuard } from './auth/admin.guard';
 import { AuthController } from './auth/auth.controller';
 import { AdminAuthService } from './auth/admin-auth.service';
+import { CodeforcesModule } from './codeforces/codeforces.module';
 
 @Module({
-  imports: [LeetcodeSolveModule, AnalyticsModule],
+  imports: [LeetcodeSolveModule, AnalyticsModule, CodeforcesModule],
   controllers: [AppController, AuthController],
   providers: [
     AppService,

@@ -1,0 +1,18 @@
+model CodeforcesSolve {
+  id            Int            @id @default(autoincrement())
+  platform      SolvePlatform   @default(CODEFORCES)
+  username      String
+  submissionId  Int
+  contestId     Int
+  problemIndex  String
+  problemName   String
+  rating        Int?
+  durationMin   Int
+  solvedAt      DateTime
+  createdAt     DateTime       @default(now())
+
+  @@unique([username, contestId, problemIndex])
+  @@unique([submissionId])
+  @@index([username])
+  @@index([solvedAt])
+}

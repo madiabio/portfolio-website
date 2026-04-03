@@ -1,5 +1,6 @@
 model LeetcodeSolve {
   id                 Int       @id @default(autoincrement())
+  platform           SolvePlatform @default(LEETCODE)
   problemNumber      Int
   problemName        String
   difficulty         String

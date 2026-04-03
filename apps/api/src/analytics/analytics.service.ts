@@ -5,6 +5,8 @@ import {
 } from './dto/leetcode-summary.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import {
+  CodeforcesTimeByRatingResponseDto,
+  CodeforcesScatterPointDto,
   LeetcodeTimeByDifficultyResponseDto,
   LeetcodeScatterPointDto,
 } from './dto/leetcode-time-point.dto';
@@ -83,5 +85,50 @@ export class AnalyticsService {
         hard: 60,
       },
     };
+  }
+
+  async codeforcesTimeByRating(): Promise<CodeforcesTimeByRatingResponseDto> {
+    const solves = await this.prisma.client.codeforcesSolve.findMany({
+      select: {
+        contestId: true,
+        problemIndex: true,
+        problemName: true,
+        rating: true,
+        durationMin: true,
+        solvedAt: true,
+      },
+      orderBy: {
+        solvedAt: 'asc',
+      },
+    });
+
+    const points: CodeforcesScatterPointDto[] = solves.map((solve) => ({
+      x: solve.solvedAt,
+      y: solve.durationMin,
+      ratingTier: this.getCodeforcesRatingTier(solve.rating),
+      rating: solve.rating,
+      contestId: solve.contestId,
+      problemIndex: solve.problemIndex,
+      problemName: solve.problemName,
+    }));
+
+    return {
+      points,
+      goals: {
+        '0-1200': 20,
+        '1200-1600': 35,
+        '1600-2000': 50,
+        '2000+': 70,
+      },
+    };
+  }
+
+  private getCodeforcesRatingTier(
+    rating: number | null,
+  ): '0-1200' | '1200-1600' | '1600-2000' | '2000+' {
+    if (!rating || rating <= 1200) return '0-1200';
+    if (rating <= 1600) return '1200-1600';
+    if (rating <= 2000) return '1600-2000';
+    return '2000+';
   }
 }

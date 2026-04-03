@@ -1,4 +1,4 @@
-import { Paper, Stack, Text, Title } from "@mantine/core";
+import { Stack } from "@mantine/core";
 import { LeetcodeScatterChart } from "@/features/analytics/components/leetcode-scatter-chart";
 import { AddSolveButton } from "@/features/solves/components/AddSolveButton";
 

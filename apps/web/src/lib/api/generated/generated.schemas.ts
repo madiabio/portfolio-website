@@ -11,3 +11,110 @@ export interface IsAdminResponseDto {
 
 export interface CreateLeetcodeSolveDto { [key: string]: unknown }
 
+export type CodeforcesScatterPointDtoRatingTier = typeof CodeforcesScatterPointDtoRatingTier[keyof typeof CodeforcesScatterPointDtoRatingTier];
+
+
+export const CodeforcesScatterPointDtoRatingTier = {
+  '0-1200': '0-1200',
+  '1200-1600': '1200-1600',
+  '1600-2000': '1600-2000',
+  '2000+': '2000+',
+} as const;
+
+export interface CodeforcesScatterPointDto {
+  x: string;
+  y: number;
+  ratingTier: CodeforcesScatterPointDtoRatingTier;
+  /** @nullable */
+  rating?: number | null;
+  contestId: number;
+  problemIndex: string;
+  problemName: string;
+}
+
+export type CodeforcesTimeByRatingResponseDtoGoals = {
+  '0-1200'?: number;
+  '1200-1600'?: number;
+  '1600-2000'?: number;
+  '2000+'?: number;
+};
+
+export interface CodeforcesTimeByRatingResponseDto {
+  points: CodeforcesScatterPointDto[];
+  goals: CodeforcesTimeByRatingResponseDtoGoals;
+}
+
+export interface CodeforcesSyncResponseDto {
+  created: number;
+}
+
+export interface CodeforcesProblemDto {
+  contestId?: number;
+  index: string;
+  name: string;
+  rating?: number;
+}
+
+export interface CodeforcesSubmissionDto {
+  id: number;
+  creationTimeSeconds: number;
+  relativeTimeSeconds: number;
+  problem: CodeforcesProblemDto;
+  verdict?: string;
+}
+
+export type CodeforcesQueueItemDtoPlatform = typeof CodeforcesQueueItemDtoPlatform[keyof typeof CodeforcesQueueItemDtoPlatform];
+
+
+export const CodeforcesQueueItemDtoPlatform = {
+  CODEFORCES: 'CODEFORCES',
+} as const;
+
+export type CodeforcesQueueItemDtoStatus = typeof CodeforcesQueueItemDtoStatus[keyof typeof CodeforcesQueueItemDtoStatus];
+
+
+export const CodeforcesQueueItemDtoStatus = {
+  PENDING_TIME: 'PENDING_TIME',
+  TIMED: 'TIMED',
+  SKIPPED: 'SKIPPED',
+} as const;
+
+export interface CodeforcesQueueItemDto {
+  id: number;
+  platform: CodeforcesQueueItemDtoPlatform;
+  status: CodeforcesQueueItemDtoStatus;
+  username: string;
+  submissionId: number;
+  contestId: number;
+  problemIndex: string;
+  problemName: string;
+  /** @nullable */
+  rating?: number | null;
+  solvedAt: string;
+  /** @nullable */
+  durationMin?: number | null;
+  /** @nullable */
+  reviewedAt?: string | null;
+  createdAt: string;
+}
+
+export interface ReviewCodeforcesQueueDto {
+  durationMin: number;
+}
+
+export type SyncParams = {
+handle: string;
+};
+
+export type SubmissionsParams = {
+handle: string;
+};
+
+export type AllSubmissionsParams = {
+handle: string;
+};
+
+export type QueueParams = {
+handle: string;
+};
+

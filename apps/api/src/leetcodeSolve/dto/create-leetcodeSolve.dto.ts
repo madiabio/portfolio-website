@@ -1,5 +1,4 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { PartialType } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, PartialType } from "@nestjs/swagger";
 
 export class CreateLeetcodeSolveDto {
   @ApiProperty()
@@ -8,26 +7,28 @@ export class CreateLeetcodeSolveDto {
   @ApiProperty()
   problemName: string;
 
-  @ApiProperty({ type: String, format: 'date-time' })
+  @ApiProperty({ type: String, format: "date-time" })
   solvedAt: Date;
 
-  @ApiProperty({ enum: ['easy', 'medium', 'hard'] })
-  difficulty: 'easy' | 'medium' | 'hard';
+  @ApiProperty({ enum: ["easy", "medium", "hard"] })
+  difficulty: "easy" | "medium" | "hard";
 
-  @ApiPropertyOptional({ nullable: true })
+  @ApiPropertyOptional({ nullable: true, type: String })
   language?: string | null;
 
   @ApiProperty()
   durationMin: number;
 
-  @ApiPropertyOptional({ nullable: true })
+  @ApiPropertyOptional({ nullable: true, type: String })
   notes?: string | null;
 
-  @ApiPropertyOptional({ nullable: true })
+  @ApiPropertyOptional({ nullable: true, type: Boolean })
   solvedWithoutHint?: boolean | null;
 
-  @ApiPropertyOptional({ nullable: true })
+  @ApiPropertyOptional({ nullable: true, type: Boolean })
   solvedOptimally?: boolean | null;
 }
 
-export class UpdateLeetcodeSolveDto extends PartialType(CreateLeetcodeSolveDto) {}
+export class UpdateLeetcodeSolveDto extends PartialType(
+  CreateLeetcodeSolveDto,
+) {}

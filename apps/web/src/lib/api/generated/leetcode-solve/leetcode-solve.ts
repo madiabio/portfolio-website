@@ -25,7 +25,8 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  CreateLeetcodeSolveDto
+  CreateLeetcodeSolveDto,
+  UpdateLeetcodeSolveDto
 } from '../generated.schemas';
 
 import { customFetch } from '../../custom-fetch';
@@ -139,7 +140,159 @@ export function useGetLeetcodeSolveById<TData = Awaited<ReturnType<typeof getLee
 
 
 
-export type createResponse201 = {
+export type updateResponse200 = {
+  data: void
+  status: 200
+}
+
+export type updateResponseSuccess = (updateResponse200) & {
+  headers: Headers;
+};
+;
+
+export type updateResponse = (updateResponseSuccess)
+
+export const getUpdateUrl = (id: number,) => {
+
+
+
+
+  return `/leetcode-solves/${id}`
+}
+
+export const update = async (id: number,
+    updateLeetcodeSolveDto: UpdateLeetcodeSolveDto, options?: RequestInit): Promise<updateResponse> => {
+
+  return customFetch<updateResponse>(getUpdateUrl(id),
+  {
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      updateLeetcodeSolveDto,)
+  }
+);}
+
+
+
+
+export const getUpdateMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof update>>, TError,{id: number;data: UpdateLeetcodeSolveDto}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof update>>, TError,{id: number;data: UpdateLeetcodeSolveDto}, TContext> => {
+
+const mutationKey = ['update'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof update>>, {id: number;data: UpdateLeetcodeSolveDto}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  update(id,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UpdateMutationResult = NonNullable<Awaited<ReturnType<typeof update>>>
+    export type UpdateMutationBody = UpdateLeetcodeSolveDto
+    export type UpdateMutationError = unknown
+
+    export const useUpdate = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof update>>, TError,{id: number;data: UpdateLeetcodeSolveDto}, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof update>>,
+        TError,
+        {id: number;data: UpdateLeetcodeSolveDto},
+        TContext
+      > => {
+      return useMutation(getUpdateMutationOptions(options), queryClient);
+    }
+    export type removeResponse200 = {
+  data: void
+  status: 200
+}
+
+export type removeResponseSuccess = (removeResponse200) & {
+  headers: Headers;
+};
+;
+
+export type removeResponse = (removeResponseSuccess)
+
+export const getRemoveUrl = (id: number,) => {
+
+
+
+
+  return `/leetcode-solves/${id}`
+}
+
+export const remove = async (id: number, options?: RequestInit): Promise<removeResponse> => {
+
+  return customFetch<removeResponse>(getRemoveUrl(id),
+  {
+    ...options,
+    method: 'DELETE'
+
+
+  }
+);}
+
+
+
+
+export const getRemoveMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof remove>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof remove>>, TError,{id: number}, TContext> => {
+
+const mutationKey = ['remove'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof remove>>, {id: number}> = (props) => {
+          const {id} = props ?? {};
+
+          return  remove(id,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type RemoveMutationResult = NonNullable<Awaited<ReturnType<typeof remove>>>
+
+    export type RemoveMutationError = unknown
+
+    export const useRemove = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof remove>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof remove>>,
+        TError,
+        {id: number},
+        TContext
+      > => {
+      return useMutation(getRemoveMutationOptions(options), queryClient);
+    }
+    export type createResponse201 = {
   data: void
   status: 201
 }

@@ -9,7 +9,55 @@ export interface IsAdminResponseDto {
   isAdmin: boolean;
 }
 
-export interface CreateLeetcodeSolveDto { [key: string]: unknown }
+export type CreateLeetcodeSolveDtoDifficulty = typeof CreateLeetcodeSolveDtoDifficulty[keyof typeof CreateLeetcodeSolveDtoDifficulty];
+
+
+export const CreateLeetcodeSolveDtoDifficulty = {
+  easy: 'easy',
+  medium: 'medium',
+  hard: 'hard',
+} as const;
+
+export interface CreateLeetcodeSolveDto {
+  problemNumber: number;
+  problemName: string;
+  solvedAt: string;
+  difficulty: CreateLeetcodeSolveDtoDifficulty;
+  /** @nullable */
+  language?: string | null;
+  durationMin: number;
+  /** @nullable */
+  notes?: string | null;
+  /** @nullable */
+  solvedWithoutHint?: boolean | null;
+  /** @nullable */
+  solvedOptimally?: boolean | null;
+}
+
+export type UpdateLeetcodeSolveDtoDifficulty = typeof UpdateLeetcodeSolveDtoDifficulty[keyof typeof UpdateLeetcodeSolveDtoDifficulty];
+
+
+export const UpdateLeetcodeSolveDtoDifficulty = {
+  easy: 'easy',
+  medium: 'medium',
+  hard: 'hard',
+} as const;
+
+export interface UpdateLeetcodeSolveDto {
+  problemNumber?: number;
+  problemName?: string;
+  solvedAt?: string;
+  difficulty?: UpdateLeetcodeSolveDtoDifficulty;
+  /** @nullable */
+  language?: string | null;
+  durationMin?: number;
+  /** @nullable */
+  notes?: string | null;
+  /** @nullable */
+  solvedWithoutHint?: boolean | null;
+  /** @nullable */
+  solvedOptimally?: boolean | null;
+}
 
 export type CodeforcesScatterPointDtoRatingTier = typeof CodeforcesScatterPointDtoRatingTier[keyof typeof CodeforcesScatterPointDtoRatingTier];
 

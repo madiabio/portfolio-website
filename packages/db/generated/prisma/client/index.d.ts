@@ -8205,6 +8205,7 @@ export namespace Prisma {
     problemNumber: number | null
     problemName: string | null
     difficulty: string | null
+    language: string | null
     durationMin: number | null
     solvedAt: Date | null
     notes: string | null
@@ -8219,6 +8220,7 @@ export namespace Prisma {
     problemNumber: number | null
     problemName: string | null
     difficulty: string | null
+    language: string | null
     durationMin: number | null
     solvedAt: Date | null
     notes: string | null
@@ -8233,6 +8235,7 @@ export namespace Prisma {
     problemNumber: number
     problemName: number
     difficulty: number
+    language: number
     durationMin: number
     solvedAt: number
     notes: number
@@ -8261,6 +8264,7 @@ export namespace Prisma {
     problemNumber?: true
     problemName?: true
     difficulty?: true
+    language?: true
     durationMin?: true
     solvedAt?: true
     notes?: true
@@ -8275,6 +8279,7 @@ export namespace Prisma {
     problemNumber?: true
     problemName?: true
     difficulty?: true
+    language?: true
     durationMin?: true
     solvedAt?: true
     notes?: true
@@ -8289,6 +8294,7 @@ export namespace Prisma {
     problemNumber?: true
     problemName?: true
     difficulty?: true
+    language?: true
     durationMin?: true
     solvedAt?: true
     notes?: true
@@ -8390,6 +8396,7 @@ export namespace Prisma {
     problemNumber: number
     problemName: string
     difficulty: string
+    language: string | null
     durationMin: number
     solvedAt: Date
     notes: string | null
@@ -8423,6 +8430,7 @@ export namespace Prisma {
     problemNumber?: boolean
     problemName?: boolean
     difficulty?: boolean
+    language?: boolean
     durationMin?: boolean
     solvedAt?: boolean
     notes?: boolean
@@ -8437,6 +8445,7 @@ export namespace Prisma {
     problemNumber?: boolean
     problemName?: boolean
     difficulty?: boolean
+    language?: boolean
     durationMin?: boolean
     solvedAt?: boolean
     notes?: boolean
@@ -8451,6 +8460,7 @@ export namespace Prisma {
     problemNumber?: boolean
     problemName?: boolean
     difficulty?: boolean
+    language?: boolean
     durationMin?: boolean
     solvedAt?: boolean
     notes?: boolean
@@ -8465,6 +8475,7 @@ export namespace Prisma {
     problemNumber?: boolean
     problemName?: boolean
     difficulty?: boolean
+    language?: boolean
     durationMin?: boolean
     solvedAt?: boolean
     notes?: boolean
@@ -8473,7 +8484,7 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type LeetcodeSolveOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "platform" | "problemNumber" | "problemName" | "difficulty" | "durationMin" | "solvedAt" | "notes" | "solvedWithoutHint" | "solvedOptimally" | "createdAt", ExtArgs["result"]["leetcodeSolve"]>
+  export type LeetcodeSolveOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "platform" | "problemNumber" | "problemName" | "difficulty" | "language" | "durationMin" | "solvedAt" | "notes" | "solvedWithoutHint" | "solvedOptimally" | "createdAt", ExtArgs["result"]["leetcodeSolve"]>
 
   export type $LeetcodeSolvePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "LeetcodeSolve"
@@ -8484,6 +8495,7 @@ export namespace Prisma {
       problemNumber: number
       problemName: string
       difficulty: string
+      language: string | null
       durationMin: number
       solvedAt: Date
       notes: string | null
@@ -8918,6 +8930,7 @@ export namespace Prisma {
     readonly problemNumber: FieldRef<"LeetcodeSolve", 'Int'>
     readonly problemName: FieldRef<"LeetcodeSolve", 'String'>
     readonly difficulty: FieldRef<"LeetcodeSolve", 'String'>
+    readonly language: FieldRef<"LeetcodeSolve", 'String'>
     readonly durationMin: FieldRef<"LeetcodeSolve", 'Int'>
     readonly solvedAt: FieldRef<"LeetcodeSolve", 'DateTime'>
     readonly notes: FieldRef<"LeetcodeSolve", 'String'>
@@ -9409,6 +9422,7 @@ export namespace Prisma {
     problemNumber: 'problemNumber',
     problemName: 'problemName',
     difficulty: 'difficulty',
+    language: 'language',
     durationMin: 'durationMin',
     solvedAt: 'solvedAt',
     notes: 'notes',
@@ -10021,6 +10035,7 @@ export namespace Prisma {
     problemNumber?: IntFilter<"LeetcodeSolve"> | number
     problemName?: StringFilter<"LeetcodeSolve"> | string
     difficulty?: StringFilter<"LeetcodeSolve"> | string
+    language?: StringNullableFilter<"LeetcodeSolve"> | string | null
     durationMin?: IntFilter<"LeetcodeSolve"> | number
     solvedAt?: DateTimeFilter<"LeetcodeSolve"> | Date | string
     notes?: StringNullableFilter<"LeetcodeSolve"> | string | null
@@ -10035,6 +10050,7 @@ export namespace Prisma {
     problemNumber?: SortOrder
     problemName?: SortOrder
     difficulty?: SortOrder
+    language?: SortOrderInput | SortOrder
     durationMin?: SortOrder
     solvedAt?: SortOrder
     notes?: SortOrderInput | SortOrder
@@ -10052,6 +10068,7 @@ export namespace Prisma {
     problemNumber?: IntFilter<"LeetcodeSolve"> | number
     problemName?: StringFilter<"LeetcodeSolve"> | string
     difficulty?: StringFilter<"LeetcodeSolve"> | string
+    language?: StringNullableFilter<"LeetcodeSolve"> | string | null
     durationMin?: IntFilter<"LeetcodeSolve"> | number
     solvedAt?: DateTimeFilter<"LeetcodeSolve"> | Date | string
     notes?: StringNullableFilter<"LeetcodeSolve"> | string | null
@@ -10066,6 +10083,7 @@ export namespace Prisma {
     problemNumber?: SortOrder
     problemName?: SortOrder
     difficulty?: SortOrder
+    language?: SortOrderInput | SortOrder
     durationMin?: SortOrder
     solvedAt?: SortOrder
     notes?: SortOrderInput | SortOrder
@@ -10088,6 +10106,7 @@ export namespace Prisma {
     problemNumber?: IntWithAggregatesFilter<"LeetcodeSolve"> | number
     problemName?: StringWithAggregatesFilter<"LeetcodeSolve"> | string
     difficulty?: StringWithAggregatesFilter<"LeetcodeSolve"> | string
+    language?: StringNullableWithAggregatesFilter<"LeetcodeSolve"> | string | null
     durationMin?: IntWithAggregatesFilter<"LeetcodeSolve"> | number
     solvedAt?: DateTimeWithAggregatesFilter<"LeetcodeSolve"> | Date | string
     notes?: StringNullableWithAggregatesFilter<"LeetcodeSolve"> | string | null
@@ -10633,6 +10652,7 @@ export namespace Prisma {
     problemNumber: number
     problemName: string
     difficulty: string
+    language?: string | null
     durationMin: number
     solvedAt: Date | string
     notes?: string | null
@@ -10647,6 +10667,7 @@ export namespace Prisma {
     problemNumber: number
     problemName: string
     difficulty: string
+    language?: string | null
     durationMin: number
     solvedAt: Date | string
     notes?: string | null
@@ -10660,6 +10681,7 @@ export namespace Prisma {
     problemNumber?: IntFieldUpdateOperationsInput | number
     problemName?: StringFieldUpdateOperationsInput | string
     difficulty?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
     durationMin?: IntFieldUpdateOperationsInput | number
     solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10674,6 +10696,7 @@ export namespace Prisma {
     problemNumber?: IntFieldUpdateOperationsInput | number
     problemName?: StringFieldUpdateOperationsInput | string
     difficulty?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
     durationMin?: IntFieldUpdateOperationsInput | number
     solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10688,6 +10711,7 @@ export namespace Prisma {
     problemNumber: number
     problemName: string
     difficulty: string
+    language?: string | null
     durationMin: number
     solvedAt: Date | string
     notes?: string | null
@@ -10701,6 +10725,7 @@ export namespace Prisma {
     problemNumber?: IntFieldUpdateOperationsInput | number
     problemName?: StringFieldUpdateOperationsInput | string
     difficulty?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
     durationMin?: IntFieldUpdateOperationsInput | number
     solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10715,6 +10740,7 @@ export namespace Prisma {
     problemNumber?: IntFieldUpdateOperationsInput | number
     problemName?: StringFieldUpdateOperationsInput | string
     difficulty?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
     durationMin?: IntFieldUpdateOperationsInput | number
     solvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11247,6 +11273,7 @@ export namespace Prisma {
     problemNumber?: SortOrder
     problemName?: SortOrder
     difficulty?: SortOrder
+    language?: SortOrder
     durationMin?: SortOrder
     solvedAt?: SortOrder
     notes?: SortOrder
@@ -11267,6 +11294,7 @@ export namespace Prisma {
     problemNumber?: SortOrder
     problemName?: SortOrder
     difficulty?: SortOrder
+    language?: SortOrder
     durationMin?: SortOrder
     solvedAt?: SortOrder
     notes?: SortOrder
@@ -11281,6 +11309,7 @@ export namespace Prisma {
     problemNumber?: SortOrder
     problemName?: SortOrder
     difficulty?: SortOrder
+    language?: SortOrder
     durationMin?: SortOrder
     solvedAt?: SortOrder
     notes?: SortOrder

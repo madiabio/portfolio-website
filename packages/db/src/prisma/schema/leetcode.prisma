@@ -4,6 +4,7 @@ model LeetcodeSolve {
   problemNumber      Int
   problemName        String
   difficulty         String
+  language           String?
   durationMin        Int
   solvedAt           DateTime
   notes              String?

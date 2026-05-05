@@ -11,7 +11,10 @@ import {
   Put,
 } from '@nestjs/common';
 import { ApiNotFoundResponse } from '@nestjs/swagger';
-import { CreateLeetcodeSolveDto } from './dto/create-leetcodeSolve.dto';
+import {
+  CreateLeetcodeSolveDto,
+  UpdateLeetcodeSolveDto,
+} from './dto/create-leetcodeSolve.dto';
 import { LeetcodeSolve } from '@portfolio/db';
 import { LeetcodeSolveService } from './leetcodeSolve.service';
 import { Public } from '../auth/public.decorator';
@@ -32,5 +35,21 @@ export class LeetcodeSolveController {
   @Post()
   create(@Body() data: CreateLeetcodeSolveDto) {
     return this.leetcodeSolveService.createLeetcodeSolve(data);
+  }
+
+  @Put(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: UpdateLeetcodeSolveDto,
+  ) {
+    return this.leetcodeSolveService.updateLeetcodeSolve({
+      where: { id },
+      data,
+    });
+  }
+
+  @Delete(':id')
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.leetcodeSolveService.deleteLeetcodeSolve({ id });
   }
 }

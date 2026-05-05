@@ -42,8 +42,12 @@ export class LeetcodeSolveService {
         problemNumber: data.problemNumber,
         problemName: data.problemName,
         difficulty: data.difficulty,
+        language: data.language,
         durationMin: data.durationMin,
         solvedAt: data.solvedAt,
+        notes: data.notes,
+        solvedWithoutHint: data.solvedWithoutHint,
+        solvedOptimally: data.solvedOptimally,
       },
     });
   }

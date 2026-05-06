@@ -26,6 +26,7 @@ import type {
 
 import type {
   CreateLeetcodeSolveDto,
+  LeetcodeSolveDto,
   UpdateLeetcodeSolveDto
 } from '../generated.schemas';
 
@@ -36,17 +37,24 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 
+export type getLeetcodeSolveByIdResponse200 = {
+  data: LeetcodeSolveDto
+  status: 200
+}
+
 export type getLeetcodeSolveByIdResponse404 = {
   data: void
   status: 404
 }
 
-;
+export type getLeetcodeSolveByIdResponseSuccess = (getLeetcodeSolveByIdResponse200) & {
+  headers: Headers;
+};
 export type getLeetcodeSolveByIdResponseError = (getLeetcodeSolveByIdResponse404) & {
   headers: Headers;
 };
 
-export type getLeetcodeSolveByIdResponse = (getLeetcodeSolveByIdResponseError)
+export type getLeetcodeSolveByIdResponse = (getLeetcodeSolveByIdResponseSuccess | getLeetcodeSolveByIdResponseError)
 
 export const getGetLeetcodeSolveByIdUrl = (id: number,) => {
 
@@ -141,7 +149,7 @@ export function useGetLeetcodeSolveById<TData = Awaited<ReturnType<typeof getLee
 
 
 export type updateResponse200 = {
-  data: void
+  data: LeetcodeSolveDto
   status: 200
 }
 
@@ -218,7 +226,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       return useMutation(getUpdateMutationOptions(options), queryClient);
     }
     export type removeResponse200 = {
-  data: void
+  data: LeetcodeSolveDto
   status: 200
 }
 
@@ -292,12 +300,116 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       > => {
       return useMutation(getRemoveMutationOptions(options), queryClient);
     }
-    export type createResponse201 = {
-  data: void
-  status: 201
+    export type findAllResponse200 = {
+  data: LeetcodeSolveDto[]
+  status: 200
 }
 
-export type createResponseSuccess = (createResponse201) & {
+export type findAllResponseSuccess = (findAllResponse200) & {
+  headers: Headers;
+};
+;
+
+export type findAllResponse = (findAllResponseSuccess)
+
+export const getFindAllUrl = () => {
+
+
+
+
+  return `/leetcode-solves`
+}
+
+export const findAll = async ( options?: RequestInit): Promise<findAllResponse> => {
+
+  return customFetch<findAllResponse>(getFindAllUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getFindAllQueryKey = () => {
+    return [
+    `/leetcode-solves`
+    ] as const;
+    }
+
+
+export const getFindAllQueryOptions = <TData = Awaited<ReturnType<typeof findAll>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getFindAllQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof findAll>>> = ({ signal }) => findAll({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type FindAllQueryResult = NonNullable<Awaited<ReturnType<typeof findAll>>>
+export type FindAllQueryError = unknown
+
+
+export function useFindAll<TData = Awaited<ReturnType<typeof findAll>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof findAll>>,
+          TError,
+          Awaited<ReturnType<typeof findAll>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useFindAll<TData = Awaited<ReturnType<typeof findAll>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof findAll>>,
+          TError,
+          Awaited<ReturnType<typeof findAll>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useFindAll<TData = Awaited<ReturnType<typeof findAll>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function useFindAll<TData = Awaited<ReturnType<typeof findAll>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getFindAllQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+export type createResponse200 = {
+  data: LeetcodeSolveDto
+  status: 200
+}
+
+export type createResponseSuccess = (createResponse200) & {
   headers: Headers;
 };
 ;

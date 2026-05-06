@@ -19,7 +19,10 @@ import {
   type CreateLeetcodeSolveDto,
   CreateLeetcodeSolveDtoDifficulty,
 } from "@/lib/api/generated/generated.schemas";
-import { useCreate } from "@/lib/api/generated/leetcode-solve/leetcode-solve";
+import {
+  getFindAllQueryKey,
+  useCreate,
+} from "@/lib/api/generated/leetcode-solve/leetcode-solve";
 
 type Props = {
   onSuccess?: () => void;
@@ -90,6 +93,10 @@ export function AddSolveForm({ onSuccess }: Props) {
 
         await queryClient.invalidateQueries({
           queryKey: getGetLeetcodeScatterpointsQueryKey(),
+        });
+
+        await queryClient.invalidateQueries({
+          queryKey: getFindAllQueryKey(),
         });
 
         form.reset();

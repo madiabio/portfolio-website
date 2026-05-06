@@ -1,9 +1,10 @@
 "use client";
 
 import { Card, Container, Stack, Text, Title } from "@mantine/core";
-import { authClient } from "@/lib/auth/auth-client";
-import { AddSolveButton } from "@/features/solves/components/AddSolveButton";
 import { CodeforcesQueueReviewPanel } from "@/features/codeforces/components/codeforces-queue-review-panel";
+import { AddSolveButton } from "@/features/solves/components/AddSolveButton";
+import { LeetcodeSolveManager } from "@/features/solves/components/leetcode-solve-manager";
+import { authClient } from "@/lib/auth/auth-client";
 
 export default function AdminPage() {
   const { data: session, isPending } = authClient.useSession();
@@ -25,9 +26,11 @@ export default function AdminPage() {
           <Stack gap="md">
             <Text fw={600}>LeetCode</Text>
             <Text size="sm" c="dimmed">
-              Manual solve entry stays here while the public home page stays clean.
+              Manual solve entry stays here while the public home page stays
+              clean.
             </Text>
             <AddSolveButton />
+            <LeetcodeSolveManager />
           </Stack>
         </Card>
 

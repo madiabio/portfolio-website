@@ -1,9 +1,10 @@
-import { Test, type TestingModule } from '@nestjs/testing';
-import { LeetcodeSolveController } from './leetcodeSolve.controller';
-import { LeetcodeSolveService } from './leetcodeSolve.service';
+import { Test, type TestingModule } from "@nestjs/testing";
+import { LeetcodeSolveController } from "./leetcodeSolve.controller";
+import { LeetcodeSolveService } from "./leetcodeSolve.service";
 
-describe('LeetcodeSolveController', () => {
+describe("LeetcodeSolveController", () => {
   const leetcodeSolveService = {
+    leetcodeSolves: jest.fn(),
     createLeetcodeSolve: jest.fn(),
     updateLeetcodeSolve: jest.fn(),
     deleteLeetcodeSolve: jest.fn(),
@@ -27,24 +28,34 @@ describe('LeetcodeSolveController', () => {
     controller = module.get(LeetcodeSolveController);
   });
 
-  it('updates a solve by id', async () => {
+  it("lists solves newest first", async () => {
+    leetcodeSolveService.leetcodeSolves.mockResolvedValueOnce([]);
+
+    await controller.findAll();
+
+    expect(leetcodeSolveService.leetcodeSolves).toHaveBeenCalledWith({
+      orderBy: { solvedAt: "desc" },
+    });
+  });
+
+  it("updates a solve by id", async () => {
     leetcodeSolveService.updateLeetcodeSolve.mockResolvedValueOnce({ id: 1 });
 
     await controller.update(1, {
-      language: 'TypeScript',
+      language: "TypeScript",
       solvedWithoutHint: false,
     });
 
     expect(leetcodeSolveService.updateLeetcodeSolve).toHaveBeenCalledWith({
       where: { id: 1 },
       data: {
-        language: 'TypeScript',
+        language: "TypeScript",
         solvedWithoutHint: false,
       },
     });
   });
 
-  it('deletes a solve by id', async () => {
+  it("deletes a solve by id", async () => {
     leetcodeSolveService.deleteLeetcodeSolve.mockResolvedValueOnce({ id: 1 });
 
     await controller.remove(1);

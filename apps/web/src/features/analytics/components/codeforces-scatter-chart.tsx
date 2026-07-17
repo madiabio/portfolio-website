@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Box,
-  Card,
-  Stack,
-  Text,
-  Title,
-} from "@mantine/core";
+import { Box, Card, Stack, Text, Title } from "@mantine/core";
 import {
   CartesianGrid,
   Legend,
@@ -26,6 +20,7 @@ import type {
   CodeforcesTimeByRatingResponseDto,
   CodeforcesTimeByRatingResponseDtoGoals,
 } from "@/lib/api/generated/generated.schemas";
+import { formatDateTime, formatDayMonth } from "@/utils/format-date";
 
 const Y_MAX_MINUTES = 120;
 
@@ -47,7 +42,9 @@ const LEGEND_ITEMS: Array<{ label: VisibleTier; color: string }> = [
   { label: "2000+", color: TIER_COLORS["2000+"] },
 ];
 
-const FALLBACK_GOALS: Required<CodeforcesTimeByRatingResponseDtoGoals & Record<"800-1200", number>> = {
+const FALLBACK_GOALS: Required<
+  CodeforcesTimeByRatingResponseDtoGoals & Record<"800-1200", number>
+> = {
   "0-1200": 10,
   "1200-1600": 35,
   "1600-2000": 50,
@@ -64,20 +61,6 @@ type ChartPoint = {
   problemIndex: string;
   problemName: string;
 };
-
-function formatDateTick(value: number) {
-  return new Intl.DateTimeFormat("en-AU", {
-    day: "2-digit",
-    month: "short",
-  }).format(new Date(value));
-}
-
-function formatTooltipDate(value: number) {
-  return new Intl.DateTimeFormat("en-AU", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  }).format(new Date(value));
-}
 
 function CustomTooltip({
   active,
@@ -100,7 +83,7 @@ function CustomTooltip({
         <Text size="sm">Rating: {point.rating ?? "unrated"}</Text>
         <Text size="sm">Tier: {point.ratingTier}</Text>
         <Text size="sm">Duration: {point.duration} min</Text>
-        <Text size="sm">Solved: {formatTooltipDate(point.timestamp)}</Text>
+        <Text size="sm">Solved: {formatDateTime(point.timestamp)}</Text>
       </Stack>
     </Card>
   );
@@ -140,11 +123,21 @@ export function CodeforcesScatterChart() {
         goals["0-1200"] = FALLBACK_GOALS["0-1200"];
         goals["800-1200"] = FALLBACK_GOALS["800-1200"];
 
-        const tier0to800 = chartPoints.filter((p) => !p.rating || p.rating <= 800);
-        const tier800to1200 = chartPoints.filter((p) => p.rating && p.rating > 800 && p.rating <= 1200);
-        const tier1200to1600 = chartPoints.filter((p) => p.rating && p.rating > 1200 && p.rating <= 1600);
-        const tier1600to2000 = chartPoints.filter((p) => p.rating && p.rating > 1600 && p.rating <= 2000);
-        const tier2000Plus = chartPoints.filter((p) => p.rating && p.rating > 2000);
+        const tier0to800 = chartPoints.filter(
+          (p) => !p.rating || p.rating <= 800,
+        );
+        const tier800to1200 = chartPoints.filter(
+          (p) => p.rating && p.rating > 800 && p.rating <= 1200,
+        );
+        const tier1200to1600 = chartPoints.filter(
+          (p) => p.rating && p.rating > 1200 && p.rating <= 1600,
+        );
+        const tier1600to2000 = chartPoints.filter(
+          (p) => p.rating && p.rating > 1600 && p.rating <= 2000,
+        );
+        const tier2000Plus = chartPoints.filter(
+          (p) => p.rating && p.rating > 2000,
+        );
 
         const timestamps = chartPoints.map((p) => p.timestamp);
         const minX = timestamps.length ? Math.min(...timestamps) : Date.now();
@@ -162,13 +155,15 @@ export function CodeforcesScatterChart() {
 
               <Box h={420}>
                 <ResponsiveContainer width="100%" height="100%">
-                  <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
+                  <ScatterChart
+                    margin={{ top: 20, right: 20, bottom: 20, left: 10 }}
+                  >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                       type="number"
                       dataKey="timestamp"
                       domain={[minX, maxX]}
-                      tickFormatter={formatDateTick}
+                      tickFormatter={formatDayMonth}
                       name="Solved at"
                     />
                     <YAxis
@@ -193,7 +188,11 @@ export function CodeforcesScatterChart() {
                           {LEGEND_ITEMS.map((item) => (
                             <Box
                               key={item.label}
-                              style={{ display: "inline-flex", alignItems: "center", gap: 8 }}
+                              style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: 8,
+                              }}
                             >
                               <Box
                                 style={{
@@ -217,7 +216,10 @@ export function CodeforcesScatterChart() {
                       y={goals["0-1200"]}
                       stroke={TIER_COLORS["0-800"]}
                       strokeDasharray="4 4"
-                      label={{ value: `0-800 goal (${goals["0-1200"]}m)`, position: "insideTopLeft" }}
+                      label={{
+                        value: `0-800 goal (${goals["0-1200"]}m)`,
+                        position: "insideTopLeft",
+                      }}
                     />
                     <ReferenceLine
                       y={goals["800-1200"]}
@@ -250,10 +252,17 @@ export function CodeforcesScatterChart() {
                       y={goals["2000+"]}
                       stroke={TIER_COLORS["2000+"]}
                       strokeDasharray="4 4"
-                      label={{ value: `2000+ goal (${goals["2000+"]}m)`, position: "insideTopLeft" }}
+                      label={{
+                        value: `2000+ goal (${goals["2000+"]}m)`,
+                        position: "insideTopLeft",
+                      }}
                     />
 
-                    <Scatter name="0-800" data={tier0to800} fill={TIER_COLORS["0-800"]} />
+                    <Scatter
+                      name="0-800"
+                      data={tier0to800}
+                      fill={TIER_COLORS["0-800"]}
+                    />
                     <Scatter
                       name="800-1200"
                       data={tier800to1200}
@@ -269,7 +278,11 @@ export function CodeforcesScatterChart() {
                       data={tier1600to2000}
                       fill={TIER_COLORS["1600-2000"]}
                     />
-                    <Scatter name="2000+" data={tier2000Plus} fill={TIER_COLORS["2000+"]} />
+                    <Scatter
+                      name="2000+"
+                      data={tier2000Plus}
+                      fill={TIER_COLORS["2000+"]}
+                    />
                   </ScatterChart>
                 </ResponsiveContainer>
               </Box>

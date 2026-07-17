@@ -3,8 +3,8 @@
 import { Button, Modal } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
-import { AddSolveForm } from "./forms/AddSolveForm";
 import { useIsAdmin } from "@/lib/api/generated/auth/auth";
+import { AddSolveForm } from "./add-solve-form";
 
 export function AddSolveButton() {
   const [opened, setOpened] = useState(false);

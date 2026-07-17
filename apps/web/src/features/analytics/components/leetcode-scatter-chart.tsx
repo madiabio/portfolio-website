@@ -23,9 +23,9 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-
-import { useGetLeetcodeScatterpoints } from "@/lib/api/generated/analytics/analytics";
 import { ApiState } from "@/components/api-state";
+import { useGetLeetcodeScatterpoints } from "@/lib/api/generated/analytics/analytics";
+import { formatDateTime, formatDayMonth } from "@/utils/format-date";
 
 type Difficulty = "easy" | "medium" | "hard";
 
@@ -44,20 +44,6 @@ type ChartPoint = {
   problemNumber: number;
   problemName: string;
 };
-
-function formatDateTick(value: number) {
-  return new Intl.DateTimeFormat("en-AU", {
-    day: "2-digit",
-    month: "short",
-  }).format(new Date(value));
-}
-
-function formatTooltipDate(value: number) {
-  return new Intl.DateTimeFormat("en-AU", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  }).format(new Date(value));
-}
 
 function CustomTooltip({
   active,
@@ -78,7 +64,7 @@ function CustomTooltip({
         </Text>
         <Text size="sm">Difficulty: {point.difficulty}</Text>
         <Text size="sm">Duration: {point.duration} min</Text>
-        <Text size="sm">Solved: {formatTooltipDate(point.timestamp)}</Text>
+        <Text size="sm">Solved: {formatDateTime(point.timestamp)}</Text>
       </Stack>
     </Card>
   );
@@ -146,7 +132,7 @@ export function LeetcodeScatterChart() {
                       type="number"
                       dataKey="timestamp"
                       domain={[minX, maxX]}
-                      tickFormatter={formatDateTick}
+                      tickFormatter={formatDayMonth}
                       name="Solved at"
                     />
                     <YAxis

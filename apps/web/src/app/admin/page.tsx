@@ -2,7 +2,7 @@
 
 import { Card, Container, Stack, Text, Title } from "@mantine/core";
 import { CodeforcesQueueReviewPanel } from "@/features/codeforces/components/codeforces-queue-review-panel";
-import { AddSolveButton } from "@/features/solves/components/AddSolveButton";
+import { AddSolveButton } from "@/features/solves/components/add-solve-button";
 import { LeetcodeSolveManager } from "@/features/solves/components/leetcode-solve-manager";
 import { authClient } from "@/lib/auth/auth-client";
 

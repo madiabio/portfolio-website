@@ -15,35 +15,32 @@ import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { ApiState } from "@/components/api-state";
-import { CodeforcesSyncButton } from "./codeforces-sync-button";
-import type {
-  CodeforcesQueueItemDto,
-  ReviewCodeforcesQueueDto,
-} from "@/lib/api/generated/generated.schemas";
 import {
   getQueueQueryKey,
   reviewQueueItem,
   useQueue,
 } from "@/lib/api/generated/codeforces/codeforces";
 import { getGetCodeforcesScatterpointsQueryKey } from "@/lib/api/generated/codeforces-analytics/codeforces-analytics";
+import type {
+  CodeforcesQueueItemDto,
+  ReviewCodeforcesQueueDto,
+} from "@/lib/api/generated/generated.schemas";
+import { formatDateTime } from "@/utils/format-date";
+import { CodeforcesSyncButton } from "./codeforces-sync-button";
 
 type Props = {
   handle?: string;
   isInModal?: boolean;
 };
 
-function formatSolvedAt(value: string) {
-  return new Intl.DateTimeFormat("en-AU", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  }).format(new Date(value));
-}
-
-export function CodeforcesQueueReviewPanel({ handle = "madelineabio", isInModal = false }: Props) {
+export function CodeforcesQueueReviewPanel({
+  handle = "madelineabio",
+  isInModal = false,
+}: Props) {
   const queryClient = useQueryClient();
-  const [durations, setDurations] = useState<Record<number, number | undefined>>(
-    {},
-  );
+  const [durations, setDurations] = useState<
+    Record<number, number | undefined>
+  >({});
 
   const queueQuery = useQueue({ handle });
 
@@ -54,7 +51,8 @@ export function CodeforcesQueueReviewPanel({ handle = "madelineabio", isInModal 
     }: {
       id: number;
       durationMin: number;
-    }) => reviewQueueItem(id, { durationMin } satisfies ReviewCodeforcesQueueDto),
+    }) =>
+      reviewQueueItem(id, { durationMin } satisfies ReviewCodeforcesQueueDto),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: getQueueQueryKey({ handle }),
@@ -101,7 +99,8 @@ export function CodeforcesQueueReviewPanel({ handle = "madelineabio", isInModal 
           <Stack gap={2}>
             <Title order={3}>Codeforces Review Queue</Title>
             <Text size="sm" c="dimmed">
-              Sync submissions, then enter the solve time for each accepted item.
+              Sync submissions, then enter the solve time for each accepted
+              item.
             </Text>
           </Stack>
 
@@ -132,7 +131,8 @@ export function CodeforcesQueueReviewPanel({ handle = "madelineabio", isInModal 
                         </Group>
                         <Text size="sm" c="dimmed">
                           Contest {item.contestId} · Rating{" "}
-                          {item.rating ?? "unrated"} · Solved {formatSolvedAt(item.solvedAt)}
+                          {item.rating ?? "unrated"} · Solved{" "}
+                          {formatDateTime(item.solvedAt)}
                         </Text>
                       </Stack>
                     </Group>
@@ -143,12 +143,17 @@ export function CodeforcesQueueReviewPanel({ handle = "madelineabio", isInModal 
                       <NumberInput
                         label="Duration (minutes)"
                         min={1}
-                        value={durations[item.id] ?? item.durationMin ?? undefined}
+                        value={
+                          durations[item.id] ?? item.durationMin ?? undefined
+                        }
                         onChange={(value: number | string | undefined) => {
-                          setDurations((current: Record<number, number | undefined>) => ({
-                            ...current,
-                            [item.id]: typeof value === "number" ? value : undefined,
-                          }));
+                          setDurations(
+                            (current: Record<number, number | undefined>) => ({
+                              ...current,
+                              [item.id]:
+                                typeof value === "number" ? value : undefined,
+                            }),
+                          );
                         }}
                       />
 

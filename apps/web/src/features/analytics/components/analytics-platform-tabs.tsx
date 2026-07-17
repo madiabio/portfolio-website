@@ -1,15 +1,17 @@
 "use client";
 
 import { Stack, Tabs } from "@mantine/core";
-import { LeetcodeScatterChart } from "./leetcode-scatter-chart";
+import { AddSolveButton } from "@/features/solves/components/add-solve-button";
 import { CodeforcesAnalyticsPanel } from "./codeforces-analytics-panel";
-import { AddSolveButton } from "@/features/solves/components/AddSolveButton";
+import { LeetcodeScatterChart } from "./leetcode-scatter-chart";
 
 type Props = {
   codeforcesHandle?: string;
 };
 
-export function AnalyticsPlatformTabs({ codeforcesHandle = "madelineabio" }: Props) {
+export function AnalyticsPlatformTabs({
+  codeforcesHandle = "madelineabio",
+}: Props) {
   return (
     <Tabs defaultValue="leetcode" keepMounted={false}>
       <Tabs.List>

@@ -8,7 +8,7 @@ export function FeaturedDemosSection() {
       <div>
         <Title order={2}>Featured Demos</Title>
         <Text c="dimmed" mt={4}>
-          Interactive and visual demos from projects I have built.
+          Interactive and visual demos from my projects.
         </Text>
       </div>
 

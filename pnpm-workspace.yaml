@@ -2,6 +2,17 @@ packages:
   - "apps/*"
   - "packages/*"
 
+allowBuilds:
+  '@nestjs/core': true
+  '@prisma/engines': true
+  '@scarf/scarf': true
+  core-js: true
+  esbuild: true
+  nodemon: true
+  prisma: true
+  sharp: true
+  unrs-resolver: true
+
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver

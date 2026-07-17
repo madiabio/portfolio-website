@@ -202,6 +202,7 @@ exports.Prisma.LeetcodeSolveScalarFieldEnum = {
   problemNumber: 'problemNumber',
   problemName: 'problemName',
   difficulty: 'difficulty',
+  language: 'language',
   durationMin: 'durationMin',
   solvedAt: 'solvedAt',
   notes: 'notes',

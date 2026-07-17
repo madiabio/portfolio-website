@@ -1,23 +1,29 @@
-import { ApiProperty, ApiPropertyOptional, PartialType } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
-export class CreateLeetcodeSolveDto {
+export class LeetcodeSolveDto {
+  @ApiProperty()
+  id: number;
+
+  @ApiProperty({ enum: ["LEETCODE", "CODEFORCES", "HACKERRANK"] })
+  platform: "LEETCODE" | "CODEFORCES" | "HACKERRANK";
+
   @ApiProperty()
   problemNumber: number;
 
   @ApiProperty()
   problemName: string;
 
-  @ApiProperty({ type: String, format: "date-time" })
-  solvedAt: Date;
-
   @ApiProperty({ enum: ["easy", "medium", "hard"] })
-  difficulty: "easy" | "medium" | "hard";
+  difficulty: string;
 
   @ApiPropertyOptional({ nullable: true, type: String })
   language?: string | null;
 
   @ApiProperty()
   durationMin: number;
+
+  @ApiProperty({ type: String, format: "date-time" })
+  solvedAt: Date;
 
   @ApiPropertyOptional({ nullable: true, type: String })
   notes?: string | null;
@@ -27,8 +33,7 @@ export class CreateLeetcodeSolveDto {
 
   @ApiPropertyOptional({ nullable: true, type: Boolean })
   solvedOptimally?: boolean | null;
-}
 
-export class UpdateLeetcodeSolveDto extends PartialType(
-  CreateLeetcodeSolveDto,
-) {}
+  @ApiProperty({ type: String, format: "date-time" })
+  createdAt: Date;
+}

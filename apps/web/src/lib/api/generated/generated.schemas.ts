@@ -9,7 +9,92 @@ export interface IsAdminResponseDto {
   isAdmin: boolean;
 }
 
-export interface CreateLeetcodeSolveDto { [key: string]: unknown }
+export type LeetcodeSolveDtoPlatform = typeof LeetcodeSolveDtoPlatform[keyof typeof LeetcodeSolveDtoPlatform];
+
+
+export const LeetcodeSolveDtoPlatform = {
+  LEETCODE: 'LEETCODE',
+  CODEFORCES: 'CODEFORCES',
+  HACKERRANK: 'HACKERRANK',
+} as const;
+
+export type LeetcodeSolveDtoDifficulty = typeof LeetcodeSolveDtoDifficulty[keyof typeof LeetcodeSolveDtoDifficulty];
+
+
+export const LeetcodeSolveDtoDifficulty = {
+  easy: 'easy',
+  medium: 'medium',
+  hard: 'hard',
+} as const;
+
+export interface LeetcodeSolveDto {
+  id: number;
+  platform: LeetcodeSolveDtoPlatform;
+  problemNumber: number;
+  problemName: string;
+  difficulty: LeetcodeSolveDtoDifficulty;
+  /** @nullable */
+  language?: string | null;
+  durationMin: number;
+  solvedAt: string;
+  /** @nullable */
+  notes?: string | null;
+  /** @nullable */
+  solvedWithoutHint?: boolean | null;
+  /** @nullable */
+  solvedOptimally?: boolean | null;
+  createdAt: string;
+}
+
+export type CreateLeetcodeSolveDtoDifficulty = typeof CreateLeetcodeSolveDtoDifficulty[keyof typeof CreateLeetcodeSolveDtoDifficulty];
+
+
+export const CreateLeetcodeSolveDtoDifficulty = {
+  easy: 'easy',
+  medium: 'medium',
+  hard: 'hard',
+} as const;
+
+export interface CreateLeetcodeSolveDto {
+  problemNumber: number;
+  problemName: string;
+  solvedAt: string;
+  difficulty: CreateLeetcodeSolveDtoDifficulty;
+  /** @nullable */
+  language?: string | null;
+  durationMin: number;
+  /** @nullable */
+  notes?: string | null;
+  /** @nullable */
+  solvedWithoutHint?: boolean | null;
+  /** @nullable */
+  solvedOptimally?: boolean | null;
+}
+
+export type UpdateLeetcodeSolveDtoDifficulty = typeof UpdateLeetcodeSolveDtoDifficulty[keyof typeof UpdateLeetcodeSolveDtoDifficulty];
+
+
+export const UpdateLeetcodeSolveDtoDifficulty = {
+  easy: 'easy',
+  medium: 'medium',
+  hard: 'hard',
+} as const;
+
+export interface UpdateLeetcodeSolveDto {
+  problemNumber?: number;
+  problemName?: string;
+  solvedAt?: string;
+  difficulty?: UpdateLeetcodeSolveDtoDifficulty;
+  /** @nullable */
+  language?: string | null;
+  durationMin?: number;
+  /** @nullable */
+  notes?: string | null;
+  /** @nullable */
+  solvedWithoutHint?: boolean | null;
+  /** @nullable */
+  solvedOptimally?: boolean | null;
+}
 
 export type CodeforcesScatterPointDtoRatingTier = typeof CodeforcesScatterPointDtoRatingTier[keyof typeof CodeforcesScatterPointDtoRatingTier];
 

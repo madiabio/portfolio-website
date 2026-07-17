@@ -25,7 +25,9 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  CreateLeetcodeSolveDto
+  CreateLeetcodeSolveDto,
+  LeetcodeSolveDto,
+  UpdateLeetcodeSolveDto
 } from '../generated.schemas';
 
 import { customFetch } from '../../custom-fetch';
@@ -35,17 +37,24 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 
+export type getLeetcodeSolveByIdResponse200 = {
+  data: LeetcodeSolveDto
+  status: 200
+}
+
 export type getLeetcodeSolveByIdResponse404 = {
   data: void
   status: 404
 }
 
-;
+export type getLeetcodeSolveByIdResponseSuccess = (getLeetcodeSolveByIdResponse200) & {
+  headers: Headers;
+};
 export type getLeetcodeSolveByIdResponseError = (getLeetcodeSolveByIdResponse404) & {
   headers: Headers;
 };
 
-export type getLeetcodeSolveByIdResponse = (getLeetcodeSolveByIdResponseError)
+export type getLeetcodeSolveByIdResponse = (getLeetcodeSolveByIdResponseSuccess | getLeetcodeSolveByIdResponseError)
 
 export const getGetLeetcodeSolveByIdUrl = (id: number,) => {
 
@@ -139,12 +148,268 @@ export function useGetLeetcodeSolveById<TData = Awaited<ReturnType<typeof getLee
 
 
 
-export type createResponse201 = {
-  data: void
-  status: 201
+export type updateResponse200 = {
+  data: LeetcodeSolveDto
+  status: 200
 }
 
-export type createResponseSuccess = (createResponse201) & {
+export type updateResponseSuccess = (updateResponse200) & {
+  headers: Headers;
+};
+;
+
+export type updateResponse = (updateResponseSuccess)
+
+export const getUpdateUrl = (id: number,) => {
+
+
+
+
+  return `/leetcode-solves/${id}`
+}
+
+export const update = async (id: number,
+    updateLeetcodeSolveDto: UpdateLeetcodeSolveDto, options?: RequestInit): Promise<updateResponse> => {
+
+  return customFetch<updateResponse>(getUpdateUrl(id),
+  {
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      updateLeetcodeSolveDto,)
+  }
+);}
+
+
+
+
+export const getUpdateMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof update>>, TError,{id: number;data: UpdateLeetcodeSolveDto}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof update>>, TError,{id: number;data: UpdateLeetcodeSolveDto}, TContext> => {
+
+const mutationKey = ['update'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof update>>, {id: number;data: UpdateLeetcodeSolveDto}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  update(id,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UpdateMutationResult = NonNullable<Awaited<ReturnType<typeof update>>>
+    export type UpdateMutationBody = UpdateLeetcodeSolveDto
+    export type UpdateMutationError = unknown
+
+    export const useUpdate = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof update>>, TError,{id: number;data: UpdateLeetcodeSolveDto}, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof update>>,
+        TError,
+        {id: number;data: UpdateLeetcodeSolveDto},
+        TContext
+      > => {
+      return useMutation(getUpdateMutationOptions(options), queryClient);
+    }
+    export type removeResponse200 = {
+  data: LeetcodeSolveDto
+  status: 200
+}
+
+export type removeResponseSuccess = (removeResponse200) & {
+  headers: Headers;
+};
+;
+
+export type removeResponse = (removeResponseSuccess)
+
+export const getRemoveUrl = (id: number,) => {
+
+
+
+
+  return `/leetcode-solves/${id}`
+}
+
+export const remove = async (id: number, options?: RequestInit): Promise<removeResponse> => {
+
+  return customFetch<removeResponse>(getRemoveUrl(id),
+  {
+    ...options,
+    method: 'DELETE'
+
+
+  }
+);}
+
+
+
+
+export const getRemoveMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof remove>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof remove>>, TError,{id: number}, TContext> => {
+
+const mutationKey = ['remove'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof remove>>, {id: number}> = (props) => {
+          const {id} = props ?? {};
+
+          return  remove(id,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type RemoveMutationResult = NonNullable<Awaited<ReturnType<typeof remove>>>
+
+    export type RemoveMutationError = unknown
+
+    export const useRemove = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof remove>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof remove>>,
+        TError,
+        {id: number},
+        TContext
+      > => {
+      return useMutation(getRemoveMutationOptions(options), queryClient);
+    }
+    export type findAllResponse200 = {
+  data: LeetcodeSolveDto[]
+  status: 200
+}
+
+export type findAllResponseSuccess = (findAllResponse200) & {
+  headers: Headers;
+};
+;
+
+export type findAllResponse = (findAllResponseSuccess)
+
+export const getFindAllUrl = () => {
+
+
+
+
+  return `/leetcode-solves`
+}
+
+export const findAll = async ( options?: RequestInit): Promise<findAllResponse> => {
+
+  return customFetch<findAllResponse>(getFindAllUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getFindAllQueryKey = () => {
+    return [
+    `/leetcode-solves`
+    ] as const;
+    }
+
+
+export const getFindAllQueryOptions = <TData = Awaited<ReturnType<typeof findAll>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getFindAllQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof findAll>>> = ({ signal }) => findAll({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type FindAllQueryResult = NonNullable<Awaited<ReturnType<typeof findAll>>>
+export type FindAllQueryError = unknown
+
+
+export function useFindAll<TData = Awaited<ReturnType<typeof findAll>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof findAll>>,
+          TError,
+          Awaited<ReturnType<typeof findAll>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useFindAll<TData = Awaited<ReturnType<typeof findAll>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof findAll>>,
+          TError,
+          Awaited<ReturnType<typeof findAll>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useFindAll<TData = Awaited<ReturnType<typeof findAll>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function useFindAll<TData = Awaited<ReturnType<typeof findAll>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof findAll>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getFindAllQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+export type createResponse200 = {
+  data: LeetcodeSolveDto
+  status: 200
+}
+
+export type createResponseSuccess = (createResponse200) & {
   headers: Headers;
 };
 ;

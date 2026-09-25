@@ -1,6 +1,7 @@
 import { Stack, Text, Title } from "@mantine/core";
 import { LeetCodeDemoCard } from "@/features/demos/leetcode-solves-demo-card";
 import { BassSynthDemoCard } from "@/features/demos/bass-synth-demo-card";
+import { FireControlDemoCard } from "@/features/demos/fire-control-demo-card";
 
 export function FeaturedDemosSection() {
   return (
@@ -14,6 +15,7 @@ export function FeaturedDemosSection() {
 
       <LeetCodeDemoCard />
       <BassSynthDemoCard />
+      <FireControlDemoCard />
     </Stack>
   );
 }

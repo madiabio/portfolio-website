@@ -72,6 +72,7 @@ export async function getPortfolioProjects(): Promise<HomeProject[]> {
     "portfolio-website",
     "bass-synth",
     "encryption-client",
+    "spreadsheet-app",
   ];
 
   data.items.sort(

@@ -1,3 +1,5 @@
+import { formatMonthYear } from "@/utils/format-date";
+
 type GitHubRepo = {
   id: number;
   name: string;
@@ -5,6 +7,7 @@ type GitHubRepo = {
   html_url: string;
   language: string | null;
   topics?: string[];
+  created_at: string;
 };
 
 type HomeProject = {
@@ -16,6 +19,7 @@ type HomeProject = {
   date?: string;
 };
 
+// Any field left unset falls back to the GitHub repo (date → created_at).
 const PROJECT_OVERRIDES: Record<
   string,
   { title?: string; description?: string; language?: string; date?: string }
@@ -25,15 +29,14 @@ const PROJECT_OVERRIDES: Record<
     description:
       "The website you're currently on: a full-stack web app built with Next.js, NestJS, PostgreSQL, and Mantine. Hosted on Railway. Includes authentication, a LeetCode analytics graph, and a dynamic link to my GitHub repositories that are tagged 'portfolio'.",
     language: "TypeScript",
-    date: "March 2026",
   },
   "bass-synth": {
     title: "Digital Bass Synthesiser",
     language: "C",
     date: "Sept 2025 - Oct 2025",
   },
-  "encryption-decryption": {
-    date: "May 2025",
+  "spreadsheet-app": {
+    date: "Oct 2024",
   },
 };
 
@@ -68,7 +71,8 @@ export async function getPortfolioProjects(): Promise<HomeProject[]> {
   const PROJECT_ORDER = [
     "portfolio-website",
     "bass-synth",
-    "encryption-decryption",
+    "encryption-client",
+    "spreadsheet-app",
   ];
 
   data.items.sort(
@@ -90,7 +94,7 @@ export async function getPortfolioProjects(): Promise<HomeProject[]> {
           t !== "portfolio" &&
           t.toLowerCase() !== (repo.language ?? "").toLowerCase(),
       ),
-      date: override?.date,
+      date: override?.date ?? formatMonthYear(repo.created_at),
     };
   });
 }

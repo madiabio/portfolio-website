@@ -19,7 +19,7 @@ export async function ProjectsSection() {
       <div>
         <Title order={2}>Projects</Title>
         <Text c="dimmed" mt={4}>
-          A few things I have built recently.
+          Cool things I have built.
         </Text>
       </div>
 
